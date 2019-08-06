@@ -91,20 +91,6 @@ exports.up = function(knex, Promise) {
     table.integer('idMaterial').references('id').inTable('material');
     table.integer('idFactura').references('id').inTable('factura');
   })
-  .createTable( 'presupuesto', function( table ) {
-    table.increments('id');
-    table.timestamp('fecha');
-    table.decimal('total');
-    table.integer('idCliente').references('id').inTable('cliente');
-  })
-  .createTable( 'detalle_presupuesto', function( table ) {
-    table.increments('id');
-    table.integer('cantidad');
-    table.decimal('precio');
-    table.decimal('descuento');
-    table.integer('idMaterial').references('id').inTable('material');
-    table.integer('idPresupuesto').references('id').inTable('presupuesto');
-  })
 };
 
 exports.down = function(knex, Promise) {
@@ -122,6 +108,4 @@ exports.down = function(knex, Promise) {
     .dropTableIfExists( 'detalle_reclamo' )
     .dropTableIfExists( 'factura' )
     .dropTableIfExists( 'detalle_factura' )
-    .dropTableIfExists( 'presupuesto' )
-    .dropTableIfExists( 'detalle_presupuesto' )
 };
