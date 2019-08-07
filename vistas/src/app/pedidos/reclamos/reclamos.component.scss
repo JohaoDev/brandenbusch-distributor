@@ -169,17 +169,18 @@ header
 
 //BUTTONS
 
-.newPedido{
+.newReclamo{
     position: fixed;
     right: 5%;
-}
-.reclamosPage{
-    position: fixed;
-    left: 5%;
 }
 .backHome{
     position: fixed;
     right: 5%;
+    bottom: 5%;
+}
+.levelDown{
+    position: fixed;
+    right: 10%;
     bottom: 5%;
 }
 
