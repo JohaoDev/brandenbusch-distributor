@@ -10,6 +10,7 @@ import { PedidosComponent } from './pedidos/pedidos.component';
 import { ReclamosComponent } from './pedidos/reclamos/reclamos.component';
 import { ResumenPedidoComponent } from './pedidos/resumen-pedido/resumen-pedido.component';
 import { ResumenReclamosComponent } from './pedidos/reclamos/resumen-reclamos/resumen-reclamos.component';
+import { MaterialesComponent } from './materiales/materiales.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ResumenReclamosComponent } from './pedidos/reclamos/resumen-reclamos/re
     PedidosComponent,
     ReclamosComponent,
     ResumenPedidoComponent,
-    ResumenReclamosComponent
+    ResumenReclamosComponent,
+    MaterialesComponent
   ],
   imports: [
     BrowserModule,
