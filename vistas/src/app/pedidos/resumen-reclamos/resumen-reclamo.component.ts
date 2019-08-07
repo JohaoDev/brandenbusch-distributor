@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-resumen-reclamo',
-  templateUrl: './resumen-pedido.reclamo.html',
+  templateUrl: './resumen-reclamo.component.html',
   styleUrls: ['./resumen-reclamo.component.scss']
 })
 export class ResumenReclamoComponent implements OnInit {
@@ -18,11 +18,12 @@ export class ResumenReclamoComponent implements OnInit {
 
     this.table_header = [
       {
-        idpedido: 'Código del pedido',
-        idmaterial: 'Material',
-        nombre: 'Nombre',
+        idreclamo: 'Código del reclamo',
         cantidad: 'Cantidad',
-        precio: 'Precio'
+        preciopedido: 'Precio Emitido',
+        preciodellegada: 'Precio De Llegada',
+        idpedido: 'Código del pedido',
+        idmaterial:'Código del material',
       }
     ]
   }
@@ -33,17 +34,15 @@ export class ResumenReclamoComponent implements OnInit {
   }
 
   getDetallePedido = () => {
-    let tabla = "detalle_pedido"
+    let tabla = "detalle_reclamo"
     this.http.get<any>(environment.API_URL + `?tabla=${tabla}&id=${this.getLocalStorage()}`)
     .subscribe(data => {
       this.respuestaDetallePedido = data.datos
     })
   }
-
   deleteDataTable = (value) => {
-    let tabla = 'ordenes_detalle'
+    let tabla = 'detalle_reclamo'
     this.http.delete(environment.API_URL + `?tabla=${tabla}&&id=${value}`)
     .subscribe( data => { })
   }
-
 }

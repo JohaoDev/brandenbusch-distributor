@@ -1,28 +1,26 @@
 <h2>Resumen</h2>
 <div class="table-wrapper">
     <table class="fl-table">
-        <thead *ngFor="let item of table_header">
+        <thead *ngFor="let item of table_header" >
              <th>{{item.idreclamo}}</th>
             <th>{{item.cantidad}}</th>
             <th>{{item.preciopedido}}</th>
             <th>{{item.preciodellegada}}</th>
-            <th>{{item.idreclamo}}</th>
             <th>{{item.idpedido}}</th>
             <th>{{item.idmaterial}}</th>
             <th></th>
         </thead>
 
         <tbody>
-            <tr *ngFor="let item of respuesta">
+            <tr *ngFor="let item of respuestaDetalleReclamo" >
                 <td>{{item.idreclamo}}</td>
                 <td>{{item.cantidad}}</td>
                 <td>{{item.preciopedido}}</td>
                 <td>{{item.preciodellegada}}</td>
-                <td>{{item.idreclamo}}</td>
                 <td>{{item.idpedido}}</td>
                 <td>{{item.idmaterial}}</td>
                 <td>
-                    <a type="button" (click)="deleteDataTable(item.id)" routerLink="/pedidos">
+                    <a type="button" (click)="deleteDataTable(item.id)" routerLink="/reclamos">
                         <span></span>
                         <span></span>
                         <span></span>
