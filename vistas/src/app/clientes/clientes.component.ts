@@ -17,7 +17,8 @@ export class ClientesComponent implements OnInit {
 
   ngOnInit() {
     this.getDataCliente()
-    
+    this.formularioCliente()
+
     this.table_header = [
       {
         id: 'N°',
@@ -29,7 +30,7 @@ export class ClientesComponent implements OnInit {
     ]
   }
 
-  formularioProveedor(){
+  formularioCliente(){
     this.clienteForm = this.formBuilder.group({
       id: [''],
       identificacion: ['',[Validators.required]],
@@ -66,7 +67,7 @@ export class ClientesComponent implements OnInit {
     let apellido = this.clienteForm.get('apellido').value
     let direccion = this.clienteForm.get('direccion').value
 
-    let tabla = 'proveedor'
+    let tabla = 'cliente'
     let register = {tabla: tabla, datos: [{identificacion: identificacion, nombre: nombre, direccion: direccion, apellido: apellido}]}
     this.http.post(environment.API_URL, register)
     .subscribe( data => {
