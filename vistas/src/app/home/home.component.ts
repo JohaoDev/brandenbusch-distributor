@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+response:any[]
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    console.log(this.response)
   }
   responsive() {
     var x = document.getElementById("myTopnav");
@@ -18,5 +21,15 @@ export class HomeComponent implements OnInit {
     } else {
       x.className = "topnav";
     }
+    
+  }
+  getData = () => {
+    let tabla = 'proveedor'
+    this.http.get<any>(environment.API_URL + `leer?tabla=${tabla}`)
+      .subscribe(data => {
+        this.response = data.data
+        
+         console.log(this.response)
+      })
   }
 }
