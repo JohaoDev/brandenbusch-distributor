@@ -15,7 +15,7 @@ export class ResumenPedidoComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-
+    this.getDataDetallePedido()
     this.table_header = [
       {
         idpedido: 'Código del pedido',
@@ -32,16 +32,17 @@ export class ResumenPedidoComponent implements OnInit {
     return id
   }
 
-  getDetallePedido = () => {
+  getDataDetallePedido = () => {
     let tabla = "detalle_pedido"
     this.http.get<any>(environment.API_URL + `?tabla=${tabla}&id=${this.getLocalStorage()}`)
     .subscribe(data => {
       this.respuestaDetallePedido = data.datos
     })
+    console.log(this.respuestaDetallePedido)
   }
 
   deleteDataTable = (value) => {
-    let tabla = 'ordenes_detalle'
+    let tabla = 'detalle_pedido'
     this.http.delete(environment.API_URL + `?tabla=${tabla}&&id=${value}`)
     .subscribe( data => { })
   }

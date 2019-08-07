@@ -132,13 +132,14 @@ export class PedidosComponent implements OnInit {
     let cantidad = this.detallepedidosForm.get('cantidad').value
     let precio = this.detallepedidosForm.get('precio').value
     let idmaterial = this.detallepedidosForm.get('idmaterial').value
-
+    let returning
     let tabla = 'detalle_pedido'
-    let register = {tabla: tabla, datos: [{nombre: nombre, cantidad: cantidad, precio: precio, idpedido: this.idPedidoVariable, idmaterial: idmaterial}]}
+    let register = {tabla: tabla, datos: [{nombre: nombre, cantidad: cantidad, precio: precio, idPedido: this.idPedidoVariable, idMaterial: idmaterial}]}
     this.http.post(environment.API_URL, register)
-    .subscribe( data => {
-      // this.postData = data
+    .subscribe( data => { 
+      returning = data
     })
+    console.log(returning)
     window.location.reload()
   }
   //MODAL DETALLE PEDIDO
