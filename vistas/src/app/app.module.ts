@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { ReclamosComponent } from './pedidos/reclamos/reclamos.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,8 @@ import { ReclamosComponent } from './pedidos/reclamos/reclamos.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
