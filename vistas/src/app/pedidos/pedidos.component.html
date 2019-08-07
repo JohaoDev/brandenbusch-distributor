@@ -38,7 +38,7 @@
             <th>{{item.total}}</th>
             <th></th>
         </thead>
-  
+
         <tbody>
             <tr *ngFor="let item of respuesta">
                 <td>{{ item.id }}</td>
@@ -46,7 +46,8 @@
                 <td>{{ item.fecha }}</td>
                 <td>{{ item.total }}</td>
                 <td>
-                    <a type="button" onclick="document.getElementById('id05').style.display='block'" (click)="getDatabyID(item.id)">
+                    <a type="button" onclick="document.getElementById('id05').style.display='block'"
+                        (click)="getDatabyID(item.id)">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -79,48 +80,47 @@
     <div id="id04" class="w3-modal">
         <div class="w3-modal-content">
             <header>
-                <span onclick="document.getElementById('id04').style.display='none'" class="w3-display-topright">&times;</span>
+                <span onclick="document.getElementById('id04').style.display='none'"
+                    class="w3-display-topright">&times;</span>
                 <!-- <h2>Registro Cliente</h2> -->
             </header>
-        
+
             <div>
                 <h1>PONER FORMULARIO REACTIVO</h1>
-                 <form [formGroup]="pedidosForm" autocomplete="off">
+                <form [formGroup]="pedidosForm" autocomplete="off">
                     <strong>IDPROVEEDORES</strong><br>
-                    <input formControlName="identificacion" placeholder="Cédula o RUC">
-                    <span class="errors" *ngIf="clienteForm.controls['identificacion'].errors?.required"> Obligatorio </span>
-                    <span class="errors" *ngIf="clienteForm.controls['identificacion'].errors?.pattern"> Inválido </span>
-                    <br><br>
+                    <div>
+                        <select formControlName="idproveedor" name="select" id="">
+                            <option>PROVEEDORES</option>
+                            <span class="errors" *ngIf="pedidosForm.controls['idproveedor'].errors?.required"> Obligatorio
+                            </span>
+                            <span class="errors" *ngIf="pedidosForm.controls['idproveedor'].errors?.pattern"> Inválido </span>
+                        </select>
+                    </div>
 
-                    <strong>NOMBRE</strong><br>
-                    <input formControlName="nombres" placeholder="Nombre">
-                    <span class="errors" *ngIf="clienteForm.controls['nombres'].errors?.required"> Obligatorio </span>
-                    <span class="errors" *ngIf="clienteForm.controls['nombres'].errors?.pattern"> Inválido </span>
-                    <br><br>
-            
-                    <strong>APELLIDO</strong><br>
-                    <input formControlName="apellidos" placeholder="Apellido">
-                    <span class="errors" *ngIf="clienteForm.controls['apellidos'].errors?.required"> Obligatorio </span>
-                    <span class="errors" *ngIf="clienteForm.controls['apellidos'].errors?.pattern"> Inválido </span>
-                    <br><br>
-            
-                    <strong>TELÉFONO</strong><br>
-                    <input formControlName="telefonos" placeholder="Teléfono">
-                    <span class="errors" *ngIf="clienteForm.controls['telefonos'].errors?.required"> Obligatorio </span>
-                    <span class="errors" *ngIf="clienteForm.controls['telefonos'].errors?.pattern"> Inválido </span>
-                    <br><br>
-            
-                    <strong>DIRECCIÓN</strong><br>
-                    <input formControlName="direcciones" placeholder="Dirección">
-                    <span class="errors" *ngIf="clienteForm.controls['direcciones'].errors?.required"> Obligatorio </span>
-                    <br><br>
+                    <strong>FECHA</strong><br>
+                    <div [formGroup]="pedidosForm">
+                        <input formControlName="fecha" placeholder="fechaa">
+                        <span class="errors" *ngIf="pedidosForm.controls['fecha'].errors?.required"> Obligatorio
+                        </span>
+                        <span class="errors" *ngIf="pedidosForm.controls['fecha'].errors?.pattern"> Inválido </span>
+                        <br><br>
+                    </div>
+
+                    <div [formGroup]="pedidosForm">
+                        <strong>TOTAL</strong><br>
+                        <input formControlName="total" placeholder="total">
+                        <span class="errors" *ngIf="pedidosForm.controls['total'].errors?.required"> Obligatorio </span>
+                        <span class="errors" *ngIf="pedidosForm.controls['total'].errors?.pattern"> Inválido </span>
+                        <br><br>
+                    </div>
 
                     <a type="button" (click)="postDataProveedor()" class="but">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    Guardar
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Guardar
                     </a>
                 </form> -->
             </div>
