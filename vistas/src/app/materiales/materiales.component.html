@@ -28,20 +28,30 @@
     
 <!-- TABLA RECLAMOS -->
 <div class="table-wrapper">
-    <h1>RECLAMOS</h1>
+    <h1>MATERIALES</h1>
     <table class="fl-table">
         <thead *ngFor="let item of table_header">
             <th>{{item.id}}</th>
-            <th>{{item.fecha}}</th>
-            <th>{{item.comentario}}</th>
+            <th>{{item.nombre}}</th>
+            <th>{{item.descripcion}}</th>
+            <th>{{item.fecha_registro}}</th>
+            <th>{{item.fecha_actualizacion}}</th>
+            <th>{{item.precio}}</th>
+            <th>{{item.idNicho}}</th>
+            <th>{{item.idProveedor}}</th>
             <th></th>
         </thead>
     
         <tbody>
-            <tr *ngFor="let item of respuestaReclamos">
-                <td>{{ item.id }}</td>
-                <td>{{ item.fecha }}</td>
-                <td>{{ item.comentario }}</td>
+            <tr *ngFor="let item of respuesta">
+            <th>{{item.id}}</th>
+            <th>{{item.nombre}}</th>
+            <th>{{item.descripcion}}</th>
+            <th>{{item.fecha_registro}}</th>
+            <th>{{item.fecha_actualizacion}}</th>
+            <th>{{item.precio}}</th>
+            <th>{{item.idNicho}}</th>
+            <th>{{item.idProveedor}}</th>
                 <td>
                     <a type="button" onclick="document.getElementById('id05').style.display='block'" (click)="getDatabyID(item.id)">
                         <span></span>
@@ -81,15 +91,53 @@
             </header>
         
             <div>
-                <h1>Nuevo Reclamo</h1>
-                <form [formGroup]="reclamosForm" autocomplete="off">
-                    <strong>Comentario del Reclamo</strong><br>
-                    <textarea formControlName="comentario" placeholder="Reclamos y Sugerencias"></textarea>
+                <h1>Nuevo Material</h1>
+                <form [formGroup]="materialesForm" autocomplete="off">
+                        <strong>Nombre Del Material</strong><br>
+                    <input formControlName="nombre">
                     <div>
-                        <span class="errors" *ngIf="reclamosForm.controls['comentario'].errors?.required"> Obligatorio </span>
-                        <span class="errors" *ngIf="reclamosForm.controls['comentario'].errors?.pattern"> Inválido </span>
+                        <span class="errors" *ngIf="materialesForm.controls['nombre'].errors?.required"> Obligatorio </span>
+                        <span class="errors" *ngIf="materialesForm.controls['nombre'].errors?.pattern"> Inválido </span>
                     </div><br><br>
-                    <a type="button" (click)="postDataReclamos()">
+                    <strong>Descripción</strong><br>
+                    <input formControlName="descripcion">
+                    <div>
+                        <span class="errors" *ngIf="materialesForm.controls['descripcion'].errors?.required"> Obligatorio </span>
+                        <span class="errors" *ngIf="materialesForm.controls['descripcion'].errors?.pattern"> Inválido </span>
+                    </div><br><br>
+                    <strong>Fecha Registro</strong><br>
+                    <input formControlName="fecha_registro">
+                    <div>
+                        <span class="errors" *ngIf="materialesForm.controls['fecha_registro'].errors?.required"> Obligatorio </span>
+                        <span class="errors" *ngIf="materialesForm.controls['fecha_registro'].errors?.pattern"> Inválido </span>
+                    </div><br><br>
+                    <strong>Fecha Actualiación</strong><br>
+                    <input formControlName="fecha_actualizacion">
+                    <div>
+                        <span class="errors" *ngIf="materialesForm.controls['fecha_actualizacion'].errors?.required"> Obligatorio </span>
+                        <span class="errors" *ngIf="materialesForm.controls['fecha_actualizacion'].errors?.pattern"> Inválido </span>
+                    </div><br><br>
+                    <strong>Precio</strong><br>
+                    <input formControlName="precio">
+                    <div>
+                        <span class="errors" *ngIf="materialesForm.controls['precio'].errors?.required"> Obligatorio </span>
+                        <span class="errors" *ngIf="materialesForm.controls['precio'].errors?.pattern"> Inválido </span>
+                    </div><br><br>
+                    <strong>Almacenamiento</strong><br>
+                    <select formControlName="idNicho">
+                        <option *ngFor="let item of respuesta" value={{item.id}}>{{item.nombre}}</option>
+                    </select>
+                    <div>
+                        <span class="errors" *ngIf="materialesForm.controls['idNicho'].errors?.required">Obligatorio</span>
+                    </div><br>
+                    <strong>Proveedor</strong><br>
+                    <select formControlName="idProveedor">
+                        <option *ngFor="let item of respuesta" value={{item.id}}>{{item.nombre}}</option>
+                    </select>
+                    <div>
+                        <span class="errors" *ngIf="materialesForm.controls['idProveedor'].errors?.required">Obligatorio</span>
+                    </div><br>
+                    <a type="button" (click)="postDataMateriales()">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -101,68 +149,3 @@
         </div>
     </div>
 </div>
-<!-- MODAL RECLAMOS -->
-
-<!-- MODAL DETALLE RECLAMO -->
-<div>
-    <div id="id05" class="w3-modal">
-        <div class="w3-modal-content">
-            <header>
-                <span onclick="document.getElementById('id05').style.display='none'" class="w3-display-topright">&times;</span>
-                <!-- <h2>Registro Reclamo</h2> -->
-            </header>
-        
-            <div>
-                <h1>Detalle del Reclamo</h1>
-                <form [formGroup]="detallereclamosForm" autocomplete="off">
-                    <strong>Material</strong><br>
-                    <select formControlName="idmaterial">
-                        <option *ngFor="let item of respuestaMateriales" value={{item.id}}>{{item.nombre}}</option>
-                    </select>
-                    <div>
-                        <span class="errors" *ngIf="detallereclamosForm.controls['idmaterial'].errors?.required"> Obligatorio </span>
-                    </div><br>
-
-                    <strong>Pedido</strong><br>
-                    <select formControlName="idpedido">
-                        <option *ngFor="let item of respuestaPedidos" value={{item.id}}>{{item.idproveedor}} - {{item.fecha}}</option>
-                    </select>
-                    <div>
-                        <span class="errors" *ngIf="detallereclamosForm.controls['idpedido'].errors?.required"> Obligatorio </span>
-                    </div><br>
-
-                    <strong>Cantidad</strong><br>
-                    <input formControlName="cantidad">
-                    <div>
-                        <span class="errors" *ngIf="detallereclamosForm.controls['cantidad'].errors?.required"> Obligatorio </span>
-                        <span class="errors" *ngIf="detallereclamosForm.controls['cantidad'].errors?.pattern"> Inválido </span>
-                    </div><br>
-
-                    <strong>Precio pedido</strong><br>
-                    <input formControlName="precio_pedido">
-                    <div>
-                        <span class="errors" *ngIf="detallereclamosForm.controls['precio_pedido'].errors?.required"> Obligatorio </span>
-                        <span class="errors" *ngIf="detallereclamosForm.controls['precio_pedido'].errors?.pattern"> Inválido </span>
-                    </div><br>
-
-                    <strong>Precio llegada</strong><br>
-                    <input formControlName="precio_llegada">
-                    <div>
-                        <span class="errors" *ngIf="detallereclamosForm.controls['precio_llegada'].errors?.required"> Obligatorio </span>
-                        <span class="errors" *ngIf="detallereclamosForm.controls['precio_llegada'].errors?.pattern"> Inválido </span>
-                    </div><br>
-
-                    <a type="button" (click)="postDataDetallePedidos()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Guardar
-                    </a>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- MODAL DETALLE RECLAMO -->
