@@ -46,7 +46,7 @@ export class PedidosComponent implements OnInit {
 
   nuevafecha = new Date()
   fecha_orden = this.nuevafecha.getDate() + "/" + (this.nuevafecha.getMonth() +1) + "/" + this.nuevafecha.getFullYear()
-  idproveedor = this.pedidosForm.get('idproveedor').value
+  idproveedor: number
 
   postDataPedidos = () => {
     let tabla = 'pedido'
