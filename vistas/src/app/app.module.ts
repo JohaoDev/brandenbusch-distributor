@@ -12,6 +12,7 @@ import { ResumenPedidoComponent } from './pedidos/resumen-pedido/resumen-pedido.
 import { ResumenReclamosComponent } from './pedidos/reclamos/resumen-reclamos/resumen-reclamos.component';
 import { MaterialesComponent } from './materiales/materiales.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
+import { ClientesComponent } from './clientes/clientes.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProveedoresComponent } from './proveedores/proveedores.component';
     ResumenPedidoComponent,
     ResumenReclamosComponent,
     MaterialesComponent,
-    ProveedoresComponent
+    ProveedoresComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,
