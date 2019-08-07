@@ -12,11 +12,13 @@ export class PedidosComponent implements OnInit {
 
   table_header: any
   pedidosForm: FormGroup
+  detallepedidosForm: FormGroup
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
   ngOnInit() {
     this.formularioPedidos()
+    this.formularioDetallePedidos()
 
     this.getDataPedidos()
     this.getDataProveedores()
@@ -41,6 +43,17 @@ export class PedidosComponent implements OnInit {
     });
   }
 
+  formularioDetallePedidos(){
+    this.detallepedidosForm = this.formBuilder.group({
+      id: [''],
+      nombre: ['',[Validators.required]],
+      cantidad: ['',[Validators.required]],
+      precio: ['',[Validators.required]],
+      idpedido: ['',[Validators.required]],
+      idmaterial: ['',[Validators.required]],
+    });
+  }
+
   //PAGINA PRINCIPAL
   respuestaOrdenes: any[]
 
@@ -49,6 +62,17 @@ export class PedidosComponent implements OnInit {
     this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
     .subscribe(data => {
         this.respuestaOrdenes = data.datos
+    })
+  }
+
+  idTablaVariable: number
+
+  getDatabyID = (value) => {
+    let tabla = 'pedido'
+    this.http.get<any>(environment.API_URL + `byid?tabla=${tabla}&&id=${value}`)
+    .subscribe( data => { 
+      this.idTablaVariable = data.datos[0].id
+      localStorage.setItem("id", this.idTablaVariable.toString() )
     })
   }
   //PAGINA PRINCIPAL
@@ -82,4 +106,34 @@ export class PedidosComponent implements OnInit {
     window.location.reload()
   }
   //MODAL NEW PEDIDO
+
+  //MODAL DETALLE PEDIDO 
+  respuestaMateriales: any[]
+
+  getDataMateriales = () => {
+    let tabla = 'material'
+    this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
+    .subscribe(data => {
+        this.respuestaMateriales = data.datos
+    })
+  }
+  
+
+  postDataDetallePedidos = () => {
+    let id
+    let nombre = this.detallepedidosForm.get('nombre').value
+    let cantidad = this.detallepedidosForm.get('cantidad').value
+    let precio = this.detallepedidosForm.get('precio').value
+    let idpedido = this.detallepedidosForm.get('idpedido').value
+    let idmaterial = this.detallepedidosForm.get('idmaterial').value
+
+    let tabla = 'detalle_pedido'
+    let register = {tabla: tabla, datos: [{id: id, nombre: nombre, cantidad: cantidad, precio: precio, idpedido: idpedido, idmaterial: idmaterial}]}
+    this.http.post(environment.API_URL, register)
+    .subscribe( data => {
+      // this.postData = data
+    })
+    window.location.reload()
+  }
+  //MODAL DETALLE PEDIDO
 }

@@ -16,6 +16,7 @@ exports.up = function(knex, Promise) {
   .createTable( 'reclamo', function( table ) {
     table.increments('id');
     table.timestamp('fecha');
+    table.string('comentario');
   })
   .createTable( 'cliente', function( table ) {
     table.increments('id');

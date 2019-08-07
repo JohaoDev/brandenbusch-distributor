@@ -7,8 +7,8 @@
         <img src="../../assets/new-img.png" alt="new-img" height="64" width="64">
     </a>
 </div>
-<div class="backHome" routerLink="/home">
-    <a type="button" onclick="document.getElementById('id04').style.display='block'">
+<div class="backHome" >
+    <a type="button" routerLink="/home">
         <span></span>
         <span></span>
         <span></span>
@@ -16,9 +16,8 @@
         <img src="../../assets/home-img.png" alt="home-img" height="64" width="64">
     </a>
 </div>
-
-<div class="reclamosPage" routerLink="/reclamos">
-    <a type="button">
+<div class="reclamosPage">
+    <a type="button" routerLink="/reclamos">
         <span></span>
         <span></span>
         <span></span>
@@ -114,3 +113,59 @@
         </div>
     </div>
 </div>
+<!-- MODAL PEDIDOS -->
+
+<!-- MODAL DETALLE_PEDIDOS -->
+<div>
+    <div id="id05" class="w3-modal">
+        <div class="w3-modal-content">
+            <header>
+                <span onclick="document.getElementById('id05').style.display='none'" class="w3-display-topright">&times;</span>
+                <!-- <h2>Registro Cliente</h2> -->
+            </header>
+
+            <div>
+                <h1>Detalle del Pedido</h1>
+                <form [formGroup]="detallepedidosForm" autocomplete="off">
+                    <strong>MATERIAL</strong><br>
+                    <select formControlName="idmaterial">
+                        <option *ngFor="let item of respuestaMateriales" value={{item.id}}>{{item.nombre}}</option>
+                    </select>
+                    <div>
+                        <span class="errors" *ngIf="detallepedidosForm.controls['idmaterial'].errors?.required">Obligatorio</span>
+                    </div><br>
+
+                    <strong>NOMBRE</strong><br>
+                    <input formControlName="nombre">
+                    <div>
+                        <span class="errors" *ngIf="detallepedidosForm.controls['nombre'].errors?.required">Obligatorio</span>
+                        <!-- <span class="errors" *ngIf="detallepedidosForm.controls['nombre'].errors?.pattern">Inválido</span> -->
+                    </div><br>
+
+                    <strong>CANTIDAD</strong><br>
+                    <input formControlName="cantidad">
+                    <div>
+                        <span class="errors" *ngIf="detallepedidosForm.controls['cantidad'].errors?.required"> Obligatorio </span>
+                        <!-- <span class="errors" *ngIf="detallepedidosForm.controls['cantidad'].errors?.pattern"> Inválido </span> -->
+                    </div><br>
+
+                    <strong>PRECIO</strong><br>
+                    <input formControlName="precio">
+                    <div>
+                        <span class="errors" *ngIf="detallepedidosForm.controls['precio'].errors?.required"> Obligatorio </span>
+                        <!-- <span class="errors" *ngIf="detallepedidosForm.controls['precio'].errors?.pattern"> Inválido </span> -->
+                    </div><br><br>
+
+                    <a type="button" (click)="postDataPedidos()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Guardar
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL DETALLE_PEDIDOS -->
