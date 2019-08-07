@@ -80,46 +80,15 @@
         
             <div>
                 <h1>PONER FORMULARIO REACTIVO</h1>
-                <!-- <form [formGroup]="pedidosForm" autocomplete="off">
-                    <strong>IDENTIFICACIÓN</strong><br>
-                    <input formControlName="identificacion" placeholder="Cédula o RUC">
-                    <span class="errors" *ngIf="clienteForm.controls['identificacion'].errors?.required"> Obligatorio </span>
-                    <span class="errors" *ngIf="clienteForm.controls['identificacion'].errors?.pattern"> Inválido </span>
-                    <br><br>
-
-                    <strong>NOMBRE</strong><br>
-                    <input formControlName="nombres" placeholder="Nombre">
-                    <span class="errors" *ngIf="clienteForm.controls['nombres'].errors?.required"> Obligatorio </span>
-                    <span class="errors" *ngIf="clienteForm.controls['nombres'].errors?.pattern"> Inválido </span>
-                    <br><br>
-            
-                    <strong>APELLIDO</strong><br>
-                    <input formControlName="apellidos" placeholder="Apellido">
-                    <span class="errors" *ngIf="clienteForm.controls['apellidos'].errors?.required"> Obligatorio </span>
-                    <span class="errors" *ngIf="clienteForm.controls['apellidos'].errors?.pattern"> Inválido </span>
-                    <br><br>
-            
-                    <strong>TELÉFONO</strong><br>
-                    <input formControlName="telefonos" placeholder="Teléfono">
-                    <span class="errors" *ngIf="clienteForm.controls['telefonos'].errors?.required"> Obligatorio </span>
-                    <span class="errors" *ngIf="clienteForm.controls['telefonos'].errors?.pattern"> Inválido </span>
-                    <br><br>
-            
-                    <strong>DIRECCIÓN</strong><br>
-                    <input formControlName="direcciones" placeholder="Dirección">
-                    <span class="errors" *ngIf="clienteForm.controls['direcciones'].errors?.required"> Obligatorio </span>
-                    <br><br>
-
-                    <a type="button" (click)="postDataClientes()" class="but">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    Guardar
-                    </a>
-                </form> -->
+                <form [formGroup]="reclamosForm" autocomplete="off">
+                    <strong>TOTAL</strong><br>
+                    <textarea formControlName="comentario" placeholder="Reclamos y Sugerencias"></textarea>
+                    <div>
+                        <span class="errors" *ngIf="reclamosForm.controls['comentario'].errors?.required"> Obligatorio </span>
+                        <span class="errors" *ngIf="reclamosForm.controls['comentario'].errors?.pattern"> Inválido </span>
+                    </div><br><br>
+                </form>
             </div>
         </div>
     </div>
 </div>
-<!-- MODAL RECLAMOS -->

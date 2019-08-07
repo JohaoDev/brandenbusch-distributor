@@ -11,9 +11,9 @@ import { environment } from 'src/environments/environment';
 export class ReclamosComponent implements OnInit {
 
   table_header: any
-  pedidosForm: FormGroup
+  reclamosForm: FormGroup
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.table_header = [
@@ -22,6 +22,13 @@ export class ReclamosComponent implements OnInit {
         fecha: 'Fecha del Pedido',
       }
     ]
+    this.formularioReclamos()
   }
-
+  formularioReclamos(){
+    this.reclamosForm = this.formBuilder.group({
+      id: [''],
+      fecha: [''],
+      comentario:['']
+    });
+  }
 }
