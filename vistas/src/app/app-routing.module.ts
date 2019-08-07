@@ -7,6 +7,7 @@ import { ResumenPedidoComponent } from './pedidos/resumen-pedido/resumen-pedido.
 import { ResumenReclamosComponent } from './pedidos/reclamos/resumen-reclamos/resumen-reclamos.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { ClientesComponent } from './clientes/clientes.component';
+import { FacturacionComponent } from './facturacion/facturacion.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'resumen_pedidos', component: ResumenPedidoComponent },
   { path: 'resumen_reclamos', component: ResumenReclamosComponent },
   { path: 'proveedores', component: ProveedoresComponent },
-  { path: 'clientes', component: ClientesComponent }
+  { path: 'clientes', component: ClientesComponent },
+  { path: 'facturacion', component: FacturacionComponent },
 ];
 
 @NgModule({

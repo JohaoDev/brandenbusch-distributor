@@ -13,6 +13,7 @@ import { ResumenReclamosComponent } from './pedidos/reclamos/resumen-reclamos/re
 import { MaterialesComponent } from './materiales/materiales.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { ClientesComponent } from './clientes/clientes.component';
+import { FacturacionComponent } from './facturacion/facturacion.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ClientesComponent } from './clientes/clientes.component';
     ResumenReclamosComponent,
     MaterialesComponent,
     ProveedoresComponent,
-    ClientesComponent
+    ClientesComponent,
+    FacturacionComponent
   ],
   imports: [
     BrowserModule,
