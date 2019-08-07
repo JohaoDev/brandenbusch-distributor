@@ -11,6 +11,8 @@ import { ReclamosComponent } from './pedidos/reclamos/reclamos.component';
 import { ResumenPedidoComponent } from './pedidos/resumen-pedido/resumen-pedido.component';
 import { ResumenReclamosComponent } from './pedidos/reclamos/resumen-reclamos/resumen-reclamos.component';
 import { MaterialesComponent } from './materiales/materiales.component';
+import { ProveedoresComponent } from './proveedores/proveedores.component';
+import { ClientesComponent } from './clientes/clientes.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { MaterialesComponent } from './materiales/materiales.component';
     ReclamosComponent,
     ResumenPedidoComponent,
     ResumenReclamosComponent,
-    MaterialesComponent
+    MaterialesComponent,
+    ProveedoresComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,

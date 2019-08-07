@@ -6,6 +6,8 @@ import { ReclamosComponent } from './pedidos/reclamos/reclamos.component';
 import { ResumenPedidoComponent } from './pedidos/resumen-pedido/resumen-pedido.component';
 import { ResumenReclamosComponent } from './pedidos/reclamos/resumen-reclamos/resumen-reclamos.component';
 import { MaterialesComponent } from './materiales/materiales.component';
+import { ProveedoresComponent } from './proveedores/proveedores.component';
+import { ClientesComponent } from './clientes/clientes.component';
 
 
 const routes: Routes = [
@@ -15,10 +17,10 @@ const routes: Routes = [
   { path: 'reclamos', component: ReclamosComponent },
   { path: 'resumen_pedidos', component: ResumenPedidoComponent },
   { path: 'resumen_reclamos', component: ResumenReclamosComponent },
-  { path: 'materiales', component: MaterialesComponent },
+  { path: 'proveedores', component: ProveedoresComponent },
+  { path : 'materiales', component:MaterialesComponent}
 ];
-
-@NgModule({
+  @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
