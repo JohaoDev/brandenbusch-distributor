@@ -126,7 +126,6 @@ export class PedidosComponent implements OnInit {
     })
   }
   
-
   postDataDetallePedidos = () => {
     let nombre = this.detallepedidosForm.get('nombre').value
     let cantidad = this.detallepedidosForm.get('cantidad').value
