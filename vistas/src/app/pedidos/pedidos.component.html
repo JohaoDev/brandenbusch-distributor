@@ -85,8 +85,8 @@
         
             <div>
                 <h1>PONER FORMULARIO REACTIVO</h1>
-                <!-- <form [formGroup]="pedidosForm" autocomplete="off">
-                    <strong>IDENTIFICACIÓN</strong><br>
+                 <form [formGroup]="pedidosForm" autocomplete="off">
+                    <strong>IDPROVEEDORES</strong><br>
                     <input formControlName="identificacion" placeholder="Cédula o RUC">
                     <span class="errors" *ngIf="clienteForm.controls['identificacion'].errors?.required"> Obligatorio </span>
                     <span class="errors" *ngIf="clienteForm.controls['identificacion'].errors?.pattern"> Inválido </span>
@@ -115,7 +115,7 @@
                     <span class="errors" *ngIf="clienteForm.controls['direcciones'].errors?.required"> Obligatorio </span>
                     <br><br>
 
-                    <a type="button" (click)="postDataClientes()" class="but">
+                    <a type="button" (click)="postDataProveedor()" class="but">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -127,4 +127,3 @@
         </div>
     </div>
 </div>
-<!-- MODAL PEDIDOS -->
