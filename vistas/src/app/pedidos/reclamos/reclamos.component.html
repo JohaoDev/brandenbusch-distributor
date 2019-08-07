@@ -87,6 +87,12 @@
                         <span class="errors" *ngIf="reclamosForm.controls['comentario'].errors?.required"> Obligatorio </span>
                         <span class="errors" *ngIf="reclamosForm.controls['comentario'].errors?.pattern"> Inválido </span>
                     </div><br><br>
+                    <a type="button" (click)="postDataPedidos()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Guardar
                 </form>
             </div>
         </div>
