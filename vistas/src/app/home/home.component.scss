@@ -1,14 +1,11 @@
 
-body{
-background-image: url("../../assets/logotipo-icono-empresa-bebidas.jpg");
-
 .topnav {
   list-style-type:none;
   position: fixed;
   height: 10%;
   overflow: hidden;
   display: inline-flex;
-  top: 0%;
+  top: 50%;
   left: 0%;
   align-items: center;
   background:rgba(233, 229, 229, 0.877);
@@ -53,5 +50,4 @@ background-image: url("../../assets/logotipo-icono-empresa-bebidas.jpg");
   position: absolute;
   right: 20px;
 
-}
 }
