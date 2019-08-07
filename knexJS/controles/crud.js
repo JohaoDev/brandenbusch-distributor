@@ -101,6 +101,7 @@ let getDatosbyID = (req, res) => {
     })
 }
 
+//SELECT DE DETALLES SISTEMA
 let getDatosPedidos_detalles = (req, res) => {
     let idpedido = req.query.idpedido
     db.raw(`select * from detalle_pedido where idpedido = ${idpedido}`)
@@ -119,11 +120,32 @@ let getDatosPedidos_detalles = (req, res) => {
     })
 }
 
+let getDatosReclamo_detalles = (req, res) => {
+    let idreclamo = req.query.idreclamo
+    db.raw(`select * from detalle_reclamo where idreclamo = ${idreclamo}`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
+//SELECT DE DETALLES SISTEMA
+
 module.exports = {
     getDatos,
     postDatos,
     updateDatos,
     deleteDatos,
     getDatosbyID,
-    getDatosPedidos_detalles
+    getDatosPedidos_detalles,
+    getDatosReclamo_detalles
 }

@@ -134,9 +134,9 @@ export class ReclamosComponent implements OnInit {
     let register = {tabla: tabla, datos: [{ cantidad: cantidad, 
                                             precio_pedido: precio_pedido, 
                                             precio_llegada: precio_llegada, 
-                                            idPedido: idpedido,
-                                            idMaterial: idmaterial,
-                                            idReclamo: this.idReclamoVariable}]}
+                                            idpedido: idpedido,
+                                            idmaterial: idmaterial,
+                                            idreclamo: this.idReclamoVariable}]}
     this.http.post(environment.API_URL, register)
     .subscribe( data => { 
       returning = data
