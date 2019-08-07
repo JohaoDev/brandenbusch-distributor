@@ -65,15 +65,22 @@ export class PedidosComponent implements OnInit {
     })
   }
 
-  idTablaVariable: number
+  idPedidoVariable: number
 
   getDatabyID = (value) => {
     let tabla = 'pedido'
     this.http.get<any>(environment.API_URL + `byid?tabla=${tabla}&&id=${value}`)
     .subscribe( data => { 
-      this.idTablaVariable = data.datos[0].id
-      localStorage.setItem("id", this.idTablaVariable.toString() )
+      this.idPedidoVariable = data.datos[0].id
+      localStorage.setItem("id", this.idPedidoVariable.toString() )
     })
+  }
+
+  deleteDataTable = (value) => {
+    let tabla = 'pedido'
+    this.http.delete(environment.API_URL + `?tabla=${tabla}&&id=${value}`)
+    .subscribe( data => { })
+    window.location.reload()
   }
   //PAGINA PRINCIPAL
 
@@ -124,11 +131,10 @@ export class PedidosComponent implements OnInit {
     let nombre = this.detallepedidosForm.get('nombre').value
     let cantidad = this.detallepedidosForm.get('cantidad').value
     let precio = this.detallepedidosForm.get('precio').value
-    let idpedido = this.detallepedidosForm.get('idpedido').value
     let idmaterial = this.detallepedidosForm.get('idmaterial').value
 
     let tabla = 'detalle_pedido'
-    let register = {tabla: tabla, datos: [{id: id, nombre: nombre, cantidad: cantidad, precio: precio, idpedido: idpedido, idmaterial: idmaterial}]}
+    let register = {tabla: tabla, datos: [{id: id, nombre: nombre, cantidad: cantidad, precio: precio, idpedido: this.idPedidoVariable, idmaterial: idmaterial}]}
     this.http.post(environment.API_URL, register)
     .subscribe( data => {
       // this.postData = data

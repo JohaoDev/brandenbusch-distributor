@@ -45,15 +45,14 @@
                 <td>{{ item.fecha }}</td>
                 <td>{{ item.total }}</td>
                 <td>
-                    <a type="button" onclick="document.getElementById('id05').style.display='block'"
-                        (click)="getDatabyID(item.id)">
+                    <a type="button" onclick="document.getElementById('id05').style.display='block'" (click)="getDatabyID(item.id)">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                         <img src="../../assets/edit-img.png" alt="edit-img" height="18" width="18">
                     </a>
-                    <a type="button" href="/detalle_orden" (click)="getDatabyID(item.id)">
+                    <a type="button" href="/resumen_pedido" (click)="getDatabyID(item.id)">
                         <span></span>
                         <span></span>
                         <span></span>

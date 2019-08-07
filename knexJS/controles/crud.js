@@ -81,9 +81,30 @@ let deleteDatos = (req, res) => {
     })
 }
 
+let getDatosbyID = (req, res) => {
+    let tabla = req.query.tabla
+    let campo = req.query.campo
+    let id = req.query.id
+    db.select(campo).from(tabla).where('id', id)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
 module.exports = {
     getDatos,
     postDatos,
     updateDatos,
-    deleteDatos
+    deleteDatos,
+    getDatosbyID
 }
