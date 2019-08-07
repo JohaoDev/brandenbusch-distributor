@@ -50,7 +50,6 @@ export class PedidosComponent implements OnInit {
     .subscribe(data => {
         this.respuestaOrdenes = data.datos
     })
-    console.log(this.respuestaOrdenes)
   }
   //PAGINA PRINCIPAL
 
@@ -64,7 +63,6 @@ export class PedidosComponent implements OnInit {
     .subscribe(data => {
         this.respuestaProveedores = data.datos
     })
-    console.log(this.respuestaProveedores)
   }
   
   nuevafecha = new Date()
