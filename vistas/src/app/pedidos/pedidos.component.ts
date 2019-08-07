@@ -16,6 +16,11 @@ export class PedidosComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
   ngOnInit() {
+    this.formularioPedidos()
+
+    this.getDataPedidos()
+    this.getDataProveedores()
+
     this.table_header = [
       {
         id: 'N°',
@@ -24,40 +29,59 @@ export class PedidosComponent implements OnInit {
         total: 'Total'
       }
     ]
+
+  }
+
+  formularioPedidos(){
     this.pedidosForm = this.formBuilder.group({
-      id: [Validators.required],
-      idproveedor: [Validators.required],
-      fecha: [Validators.required],
-      total: [Validators.required],
+      id: [''],
+      idproveedor: ['',[Validators.required]],
+      fecha: [''],
+      total: ['',[Validators.required]],
     });
   }
 
-
   //PAGINA PRINCIPAL
-  respuesta: any[]
+  respuestaOrdenes: any[]
+
+  getDataPedidos = () => {
+    let tabla = 'pedido'
+    this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
+    .subscribe(data => {
+        this.respuestaOrdenes = data.datos
+    })
+    console.log(this.respuestaOrdenes)
+  }
+  //PAGINA PRINCIPAL
+
+
+  //MODAL NEW PEDIDO
+  respuestaProveedores: any[]
 
   getDataProveedores = () => {
     let tabla = 'proveedor'
-    this.http.get<any>(environment.API_URL + `${tabla}`)
-        .subscribe(data => {
-            this.respuesta = data.datos
-        })
+    this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
+    .subscribe(data => {
+        this.respuestaProveedores = data.datos
+    })
+    console.log(this.respuestaProveedores)
   }
-
+  
   nuevafecha = new Date()
   fecha_orden = this.nuevafecha.getDate() + "/" + (this.nuevafecha.getMonth() +1) + "/" + this.nuevafecha.getFullYear()
-  idproveedor: number
 
   postDataPedidos = () => {
+    let id
+    let idproveedor = this.pedidosForm.get('idproveedor').value
+    let total = this.pedidosForm.get('total').value
+
     let tabla = 'pedido'
-    let register = {tabla: tabla, datos: [{fecha: this.fecha_orden, idproveedor: this.idproveedor}]}
+    let register = {tabla: tabla, datos: [{id: id, fecha: this.fecha_orden, idproveedor: idproveedor, total: total}]}
     this.http.post(environment.API_URL, register)
     .subscribe( data => {
       // this.postData = data
     })
     window.location.reload()
   }
-
-  //PAGINA PRINCIPAL
-
+  //MODAL NEW PEDIDO
 }

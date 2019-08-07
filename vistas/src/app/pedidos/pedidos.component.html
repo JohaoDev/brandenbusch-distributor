@@ -40,7 +40,7 @@
         </thead>
 
         <tbody>
-            <tr *ngFor="let item of respuesta">
+            <tr *ngFor="let item of respuestaOrdenes">
                 <td>{{ item.id }}</td>
                 <td>{{ item.idproveedor }}</td>
                 <td>{{ item.fecha }}</td>
@@ -52,21 +52,21 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                        <img src="../../../assets/edit-img.png" alt="edit-img" height="18" width="18">
+                        <img src="../../assets/edit-img.png" alt="edit-img" height="18" width="18">
                     </a>
                     <a type="button" href="/detalle_orden" (click)="getDatabyID(item.id)">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                        <img src="../../../assets/details.ico" alt="details-img" height="18" width="18">
+                        <img src="../../assets/details.ico" alt="details-img" height="18" width="18">
                     </a>
                     <a type="button" (click)="deleteDataTable(item.id)">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                        <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">
+                        <img src="../../assets/delete-img.png" alt="delete-img" height="18" width="18">
                     </a>
                 </td>
             </tr>
@@ -80,49 +80,36 @@
     <div id="id04" class="w3-modal">
         <div class="w3-modal-content">
             <header>
-                <span onclick="document.getElementById('id04').style.display='none'"
-                    class="w3-display-topright">&times;</span>
+                <span onclick="document.getElementById('id04').style.display='none'" class="w3-display-topright">&times;</span>
                 <!-- <h2>Registro Cliente</h2> -->
             </header>
 
             <div>
-                <h1>PONER FORMULARIO REACTIVO</h1>
+                <h1>Nuevo Pedido</h1>
                 <form [formGroup]="pedidosForm" autocomplete="off">
-                    <strong>IDPROVEEDORES</strong><br>
+                    <strong>PROVEEDORES</strong><br>
+                    <select formControlName="idproveedor">
+                        <option *ngFor="let item of respuestaProveedores" value={{item.id}}>{{item.nombre}}</option>
+                    </select>
                     <div>
-                        <select formControlName="idproveedor" name="select" id="">
-                            <option>PROVEEDORES</option>
-                            <span class="errors" *ngIf="pedidosForm.controls['idproveedor'].errors?.required"> Obligatorio
-                            </span>
-                            <span class="errors" *ngIf="pedidosForm.controls['idproveedor'].errors?.pattern"> Inválido </span>
-                        </select>
-                    </div>
+                        <span class="errors" *ngIf="pedidosForm.controls['idproveedor'].errors?.required">Obligatorio</span>
+                    </div><br>
 
-                    <strong>FECHA</strong><br>
-                    <div [formGroup]="pedidosForm">
-                        <input formControlName="fecha" placeholder="fechaa">
-                        <span class="errors" *ngIf="pedidosForm.controls['fecha'].errors?.required"> Obligatorio
-                        </span>
-                        <span class="errors" *ngIf="pedidosForm.controls['fecha'].errors?.pattern"> Inválido </span>
-                        <br><br>
-                    </div>
-
-                    <div [formGroup]="pedidosForm">
-                        <strong>TOTAL</strong><br>
-                        <input formControlName="total" placeholder="total">
+                    <strong>TOTAL</strong><br>
+                    <input formControlName="total">
+                    <div>
                         <span class="errors" *ngIf="pedidosForm.controls['total'].errors?.required"> Obligatorio </span>
                         <span class="errors" *ngIf="pedidosForm.controls['total'].errors?.pattern"> Inválido </span>
-                        <br><br>
-                    </div>
+                    </div><br><br>
 
-                    <a type="button" (click)="postDataProveedor()" class="but">
+                    <a type="button" (click)="postDataPedidos()">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                         Guardar
                     </a>
-                </form> -->
+                </form>
             </div>
         </div>
     </div>
