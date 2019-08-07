@@ -1,4 +1,4 @@
-<div class="newPedido">
+<div class="newReclamo">
     <a type="button" onclick="document.getElementById('id04').style.display='block'">
         <span></span>
         <span></span>
@@ -16,35 +16,30 @@
         <img src="../../assets/home-img.png" alt="home-img" height="64" width="64">
     </a>
 </div>
-
-<div class="reclamosPage" routerLink="/reclamos">
-    <a type="button">
+<div class="levelDown" routerLink="/pedidos">
+    <a type="button" onclick="document.getElementById('id04').style.display='block'">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
-        <img src="../../assets/reclamos-img.png" alt="reclamos-img" height="64" width="64">
+        <img src="../../assets/back-img.png" alt="home-img" height="64" width="64">
     </a>
 </div>
-
-<!-- TABLA PEDIDOS -->
+    
+<!-- TABLA RECLAMOS -->
 <div class="table-wrapper">
-    <h1>PEDIDOS</h1>
+    <h1>RECLAMOS</h1>
     <table class="fl-table">
         <thead *ngFor="let item of table_header">
             <th>{{item.id}}</th>
-            <th>{{item.idproveedor}}</th>
             <th>{{item.fecha}}</th>
-            <th>{{item.total}}</th>
             <th></th>
         </thead>
-  
+    
         <tbody>
             <tr *ngFor="let item of respuesta">
                 <td>{{ item.id }}</td>
-                <td>{{ item.idproveedor }}</td>
                 <td>{{ item.fecha }}</td>
-                <td>{{ item.total }}</td>
                 <td>
                     <a type="button" onclick="document.getElementById('id05').style.display='block'" (click)="getDatabyID(item.id)">
                         <span></span>
@@ -72,15 +67,15 @@
         </tbody>
     </table>
 </div>
-<!-- TABLA PEDIDOS -->
+<!-- TABLA RECLAMOS -->
 
-<!-- MODAL PEDIDOS -->
+<!-- MODAL RECLAMOS -->
 <div>
     <div id="id04" class="w3-modal">
         <div class="w3-modal-content">
             <header>
                 <span onclick="document.getElementById('id04').style.display='none'" class="w3-display-topright">&times;</span>
-                <!-- <h2>Registro Cliente</h2> -->
+                <!-- <h2>Registro Reclamo</h2> -->
             </header>
         
             <div>
@@ -127,4 +122,4 @@
         </div>
     </div>
 </div>
-<!-- MODAL PEDIDOS -->
+<!-- MODAL RECLAMOS -->
