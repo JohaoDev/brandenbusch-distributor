@@ -30,7 +30,7 @@ exports.up = function(knex, Promise) {
   .createTable( 'nicho', function( table ) {
     table.increments('id');
     table.string('nombre');
-    table.integer('idUbicacion').references('id').inTable('ubicacion');
+    table.integer('idubicacion').references('id').inTable('ubicacion');
   })
   .createTable( 'material', function( table ) {
     table.increments('id');
@@ -39,8 +39,8 @@ exports.up = function(knex, Promise) {
     table.timestamp('fecha_registro');
     table.timestamp('fecha_actualizacion');
     table.decimal('precio');
-    table.integer('idNicho').references('id').inTable('nicho');
-    table.integer('idProveedor').references('id').inTable('proveedor');
+    table.integer('idnicho').references('id').inTable('nicho');
+    table.integer('idproveedor').references('id').inTable('proveedor');
   })
   .createTable( 'pedido', function( table ) {
     table.increments('id');
@@ -53,19 +53,19 @@ exports.up = function(knex, Promise) {
     table.string('nombre');
     table.integer('cantidad');
     table.decimal('precio');
-    table.integer('idPedido').references('id').inTable('pedido');
-    table.integer('idMaterial').references('id').inTable('material');
+    table.integer('idpedido').references('id').inTable('pedido');
+    table.integer('idmaterial').references('id').inTable('material');
   })
   .createTable( 'albaran', function( table ) {
     table.increments('id');
-    table.integer('idPedido').references('id').inTable('pedido');
+    table.integer('idpedido').references('id').inTable('pedido');
     table.timestamp('fecha_entrega');
     table.decimal('total');
   })
   .createTable( 'detalle_albaran', function( table ) {
     table.increments('id');
-    table.integer('idAlbaran').references('id').inTable('albaran');
-    table.integer('idMaterial').references('id').inTable('material');
+    table.integer('idalbaran').references('id').inTable('albaran');
+    table.integer('idmaterial').references('id').inTable('material');
     table.integer('cantidad');
     table.decimal('precio');
   })
@@ -74,23 +74,23 @@ exports.up = function(knex, Promise) {
     table.integer('cantidad');
     table.decimal('precio_pedido');
     table.decimal('precio_llegada');
-    table.integer('idReclamo').references('id').inTable('reclamo');
-    table.integer('idPedido').references('id').inTable('pedido');
-    table.integer('idMaterial').references('id').inTable('material');
+    table.integer('idreclamo').references('id').inTable('reclamo');
+    table.integer('idpedido').references('id').inTable('pedido');
+    table.integer('idmaterial').references('id').inTable('material');
   })
   .createTable( 'factura', function( table ) {
     table.increments('id');
     table.timestamp('fecha');
     table.decimal('total');
-    table.integer('idCliente').references('id').inTable('cliente');
+    table.integer('idcliente').references('id').inTable('cliente');
   })
   .createTable( 'detalle_factura', function( table ) {
     table.increments('id');
     table.integer('cantidad');
     table.decimal('precio');
     table.decimal('descuento');
-    table.integer('idMaterial').references('id').inTable('material');
-    table.integer('idFactura').references('id').inTable('factura');
+    table.integer('idmaterial').references('id').inTable('material');
+    table.integer('idfactura').references('id').inTable('factura');
   })
 };
 

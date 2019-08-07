@@ -33,8 +33,7 @@ export class ResumenPedidoComponent implements OnInit {
   }
 
   getDataDetallePedido = () => {
-    let tabla = "detalle_pedido"
-    this.http.get<any>(environment.API_URL + `?tabla=${tabla}&id=${this.getLocalStorage()}`)
+    this.http.get<any>(environment.API_URL + `OnlyID?idpedido=${this.getLocalStorage()}`)
     .subscribe(data => {
       this.respuestaDetallePedido = data.datos
     })

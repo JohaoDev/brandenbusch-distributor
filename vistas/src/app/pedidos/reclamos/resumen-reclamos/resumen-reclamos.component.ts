@@ -9,10 +9,10 @@ import { environment } from 'src/environments/environment';
 })
 export class ResumenReclamosComponent implements OnInit {
 
-  respuestaDetallePedido: any[]
+  respuestaDetalleReclamo: any[]
   table_header: any
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   ngOnInit() {
     this.table_header = [
@@ -25,6 +25,27 @@ export class ResumenReclamosComponent implements OnInit {
         idMaterial: 'Material'
       }
     ]
+    this.getDataDetallePedido()
+  }
+
+  getLocalStorage(){
+    let id = localStorage.getItem("id")
+    return id
+  }
+
+  getDataDetallePedido = () => {
+    let tabla = "detalle_reclamo"
+    this.http.get<any>(environment.API_URL + `?tabla=${tabla}&id=${this.getLocalStorage()}`)
+    .subscribe(data => {
+      this.respuestaDetalleReclamo = data.datos
+    })
+    console.log(this.respuestaDetalleReclamo)
+  }
+
+  deleteDataTable = (value) => {
+    let tabla = 'detalle_reclamo'
+    this.http.delete(environment.API_URL + `?tabla=${tabla}&&id=${value}`)
+    .subscribe( data => { })
   }
 
 }

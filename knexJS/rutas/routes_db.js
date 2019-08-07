@@ -9,5 +9,6 @@ api.put('/route', control.updateDatos )
 api.delete('/route', control.deleteDatos)
 
 api.get('/routebyid', control.getDatosbyID)
+api.get('/routeOnlyID', control.getDatosPedidos_detalles)
 
 module.exports = api
