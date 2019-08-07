@@ -1,32 +1,15 @@
-<div class="newReclamo">
+<div class="newMaterial">
     <a type="button" onclick="document.getElementById('id04').style.display='block'">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
         <img src="../../assets/new-img.png" alt="new-img" height="64" width="64">
     </a>
 </div>
 <div class="backHome">
     <a type="button" routerLink="/home">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
         <img src="../../assets/home-img.png" alt="home-img" height="64" width="64">
     </a>
 </div>
-<div class="levelDown">
-    <a type="button" routerLink="/pedidos">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <img src="../../assets/back-img.png" alt="home-img" height="64" width="64">
-    </a>
-</div>
     
-<!-- TABLA RECLAMOS -->
+<!-- TABLA MATERIALES -->
 <div class="table-wrapper">
     <h1>MATERIALES</h1>
     <table class="fl-table">
@@ -37,41 +20,23 @@
             <th>{{item.fecha_registro}}</th>
             <th>{{item.fecha_actualizacion}}</th>
             <th>{{item.precio}}</th>
-            <th>{{item.idNicho}}</th>
-            <th>{{item.idProveedor}}</th>
+            <th>{{item.idnicho}}</th>
+            <th>{{item.idproveedor}}</th>
             <th></th>
         </thead>
     
         <tbody>
-            <tr *ngFor="let item of respuesta">
+            <tr *ngFor="let item of respuestaMateriales">
             <th>{{item.id}}</th>
             <th>{{item.nombre}}</th>
             <th>{{item.descripcion}}</th>
             <th>{{item.fecha_registro}}</th>
             <th>{{item.fecha_actualizacion}}</th>
             <th>{{item.precio}}</th>
-            <th>{{item.idNicho}}</th>
-            <th>{{item.idProveedor}}</th>
+            <th>{{item.idnicho}}</th>
+            <th>{{item.idproveedor}}</th>
                 <td>
-                    <a type="button" onclick="document.getElementById('id05').style.display='block'" (click)="getDatabyID(item.id)">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <img src="../../../assets/edit-img.png" alt="edit-img" height="18" width="18">
-                    </a>
-                    <a type="button" href="/resumen_reclamos" (click)="getDatabyID(item.id)">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <img src="../../../assets/details.ico" alt="details-img" height="18" width="18">
-                    </a>
                     <a type="button" (click)="deleteDataTable(item.id)">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
                         <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">
                     </a>
                 </td>
@@ -79,9 +44,9 @@
         </tbody>
     </table>
 </div>
-<!-- TABLA RECLAMOS -->
+<!-- TABLA MATERIALES -->
 
-<!-- MODAL RECLAMOS -->
+<!-- MODAL MATERIALES -->
 <div>
     <div id="id04" class="w3-modal">
         <div class="w3-modal-content">
@@ -93,59 +58,60 @@
             <div>
                 <h1>Nuevo Material</h1>
                 <form [formGroup]="materialesForm" autocomplete="off">
-                        <strong>Nombre Del Material</strong><br>
+                    <strong>Nombre Del Material</strong><br>
                     <input formControlName="nombre">
                     <div>
                         <span class="errors" *ngIf="materialesForm.controls['nombre'].errors?.required"> Obligatorio </span>
                         <span class="errors" *ngIf="materialesForm.controls['nombre'].errors?.pattern"> Inválido </span>
-                    </div><br><br>
+                    </div><br>
+
                     <strong>Descripción</strong><br>
                     <input formControlName="descripcion">
                     <div>
                         <span class="errors" *ngIf="materialesForm.controls['descripcion'].errors?.required"> Obligatorio </span>
                         <span class="errors" *ngIf="materialesForm.controls['descripcion'].errors?.pattern"> Inválido </span>
-                    </div><br><br>
+                    </div><br>
+                    
                     <strong>Fecha Registro</strong><br>
                     <input formControlName="fecha_registro">
                     <div>
                         <span class="errors" *ngIf="materialesForm.controls['fecha_registro'].errors?.required"> Obligatorio </span>
                         <span class="errors" *ngIf="materialesForm.controls['fecha_registro'].errors?.pattern"> Inválido </span>
-                    </div><br><br>
-                    <strong>Fecha Actualiación</strong><br>
+                    </div><br>
+                    
+                    <strong>Fecha Actualización</strong><br>
                     <input formControlName="fecha_actualizacion">
                     <div>
                         <span class="errors" *ngIf="materialesForm.controls['fecha_actualizacion'].errors?.required"> Obligatorio </span>
                         <span class="errors" *ngIf="materialesForm.controls['fecha_actualizacion'].errors?.pattern"> Inválido </span>
-                    </div><br><br>
+                    </div><br>
+                    
                     <strong>Precio</strong><br>
                     <input formControlName="precio">
                     <div>
                         <span class="errors" *ngIf="materialesForm.controls['precio'].errors?.required"> Obligatorio </span>
                         <span class="errors" *ngIf="materialesForm.controls['precio'].errors?.pattern"> Inválido </span>
-                    </div><br><br>
-                    <strong>Almacenamiento</strong><br>
-                    <select formControlName="idNicho">
-                        <option *ngFor="let item of respuesta" value={{item.id}}>{{item.nombre}}</option>
+                    </div><br>
+                    
+                    <strong>Ubicación</strong><br>
+                    <select formControlName="idnicho">
+                        <option *ngFor="let item of respuestaNicho" value={{item.id}}>{{item.nombre}}</option>
                     </select>
                     <div>
-                        <span class="errors" *ngIf="materialesForm.controls['idNicho'].errors?.required">Obligatorio</span>
+                        <span class="errors" *ngIf="materialesForm.controls['idnicho'].errors?.required">Obligatorio</span>
                     </div><br>
+
                     <strong>Proveedor</strong><br>
-                    <select formControlName="idProveedor">
-                        <option *ngFor="let item of respuesta" value={{item.id}}>{{item.nombre}}</option>
+                    <select formControlName="idproveedor">
+                        <option *ngFor="let item of respuestaProveedor" value={{item.id}}>{{item.nombre}}</option>
                     </select>
                     <div>
-                        <span class="errors" *ngIf="materialesForm.controls['idProveedor'].errors?.required">Obligatorio</span>
+                        <span class="errors" *ngIf="materialesForm.controls['idproveedor'].errors?.required">Obligatorio</span>
                     </div><br>
-                    <a type="button" (click)="postDataMateriales()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Guardar
-                    </a>
+                    <a type="button" (click)="postDataMateriales()">Guardar</a>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<!-- MODAL MATERIALES -->

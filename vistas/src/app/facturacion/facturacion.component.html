@@ -5,17 +5,13 @@
 </div>
 <div class="backHome" >
     <a type="button" routerLink="/home">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
         <img src="../../assets/home-img.png" alt="home-img" height="64" width="64">
     </a>
 </div>
 
-<!-- TABLA PEDIDOS -->
+<!-- TABLA FACTURACIÓN -->
 <div class="table-wrapper">
-    <h1>PEDIDOS</h1>
+    <h1>FACTURACIÓN</h1>
     <table class="fl-table">
         <thead *ngFor="let item of table_header">
             <th>{{item.id}}</th>
@@ -58,9 +54,9 @@
         </tbody>
     </table>
 </div>
-<!-- TABLA PEDIDOS -->
+<!-- TABLA FACTURACIÓN -->
 
-<!-- MODAL PEDIDOS -->
+<!-- MODAL FACTURACIÓN -->
 <div>
     <div id="id04" class="w3-modal">
         <div class="w3-modal-content">
@@ -99,9 +95,9 @@
         </div>
     </div>
 </div>
-<!-- MODAL PEDIDOS -->
+<!-- MODAL FACTURACIÓN -->
 
-<!-- MODAL DETALLE_PEDIDOS -->
+<!-- MODAL DETALLE_FACTURA -->
 <div>
     <div id="id05" class="w3-modal">
         <div class="w3-modal-content">
@@ -162,4 +158,4 @@
     <img src="../../assets/png-img.png" alt="pdf-img" height="32" width="32">
     Guardar PDF
   </a>
-<!-- MODAL DETALLE_PEDIDOS -->
+<!-- MODAL DETALLE_FACTURA -->
