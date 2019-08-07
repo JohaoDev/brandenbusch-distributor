@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pedidos',
@@ -11,7 +13,7 @@ export class PedidosComponent implements OnInit {
   table_header: any
   pedidosForm: FormGroup
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
     this.table_header = [
@@ -22,6 +24,12 @@ export class PedidosComponent implements OnInit {
         total: 'Total'
       }
     ]
+    this.pedidosForm = this.formBuilder.group({
+      id: [Validators.required],
+      idproveedor: [Validators.required],
+      apellidos: [Validators.required],
+      fecha: [Validators.required],
+      total: [Validators.required],
+    });
   }
-
 }
