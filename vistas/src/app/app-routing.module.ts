@@ -9,6 +9,7 @@ import { MaterialesComponent } from './materiales/materiales.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { FacturacionComponent } from './facturacion/facturacion.component';
+import { AlbaranComponent } from './albaran/albaran.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'proveedores', component: ProveedoresComponent },
   { path: 'clientes', component: ClientesComponent },
   { path: 'facturacion', component: FacturacionComponent },
-  { path: 'materiales', component: MaterialesComponent}
+  { path: 'materiales', component: MaterialesComponent},
+  { path : 'albaran', component: AlbaranComponent}
 ];
   @NgModule({
   imports: [RouterModule.forRoot(routes)],
