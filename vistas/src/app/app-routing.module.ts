@@ -10,6 +10,7 @@ import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { FacturacionComponent } from './facturacion/facturacion.component';
 import { AlbaranComponent } from './albaran/albaran.component';
+import { ResumenAlbaranComponent } from './albaran/resumen-albaran/resumen-albaran.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'clientes', component: ClientesComponent },
   { path: 'facturacion', component: FacturacionComponent },
   { path: 'materiales', component: MaterialesComponent},
-  { path : 'albaran', component: AlbaranComponent}
+  { path: 'albaran', component: AlbaranComponent},
+  { path: 'resumen_albaran', component: ResumenAlbaranComponent},
 ];
   @NgModule({
   imports: [RouterModule.forRoot(routes)],

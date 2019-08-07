@@ -19,7 +19,6 @@ export class AlbaranComponent implements OnInit {
   ngOnInit() {
     this.formularioAlbaran()
     this.formularioDetalleAlbaran()
-    // this.getPDF()
     this.getDataAlbaran()
     this.getDataPedidos()
     this.getDataMateriales()
@@ -55,13 +54,13 @@ export class AlbaranComponent implements OnInit {
   }
 
   //PAGINA PRINCIPAL
-  respuestaOrdenes: any[]
+  respuestaAlbaran: any[]
 
   getDataAlbaran = () => {
     let tabla = 'albaran'
     this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
     .subscribe(data => {
-        this.respuestaOrdenes = data.datos
+      this.respuestaAlbaran = data.datos
     })
   }
 
@@ -85,14 +84,14 @@ export class AlbaranComponent implements OnInit {
   //PAGINA PRINCIPAL
 
 
-  //MODAL NEW PEDIDO
+  //MODAL NEW ALBARAN
   respuestaPedidos: any[]
 
   getDataPedidos = () => {
     let tabla = 'pedido'
     this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
     .subscribe(data => {
-        this.respuestaPedidos = data.datos
+      this.respuestaPedidos = data.datos
     })
   }
   
@@ -100,12 +99,11 @@ export class AlbaranComponent implements OnInit {
   fecha_orden = this.nuevafecha.getDate() + "/" + (this.nuevafecha.getMonth() +1) + "/" + this.nuevafecha.getFullYear()
 
   postDataAlbaran = () => {
-    let id
-    let idpedido = this.albaranForm.get('idpedidos').value
+    let idpedido = this.albaranForm.get('idpedido').value
     let total = this.albaranForm.get('total').value
 
     let tabla = 'albaran'
-    let register = {tabla: tabla, datos: [{id: id,idpedido: idpedido,fecha: this.fecha_orden, total: total}]}
+    let register = {tabla: tabla, datos: [{idpedido: idpedido, fecha_entrega: this.fecha_orden, total: total}]}
     this.http.post(environment.API_URL, register)
     .subscribe( data => {
       // this.postData = data

@@ -1,32 +1,15 @@
-<div class="newPedido">
+<div class="newAlbaran">
         <a type="button" onclick="document.getElementById('id04').style.display='block'">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
             <img src="../../assets/new-img.png" alt="new-img" height="64" width="64">
         </a>
     </div>
     <div class="backHome" >
         <a type="button" routerLink="/home">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
             <img src="../../assets/home-img.png" alt="home-img" height="64" width="64">
         </a>
     </div>
-    <div class="reclamosPage">
-        <a type="button" routerLink="/reclamos">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <img src="../../assets/reclamos-img.png" alt="reclamos-img" height="64" width="64">
-        </a>
-    </div>
     
-    <!-- TABLA PEDIDOS -->
+    <!-- TABLA ALBARAN -->
     <div class="table-wrapper">
         <h1>ALBARÁN</h1>
         <table class="fl-table">
@@ -39,12 +22,11 @@
             </thead>
     
             <tbody>
-                <tr *ngFor="let item of respuestaOrdenes">
+                <tr *ngFor="let item of respuestaAlbaran">
                     <td>{{ item.id }}</td>
-                    <td>{{ item.idalbaran }}</td>
-                    <td>{{ item.idmaterial }}</td>
-                    <td>{{ item.cantidad }}</td>
-                    <td>{{ item.precio }}</td>
+                    <td>{{ item.idpedido }}</td>
+                    <td>{{ item.fecha_entrega }}</td>
+                    <td>{{ item.total }}</td>
                     <td>
                         <a type="button" onclick="document.getElementById('id05').style.display='block'" (click)="getDatabyID(item.id)">
                             <span></span>
@@ -53,7 +35,7 @@
                             <span></span>
                             <img src="../../assets/edit-img.png" alt="edit-img" height="18" width="18">
                         </a>
-                        <a type="button" href="/resumen_pedidos" (click)="getDatabyID(item.id)">
+                        <a type="button" href="/resumen_albaran" (click)="getDatabyID(item.id)">
                             <span></span>
                             <span></span>
                             <span></span>
@@ -72,9 +54,9 @@
             </tbody>
         </table>
     </div>
-    <!-- TABLA PEDIDOS -->
+    <!-- TABLA ALBARAN -->
     
-    <!-- MODAL PEDIDOS -->
+    <!-- MODAL ALBARAN -->
     <div>
         <div id="id04" class="w3-modal">
             <div class="w3-modal-content">
@@ -84,45 +66,32 @@
                 </header>
     
                 <div>
-                    <h1>Nuevo Pedido</h1>
+                    <h1>Nuevo Albarán</h1>
                     <form [formGroup]="albaranForm" autocomplete="off">
                         <strong>PEDIDO</strong><br>
                         <select formControlName="idpedido">
-                            <option *ngFor="let item of respuestaPedidos" value={{item.id}}>{{item.nombre}}</option>
+                            <option *ngFor="let item of respuestaPedidos" value={{item.id}}>{{item.idproveedor}} - {{item.fecha}}</option>
                         </select>
                         <div>
                             <span class="errors" *ngIf="albaranForm.controls['idpedido'].errors?.required">Obligatorio</span>
                         </div><br>
-    
-                        <strong>Fecha de Entrega</strong><br>
-                        <input formControlName="fecha_entrega">
-                        <div>
-                            <span class="errors" *ngIf="albaranForm.controls['fecha_entrega'].errors?.required"> Obligatorio </span>
-                            <span class="errors" *ngIf="albaranForm.controls['fecha_entrega'].errors?.pattern"> Inválido </span>
-                        </div><br><br>
                         
                         <strong>TOTAL</strong><br>
                         <input formControlName="total">
                         <div>
                             <span class="errors" *ngIf="albaranForm.controls['total'].errors?.required"> Obligatorio </span>
                             <span class="errors" *ngIf="albaranForm.controls['total'].errors?.pattern"> Inválido </span>
-                        </div><br><br>
+                        </div><br>
 
-                        <a type="button" (click)="postDataAlbaran()">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            Guardar
-                        </a>
+                        <a type="button" (click)="postDataAlbaran()">Guardar</a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- MODAL PEDIDOS -->
+    <!-- MODAL ALBARAN -->
     
-    <!-- MODAL DETALLE_PEDIDOS -->
+    <!-- MODAL DETALLE_ALBARAN -->
     <div>
         <div id="id05" class="w3-modal">
             <div class="w3-modal-content">
@@ -132,9 +101,9 @@
                 </header>
     
                 <div>
-                    <h1>Detalle del Pedido</h1>
+                    <h1>Detalle del Albarán</h1>
                     <form [formGroup]="detallealbaranForm" autocomplete="off">
-                        <strong>ALBARAN</strong><br>
+                        <strong>ALBARÁN</strong><br>
                         <select formControlName="idalbaran">
                             <option *ngFor="let item of respuestaMateriales" value={{item.id}}>{{item.id}}</option>
                         </select>
@@ -175,12 +144,4 @@
             </div>
         </div>
     </div>
-    <a type="button" class="pdf" (click)="pdf()">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <img src="../../assets/png-img.png" alt="pdf-img" height="32" width="32">
-        Guardar PDF
-      </a>
     <!-- MODAL DETALLE_PEDIDOS -->

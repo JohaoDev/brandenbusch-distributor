@@ -15,16 +15,16 @@
     <table class="fl-table">
         <thead *ngFor="let item of table_header">
             <th>{{item.id}}</th>
-            <th>{{item.idproveedor}}</th>
+            <th>{{item.idcliente}}</th>
             <th>{{item.fecha}}</th>
             <th>{{item.total}}</th>
             <th></th>
         </thead>
 
         <tbody>
-            <tr *ngFor="let item of respuestaOrdenes">
+            <tr *ngFor="let item of respuestaFacturas">
                 <td>{{ item.id }}</td>
-                <td>{{ item.idproveedor }}</td>
+                <td>{{ item.idcliente }}</td>
                 <td>{{ item.fecha }}</td>
                 <td>{{ item.total }}</td>
                 <td>
@@ -35,7 +35,7 @@
                         <span></span>
                         <img src="../../assets/edit-img.png" alt="edit-img" height="18" width="18">
                     </a>
-                    <a type="button" href="/resumen_pedidos" (click)="getDatabyID(item.id)">
+                    <a type="button" href="/resumen_facturas" (click)="getDatabyID(item.id)">
                         <span></span>
                         <span></span>
                         <span></span>

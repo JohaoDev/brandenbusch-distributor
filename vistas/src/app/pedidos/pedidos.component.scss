@@ -130,7 +130,7 @@ h1{
 header
 {
     position: relative;
-    display:block;
+    display: block;
     // background: red;
 }
 .w3-modal
@@ -141,6 +141,7 @@ header
     position:fixed;
     left:0;
     top:0;
+    right: 0;
     width:100%;
     height:100%;
     overflow:auto;
@@ -151,24 +152,24 @@ header
     margin:auto;
     background-color:rgba(255, 255, 255, 0.75);
     position:absolute;
-    // left: 50%;
+    left: 20%;
+    right: 20%;
+    top: 20%;
     padding:0;
     outline:0;
-    width:1000px;
-    height: 465px;
+    width: 300px;
+    height: 500px;
 }
 .w3-display-topright
 {
-    position:absolute;
+    position: absolute;
     right:0;
     top:0;
-    background: rgba(255, 0, 0, 0.75);
-    padding: 2%
+    cursor: pointer;
 }
 //MODAL STYLE
 
 //BUTTONS
-
 .newPedido{
     position: fixed;
     right: 5%;
@@ -182,5 +183,9 @@ header
     right: 5%;
     bottom: 5%;
 }
-
+.pdfButton{
+    position: fixed;
+    left: 5%;
+    bottom: 5%;
+}
 //BUTTONS

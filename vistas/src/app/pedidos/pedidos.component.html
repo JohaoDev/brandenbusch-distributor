@@ -78,7 +78,9 @@
     <div id="id04" class="w3-modal">
         <div class="w3-modal-content">
             <header>
-                <span onclick="document.getElementById('id04').style.display='none'" class="w3-display-topright">&times;</span>
+                <span onclick="document.getElementById('id04').style.display='none'" class="w3-display-topright">
+                    <img src="../../assets/close-img.png" alt="edit-img" height="18" width="18">
+                </span>
                 <!-- <h2>Registro Cliente</h2> -->
             </header>
 
@@ -119,7 +121,9 @@
     <div id="id05" class="w3-modal">
         <div class="w3-modal-content">
             <header>
-                <span onclick="document.getElementById('id05').style.display='none'" class="w3-display-topright">&times;</span>
+                <span onclick="document.getElementById('id05').style.display='none'" class="w3-display-topright">
+                    <img src="../../assets/close-img.png" alt="edit-img" height="18" width="18">
+                </span>
                 <!-- <h2>Registro Cliente</h2> -->
             </header>
 
@@ -156,10 +160,6 @@
                     </div><br><br>
 
                     <a type="button" (click)="postDataDetallePedidos()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
                         Guardar
                     </a>
                 </form>
@@ -167,12 +167,9 @@
         </div>
     </div>
 </div>
-<a type="button" class="pdf" (click)="pdf()">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <img src="../../assets/png-img.png" alt="pdf-img" height="32" width="32">
-    Guardar PDF
-  </a>
+<div class="pdfButton">
+    <a type="button" class="pdf" (click)="pdf()">
+        <img src="../../assets/png-img.png" alt="pdf-img" height="64" width="64">
+    </a>
+</div>
 <!-- MODAL DETALLE_PEDIDOS -->
