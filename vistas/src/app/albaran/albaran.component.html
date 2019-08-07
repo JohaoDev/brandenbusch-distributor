@@ -28,12 +28,12 @@
     
     <!-- TABLA PEDIDOS -->
     <div class="table-wrapper">
-        <h1>PEDIDOS</h1>
+        <h1>ALBARÁN</h1>
         <table class="fl-table">
             <thead *ngFor="let item of table_header">
                 <th>{{item.id}}</th>
-                <th>{{item.idproveedor}}</th>
-                <th>{{item.fecha}}</th>
+                <th>{{item.idpedido}}</th>
+                <th>{{item.fecha_entrega}}</th>
                 <th>{{item.total}}</th>
                 <th></th>
             </thead>
@@ -41,9 +41,10 @@
             <tbody>
                 <tr *ngFor="let item of respuestaOrdenes">
                     <td>{{ item.id }}</td>
-                    <td>{{ item.idproveedor }}</td>
-                    <td>{{ item.fecha }}</td>
-                    <td>{{ item.total }}</td>
+                    <td>{{ item.idalbaran }}</td>
+                    <td>{{ item.idmaterial }}</td>
+                    <td>{{ item.cantidad }}</td>
+                    <td>{{ item.precio }}</td>
                     <td>
                         <a type="button" onclick="document.getElementById('id05').style.display='block'" (click)="getDatabyID(item.id)">
                             <span></span>
@@ -84,23 +85,30 @@
     
                 <div>
                     <h1>Nuevo Pedido</h1>
-                    <form [formGroup]="pedidosForm" autocomplete="off">
-                        <strong>PROVEEDORES</strong><br>
-                        <select formControlName="idproveedor">
-                            <option *ngFor="let item of respuestaProveedores" value={{item.id}}>{{item.nombre}}</option>
+                    <form [formGroup]="albaranForm" autocomplete="off">
+                        <strong>PEDIDO</strong><br>
+                        <select formControlName="idpedido">
+                            <option *ngFor="let item of respuestaPedidos" value={{item.id}}>{{item.nombre}}</option>
                         </select>
                         <div>
-                            <span class="errors" *ngIf="pedidosForm.controls['idproveedor'].errors?.required">Obligatorio</span>
+                            <span class="errors" *ngIf="albaranForm.controls['idpedido'].errors?.required">Obligatorio</span>
                         </div><br>
     
+                        <strong>Fecha de Entrega</strong><br>
+                        <input formControlName="fecha_entrega">
+                        <div>
+                            <span class="errors" *ngIf="albaranForm.controls['fecha_entrega'].errors?.required"> Obligatorio </span>
+                            <span class="errors" *ngIf="albaranForm.controls['fecha_entrega'].errors?.pattern"> Inválido </span>
+                        </div><br><br>
+                        
                         <strong>TOTAL</strong><br>
                         <input formControlName="total">
                         <div>
-                            <span class="errors" *ngIf="pedidosForm.controls['total'].errors?.required"> Obligatorio </span>
-                            <span class="errors" *ngIf="pedidosForm.controls['total'].errors?.pattern"> Inválido </span>
+                            <span class="errors" *ngIf="albaranForm.controls['total'].errors?.required"> Obligatorio </span>
+                            <span class="errors" *ngIf="albaranForm.controls['total'].errors?.pattern"> Inválido </span>
                         </div><br><br>
-    
-                        <a type="button" (click)="postDataPedidos()">
+
+                        <a type="button" (click)="postDataAlbaran()">
                             <span></span>
                             <span></span>
                             <span></span>
@@ -125,37 +133,37 @@
     
                 <div>
                     <h1>Detalle del Pedido</h1>
-                    <form [formGroup]="detallepedidosForm" autocomplete="off">
-                        <strong>MATERIAL</strong><br>
-                        <select formControlName="idmaterial">
-                            <option *ngFor="let item of respuestaMateriales" value={{item.id}}>{{item.nombre}}</option>
+                    <form [formGroup]="detallealbaranForm" autocomplete="off">
+                        <strong>ALBARAN</strong><br>
+                        <select formControlName="idalbaran">
+                            <option *ngFor="let item of respuestaMateriales" value={{item.id}}>{{item.id}}</option>
                         </select>
                         <div>
-                            <span class="errors" *ngIf="detallepedidosForm.controls['idmaterial'].errors?.required">Obligatorio</span>
+                            <span class="errors" *ngIf="detallealbaranForm.controls['idalbaran'].errors?.required">Obligatorio</span>
                         </div><br>
     
-                        <strong>NOMBRE</strong><br>
-                        <input formControlName="nombre">
+                        <strong>MATERIAL</strong><br>
+                        <input formControlName="idmaterial">
                         <div>
-                            <span class="errors" *ngIf="detallepedidosForm.controls['nombre'].errors?.required">Obligatorio</span>
+                            <span class="errors" *ngIf="detallealbaranForm.controls['idmaterial'].errors?.required">Obligatorio</span>
                             <!-- <span class="errors" *ngIf="detallepedidosForm.controls['nombre'].errors?.pattern">Inválido</span> -->
                         </div><br>
     
                         <strong>CANTIDAD</strong><br>
                         <input formControlName="cantidad">
                         <div>
-                            <span class="errors" *ngIf="detallepedidosForm.controls['cantidad'].errors?.required"> Obligatorio </span>
+                            <span class="errors" *ngIf="detallealbaranForm.controls['cantidad'].errors?.required"> Obligatorio </span>
                             <!-- <span class="errors" *ngIf="detallepedidosForm.controls['cantidad'].errors?.pattern"> Inválido </span> -->
                         </div><br>
     
                         <strong>PRECIO</strong><br>
                         <input formControlName="precio">
                         <div>
-                            <span class="errors" *ngIf="detallepedidosForm.controls['precio'].errors?.required"> Obligatorio </span>
+                            <span class="errors" *ngIf="detallealbaranForm.controls['precio'].errors?.required"> Obligatorio </span>
                             <!-- <span class="errors" *ngIf="detallepedidosForm.controls['precio'].errors?.pattern"> Inválido </span> -->
                         </div><br><br>
     
-                        <a type="button" (click)="postDataDetallePedidos()">
+                        <a type="button" (click)="postDataDetalleAlbaran()">
                             <span></span>
                             <span></span>
                             <span></span>

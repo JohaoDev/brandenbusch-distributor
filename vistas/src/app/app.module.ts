@@ -15,6 +15,7 @@ import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { FacturacionComponent } from './facturacion/facturacion.component';
 import { AlbaranComponent } from './albaran/albaran.component';
+import { ResumenAlbaranComponent } from './albaran/resumen-albaran/resumen-albaran.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AlbaranComponent } from './albaran/albaran.component';
     ProveedoresComponent,
     ClientesComponent,
     FacturacionComponent,
-    AlbaranComponent
+    AlbaranComponent,
+    ResumenAlbaranComponent
   ],
   imports: [
     BrowserModule,
