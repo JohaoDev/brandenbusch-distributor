@@ -11,9 +11,9 @@ import { environment } from 'src/environments/environment';
 export class ReclamosComponent implements OnInit {
 
   table_header: any
-  pedidosForm: FormGroup
+  reclamosForm: FormGroup
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.getDataReclamos()
@@ -24,18 +24,26 @@ export class ReclamosComponent implements OnInit {
         fecha: 'Fecha del Pedido',
       }
     ]
+    this.formularioReclamos()
+  }
+  formularioReclamos(){
+    this.reclamosForm = this.formBuilder.group({
+      id: [''],
+      fecha: [''],
+      comentario:['']
+    });
   }
 
-    //PAGINA PRINCIPAL
-    respuestaReclamos: any[]
+  //PAGINA PRINCIPAL
+  respuestaReclamos: any[]
 
-    getDataReclamos = () => {
-      let tabla = 'reclamo'
-      this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
-      .subscribe(data => {
-          this.respuestaReclamos = data.datos
-      })
-    }
-    //PAGINA PRINCIPAL
+  getDataReclamos = () => {
+    let tabla = 'reclamo'
+    this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
+    .subscribe(data => {
+        this.respuestaReclamos = data.datos
+    })
+  }
+  //PAGINA PRINCIPAL
 
 }
