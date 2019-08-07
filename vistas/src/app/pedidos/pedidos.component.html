@@ -1,7 +1,111 @@
 <div>
-    <h1>PEDIDOS</h1>
+    <a type="button" onclick="document.getElementById('id04').style.display='block'">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <img src="../../assets/new-img.png" alt="new-img" height="42" width="42">
+    </a>
 </div>
 
-<div>
-    
+<!-- TABLA PEDIDOS -->
+<div class="table-wrapper">
+    <h1>PEDIDOS</h1>
+    <table class="fl-table">
+        <thead *ngFor="let item of table_header">
+            <th>{{item.id}}</th>
+            <th>{{item.idproveedor}}</th>
+            <th>{{item.fecha}}</th>
+            <th>{{item.total}}</th>
+            <th></th>
+        </thead>
+  
+        <tbody>
+            <tr *ngFor="let item of respuesta">
+                <td>{{ item.id }}</td>
+                <td>{{ item.idproveedor }}</td>
+                <td>{{ item.fecha }}</td>
+                <td>{{ item.total }}</td>
+                <td>
+                    <a type="button" onclick="document.getElementById('id05').style.display='block'" (click)="getDatabyID(item.id)">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <img src="../../../assets/edit-img.png" alt="edit-img" height="18" width="18">
+                    </a>
+                    <a type="button" href="/detalle_orden" (click)="getDatabyID(item.id)">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <img src="../../../assets/details.ico" alt="details-img" height="18" width="18">
+                    </a>
+                    <a type="button" (click)="deleteDataTable(item.id)">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
+<!-- TABLA PEDIDOS -->
+
+<!-- MODAL PEDIDOS -->
+<div>
+    <div id="id04" class="w3-modal">
+        <div class="w3-modal-content">
+            <header>
+                <span onclick="document.getElementById('id04').style.display='none'" class="w3-display-topright">&times;</span>
+                <!-- <h2>Registro Cliente</h2> -->
+            </header>
+        
+            <div>
+                <h1>PONER FORMULARIO REACTIVO</h1>
+                <!-- <form [formGroup]="pedidosForm" autocomplete="off">
+                    <strong>IDENTIFICACIÓN</strong><br>
+                    <input formControlName="identificacion" placeholder="Cédula o RUC">
+                    <span class="errors" *ngIf="clienteForm.controls['identificacion'].errors?.required"> Obligatorio </span>
+                    <span class="errors" *ngIf="clienteForm.controls['identificacion'].errors?.pattern"> Inválido </span>
+                    <br><br>
+
+                    <strong>NOMBRE</strong><br>
+                    <input formControlName="nombres" placeholder="Nombre">
+                    <span class="errors" *ngIf="clienteForm.controls['nombres'].errors?.required"> Obligatorio </span>
+                    <span class="errors" *ngIf="clienteForm.controls['nombres'].errors?.pattern"> Inválido </span>
+                    <br><br>
+            
+                    <strong>APELLIDO</strong><br>
+                    <input formControlName="apellidos" placeholder="Apellido">
+                    <span class="errors" *ngIf="clienteForm.controls['apellidos'].errors?.required"> Obligatorio </span>
+                    <span class="errors" *ngIf="clienteForm.controls['apellidos'].errors?.pattern"> Inválido </span>
+                    <br><br>
+            
+                    <strong>TELÉFONO</strong><br>
+                    <input formControlName="telefonos" placeholder="Teléfono">
+                    <span class="errors" *ngIf="clienteForm.controls['telefonos'].errors?.required"> Obligatorio </span>
+                    <span class="errors" *ngIf="clienteForm.controls['telefonos'].errors?.pattern"> Inválido </span>
+                    <br><br>
+            
+                    <strong>DIRECCIÓN</strong><br>
+                    <input formControlName="direcciones" placeholder="Dirección">
+                    <span class="errors" *ngIf="clienteForm.controls['direcciones'].errors?.required"> Obligatorio </span>
+                    <br><br>
+
+                    <a type="button" (click)="postDataClientes()" class="but">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Guardar
+                    </a>
+                </form> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL PEDIDOS -->
