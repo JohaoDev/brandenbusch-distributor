@@ -8,7 +8,7 @@
         <img src="../../assets/home-img.png" alt="home-img" height="64" width="64">
     </a>
 </div>
-    
+
 <!-- TABLA CLIENTE -->
 <div class="table-wrapper">
     <h1>CLIENTES</h1>
@@ -21,7 +21,7 @@
             <th>{{item.direccion}}</th>
             <th></th>
         </thead>
-    
+
         <tbody>
             <tr *ngFor="let item of respuestaClientes">
                 <td>{{ item.id }}</td>
@@ -50,7 +50,7 @@
                 </span>
                 <!-- <h2>Registro Proveedor</h2> -->
             </header>
-        
+
             <div>
                 <h1>Nuevo Cliente</h1>
                 <form [formGroup]="clienteForm" autocomplete="off">
@@ -82,7 +82,9 @@
                         <!-- <span class="errors" *ngIf="clienteForm.controls['identificacion'].errors?.pattern"> Inválido </span> -->
                     </div><br>
 
-                    <a type="button" (click)="postDataCliente()">Guardar</a>
+                    <a type="button" (click)="postDataCliente()"class="w3-display-bottomright">
+                        <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
+                      </a>
                 </form>
             </div>
         </div>

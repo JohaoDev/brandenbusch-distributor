@@ -65,7 +65,7 @@
                     <div>
                         <span class="errors" *ngIf="albaranForm.controls['idpedido'].errors?.required">Obligatorio</span>
                     </div><br>
-                    
+
                     <strong>TOTAL</strong><br>
                     <input formControlName="total">
                     <div>
@@ -73,7 +73,9 @@
                         <span class="errors" *ngIf="albaranForm.controls['total'].errors?.pattern"> Inválido </span>
                     </div><br>
 
-                    <a type="button" (click)="postDataAlbaran()">Guardar</a>
+                    <a  type="button" (click)="postDataAlbaran()"class="w3-display-bottomright">
+                        <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
+                      </a>
                 </form>
             </div>
         </div>
@@ -117,7 +119,9 @@
                         <!-- <span class="errors" *ngIf="detallepedidosForm.controls['precio'].errors?.pattern"> Inválido </span> -->
                     </div><br><br>
 
-                    <a type="button" (click)="postDataDetalleAlbaran()"> Guardar </a>
+                    <a type="button" (click)="postDataDetalleAlbaran()"class="w3-display-bottomright">
+                        <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
+                      </a>
                 </form>
             </div>
         </div>

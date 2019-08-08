@@ -35,8 +35,15 @@
     .w3-display-topright
     {
         position: absolute;
-        right:0;
-        top:0;
+        right:5px;
+        top:5px;
+        cursor: pointer;
+    }
+    .w3-display-bottomright
+    {
+        position: absolute;
+        right:5px;
+        bottom:5px;
         cursor: pointer;
     }
 }
