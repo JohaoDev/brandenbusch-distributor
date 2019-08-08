@@ -32,7 +32,7 @@ export class ResumenAlbaranComponent implements OnInit {
   }
 
   getDataDetalleAlbaran = () => {
-    this.http.get<any>(environment.API_URL + `OnlyID?idalbaran=${this.getLocalStorage()}`)
+    this.http.get<any>(environment.API_URL + `AlbaranAPI?idalbaran=${this.getLocalStorage()}`)
     .subscribe(data => {
       this.respuestaDetalleAlbaran = data.datos
     })

@@ -156,6 +156,24 @@ let getDatosFactura_detalles = (req, res) => {
     })
 }
 
+let getDatosAlbaran_detalles = (req, res) => {
+    let idalbaran = req.query.idalbaran
+    db.raw(`select * from detalle_albaran where idalbaran = ${idalbaran}`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
 //SELECT DE DETALLES SISTEMA
 
 module.exports = {
@@ -166,5 +184,6 @@ module.exports = {
     getDatosbyID,
     getDatosPedidos_detalles,
     getDatosReclamo_detalles,
-    getDatosFactura_detalles
+    getDatosFactura_detalles,
+    getDatosAlbaran_detalles
 }
