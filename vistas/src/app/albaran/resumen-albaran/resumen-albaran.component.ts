@@ -18,7 +18,7 @@ export class ResumenAlbaranComponent implements OnInit {
     this.getDataDetalleAlbaran()
     this.table_header = [
       {
-        idalbaran: 'Código del pedido',
+        idalbaran: 'Código del albarán',
         idmaterial: 'Material',
         cantidad: 'cantidad',
         precio: 'precio'
