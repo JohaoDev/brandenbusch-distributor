@@ -95,19 +95,12 @@
             <div>
                 <h1>Detalle del Albarán</h1>
                 <form [formGroup]="detallealbaranForm" autocomplete="off">
-                    <strong>ALBARÁN</strong><br>
-                    <select formControlName="idalbaran">
-                        <option *ngFor="let item of respuestaMateriales" value={{item.id}}>{{item.id}}</option>
+                    <strong>MATERIAL</strong><br>
+                    <select formControlName="idmaterial">
+                        <option *ngFor="let item of respuestaMateriales" value={{item.id}}>{{item.nombre}}</option>
                     </select>
                     <div>
-                        <span class="errors" *ngIf="detallealbaranForm.controls['idalbaran'].errors?.required">Obligatorio</span>
-                    </div><br>
-
-                    <strong>MATERIAL</strong><br>
-                    <input formControlName="idmaterial">
-                    <div>
                         <span class="errors" *ngIf="detallealbaranForm.controls['idmaterial'].errors?.required">Obligatorio</span>
-                        <!-- <span class="errors" *ngIf="detallepedidosForm.controls['nombre'].errors?.pattern">Inválido</span> -->
                     </div><br>
 
                     <strong>CANTIDAD</strong><br>

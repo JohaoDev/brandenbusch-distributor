@@ -19,6 +19,7 @@ export class AlbaranComponent implements OnInit {
   ngOnInit() {
     this.formularioAlbaran()
     this.formularioDetalleAlbaran()
+
     this.getDataAlbaran()
     this.getDataPedidos()
     this.getDataMateriales()
@@ -113,22 +114,22 @@ export class AlbaranComponent implements OnInit {
   //MODAL NEW PEDIDO
 
   //MODAL DETALLE PEDIDO 
-  respuestaMateriales: any[]
+  respuestaMateriales
 
   getDataMateriales = () => {
     let tabla = 'material'
     this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
     .subscribe(data => {
-        this.respuestaMateriales = data.datos
+      this.respuestaMateriales = data.datos
     })
   }
   
   postDataDetalleAlbaran = () => {
-    let idalbaran = this.detallealbaranForm.get('idalbaran').value
     let idmaterial = this.detallealbaranForm.get('idmaterial').value
     let cantidad = this.detallealbaranForm.get('cantidad').value
     let precio = this.detallealbaranForm.get('precio').value
     let returning
+
     let tabla = 'detalle_albaran'
     let register = {tabla: tabla, datos: [{ idmaterial: idmaterial, cantidad: cantidad, idalbaran: this.idAlbaranVariable, precio: precio}]}
     this.http.post(environment.API_URL, register)
