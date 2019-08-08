@@ -19,14 +19,16 @@
                 <td>{{item.descuento}}</td>
                 <td>
                     <a type="button" (click)="deleteDataTable(item.id)" routerLink="/pedidos">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
                         <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">
                     </a>
                 </td>
             </tr>
         </tbody>
     </table>
+</div>
+
+<div class="levelDown">
+    <a type="button" routerLink="/facturacion">
+        <img src="../../assets/back-img.png" alt="home-img" height="64" width="64">
+    </a>
 </div>

@@ -19,10 +19,6 @@
                 <td>{{item.precio}}</td>
                 <td>
                     <a type="button" (click)="deleteDataTable(item.id)" routerLink="/pedidos">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
                         <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">
                     </a>
                 </td>
@@ -31,4 +27,8 @@
     </table>
 </div>
 
-<!-- poner imagen del pgf -->
+<div class="levelDown">
+    <a type="button" routerLink="/pedidos">
+        <img src="../../assets/back-img.png" alt="home-img" height="64" width="64">
+    </a>
+</div>
