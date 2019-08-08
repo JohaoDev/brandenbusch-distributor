@@ -16,6 +16,7 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { FacturacionComponent } from './facturacion/facturacion.component';
 import { AlbaranComponent } from './albaran/albaran.component';
 import { ResumenAlbaranComponent } from './albaran/resumen-albaran/resumen-albaran.component';
+import { ResumenFacturacionComponent } from './facturacion/resumen-facturacion/resumen-facturacion.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ResumenAlbaranComponent } from './albaran/resumen-albaran/resumen-albar
     ClientesComponent,
     FacturacionComponent,
     AlbaranComponent,
-    ResumenAlbaranComponent
+    ResumenAlbaranComponent,
+    ResumenFacturacionComponent
   ],
   imports: [
     BrowserModule,
