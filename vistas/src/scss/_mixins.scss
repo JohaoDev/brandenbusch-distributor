@@ -35,8 +35,15 @@
     .w3-display-topright
     {
         position: absolute;
-        right:0;
-        top:0;
+        right:5px;
+        top:5px;
+        cursor: pointer;
+    }
+    .w3-display-bottomright
+    {
+        position: absolute;
+        right:5px;
+        bottom:5px;
         cursor: pointer;
     }
 }
@@ -201,5 +208,11 @@
   width: 250px;
   border: 10x solid transparent;
 }
+}
+@mixin button {
+    :focus{outline: none;}
 
+/* necessary to give position: relative to parent. */
+input{font: 15px/24px 'Muli', sans-serif; color: #333;margin-left: 5%;margin-right: 8%; width: 85%; box-sizing: border-box; letter-spacing: 1px;}
+:focus{padding: 5px 14px 7px; transition: 0.4s;border-color: rgb(42, 182, 0)}
 }

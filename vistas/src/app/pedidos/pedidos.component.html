@@ -78,8 +78,8 @@
                         <span class="errors" *ngIf="pedidosForm.controls['total'].errors?.pattern"> Inválido </span>
                     </div><br><br>
 
-                    <a type="button" (click)="postDataPedidos()">
-                      <img src="../../assets/save-img.png" alt="edit-img" height="32" width="32" align="center">
+                    <a type="button" (click)="postDataPedidos()" class="w3-display-bottomright">
+                      <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
                     </a>
                 </form>
             </div>
@@ -131,17 +131,17 @@
                         <!-- <span class="errors" *ngIf="detallepedidosForm.controls['precio'].errors?.pattern"> Inválido </span> -->
                     </div><br><br>
 
-                    <a type="button" (click)="postDataDetallePedidos()">
-                      <img src="../../assets/save-img.png" alt="edit-img" height="32" width="32" align="center">
-                    </a>
+                    <a type="button" (click)="postDataDetallePedidos()"class="w3-display-bottomright">
+                        <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
+                      </a>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<!-- <div class="pdfButton">
+<div class="pdfButton">
     <a type="button" class="pdf" (click)="pdf()">
         <img src="../../assets/png-img.png" alt="pdf-img" height="64" width="64">
     </a>
-</div> -->
+</div>
 <!-- MODAL DETALLE_PEDIDOS -->
