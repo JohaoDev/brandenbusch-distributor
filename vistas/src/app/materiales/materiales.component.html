@@ -96,7 +96,9 @@
                     <div>
                         <span class="errors" *ngIf="materialesForm.controls['idproveedor'].errors?.required">Obligatorio</span>
                     </div><br>
-                    <a type="button" (click)="postDataMateriales()"><img src="../../assets/save-img.png" alt="edit-img" height="32" width="32" align="center"></a>
+                    <a type="button" (click)="postDataMateriales()" class="w3-display-bottomright">
+                        <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
+                      </a>
                 </form>
             </div>
         </div>
