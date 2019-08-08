@@ -176,6 +176,26 @@ let getDatosAlbaran_detalles = (req, res) => {
 
 //SELECT DE DETALLES SISTEMA
 
+//PDF
+let getPDFordenes = (req, res) => {
+    let tabla = req.query.tabla
+    db.raw(`select * from ${tabla}`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+// PDF
+
 module.exports = {
     getDatos,
     postDatos,
@@ -185,5 +205,6 @@ module.exports = {
     getDatosPedidos_detalles,
     getDatosReclamo_detalles,
     getDatosFactura_detalles,
-    getDatosAlbaran_detalles
+    getDatosAlbaran_detalles,
+    getPDFordenes
 }

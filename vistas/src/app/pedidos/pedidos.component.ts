@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-// import jsPDF from 'jspdf';
-// import 'jspdf-autotable';
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-pedidos',
@@ -21,10 +21,11 @@ export class PedidosComponent implements OnInit {
   ngOnInit() {
     this.formularioPedidos()
     this.formularioDetallePedidos()
-    // this.getPDF()
+
     this.getDataPedidos()
     this.getDataProveedores()
     this.getDataMateriales()
+    this.getPDF()
 
     this.table_header = [
       {
@@ -144,52 +145,54 @@ export class PedidosComponent implements OnInit {
   }
   //MODAL DETALLE PEDIDO
 
-  // // JSPDF
+  // JSPDF
 
-  // docPdf: jsPDF;
-  // pdfData: any[]
+  docPdf: jsPDF;
+  pdfData: any[]
 
-  // getPDF = () => {
-  //   let ruta = 'pdf'
-  //   this.http.get<any>(environment.API_URL + `${ruta}`)
-  //   .subscribe(data => {
-  //     this.pdfData = data.datos
-  //   })
-  //   console.log(this.pdfData)
-  // }
+  getPDF = () => {
+    let ruta = 'pdf'
+    let tabla = 'pedido'
 
-  // pdf() {
-  //   let textSize=10;
-  //   let anchoTotal=210
-  //   let altoTotal=290
-  //   let margenSup=25
-  //   let margeninf=25
-  //   let margeniz=25
-  //   let margende= 25
-  //   let anchouso= anchoTotal-margeniz-margende
-  //   let altouso=altoTotal-margenSup-margeninf
-  //   let x=25;
-  //   let y=25;
+    this.http.get<any>(environment.API_URL + `${ruta}?tabla=${tabla}`)
+    .subscribe(data => {
+      this.pdfData = data.datos
+    })
+    console.log(this.pdfData)
+  }
 
-  //   let doc = new jsPDF({
-  //     orientation: 'landscape',
-  //     unit: 'mm',
-  //     format: 'A4',
-  //     compress: true,
-  //   })
-  //   var headers = 
-  //   {
-  //     id: "N° Pedido",
-  //     fecha: "Fecha Del Pedido",
-  //     Total: "Total de Pedidos",
-  //     nombre: "Nombre Del Proveedor",
-  //   };
-  //   doc.autoTable({
-  //     head: [headers],
-  //     body: this.pdfData, colSpan: 2, rowSpan: 2, styles: {halign: 'center'},
-  //   })
-  //   doc.save('OrdenesProduccion.pdf')
-  // }
+  pdf() {
+    let textSize=10;
+    let anchoTotal=210
+    let altoTotal=290
+    let margenSup=25
+    let margeninf=25
+    let margeniz=25
+    let margende= 25
+    let anchouso= anchoTotal-margeniz-margende
+    let altouso=altoTotal-margenSup-margeninf
+    let x=25;
+    let y=25;
+
+    let doc = new jsPDF({
+      orientation: 'landscape',
+      unit: 'mm',
+      format: 'A4',
+      compress: true,
+    })
+    var headers = 
+    {
+      id: "N° Pedido",
+      fecha: "Fecha Del Pedido",
+      total: "Total de Pedidos",
+      idproveedor: "Nombre Del Proveedor",
+    };
+    doc.autoTable({
+      head: [headers],
+      body: this.pdfData, colSpan: 2, rowSpan: 2, styles: {halign: 'center'},
+    })
+    doc.save('Pedidos.pdf')
+  }
 
 // JSPDF
 }
