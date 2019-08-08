@@ -13,7 +13,7 @@
         <img src="../../assets/back-img.png" alt="home-img" height="64" width="64">
     </a>
 </div>
-    
+
 <!-- TABLA RECLAMOS -->
 <div class="table-wrapper">
     <h1>RECLAMOS</h1>
@@ -24,7 +24,7 @@
             <th>{{item.comentario}}</th>
             <th></th>
         </thead>
-    
+
         <tbody>
             <tr *ngFor="let item of respuestaReclamos">
                 <td>{{ item.id }}</td>
@@ -69,7 +69,7 @@
                 </span>
                 <!-- <h2>Registro Reclamo</h2> -->
             </header>
-        
+
             <div>
                 <h1>Nuevo Reclamo</h1>
                 <form [formGroup]="reclamosForm" autocomplete="off">
@@ -84,7 +84,7 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                        Guardar
+                        <img src="../../assets/save-img.png" alt="edit-img" height="32" width="32" align="center">
                     </a>
                 </form>
             </div>
@@ -103,7 +103,7 @@
                 </span>
                 <!-- <h2>Registro Reclamo</h2> -->
             </header>
-        
+
             <div>
                 <h1>Detalle del Reclamo</h1>
                 <form [formGroup]="detallereclamosForm" autocomplete="off">
@@ -144,7 +144,7 @@
                         <span class="errors" *ngIf="detallereclamosForm.controls['precio_llegada'].errors?.pattern"> Inválido </span>
                     </div><br>
 
-                    <a type="button" (click)="postDataDetallePedidos()">Guardar</a>
+                    <a type="button" (click)="postDataDetallePedidos()"><img src="../../assets/save-img.png" alt="edit-img" height="32" width="32" align="center"></a>
                 </form>
             </div>
         </div>
