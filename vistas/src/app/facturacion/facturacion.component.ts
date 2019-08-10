@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-facturacion',
@@ -20,6 +22,7 @@ export class FacturacionComponent implements OnInit {
     this.formularioFactura()
     this.formularioDetalleFactura()
 
+    this.getPDF()
     this.getDataFactura()
     this.getDataClientes()
     this.getDataMateriales()
@@ -140,4 +143,55 @@ postDataDetalleFacturas = () => {
   window.location.reload()
 }
 //MODAL DETALLE_FACTURA
+
+  // JSPDF
+
+  docPdf: jsPDF;
+  pdfData: any[]
+
+  getPDF = () => {
+    let ruta = 'pdf'
+    let tabla = 'factura'
+
+    this.http.get<any>(environment.API_URL + `${ruta}?tabla=${tabla}`)
+    .subscribe(data => {
+      this.pdfData = data.datos
+    })
+    console.log(this.pdfData)
+  }
+
+  pdf() {
+    let textSize=10;
+    let anchoTotal=210
+    let altoTotal=290
+    let margenSup=25
+    let margeninf=25
+    let margeniz=25
+    let margende= 25
+    let anchouso= anchoTotal-margeniz-margende
+    let altouso=altoTotal-margenSup-margeninf
+    let x=25;
+    let y=25;
+
+    let doc = new jsPDF({
+      orientation: 'landscape',
+      unit: 'mm',
+      format: 'A4',
+      compress: true,
+    })
+    var headers = 
+    {
+      id: "N° Pedido",
+      fecha: "Fecha De Factura",
+      total: "Total de Factura",
+      idcliente: "Nombre Del Cliente",
+    };
+    doc.autoTable({
+      head: [headers],
+      body: this.pdfData, colSpan: 2, rowSpan: 2, styles: {halign: 'center'},
+    })
+    doc.save('Facturas.pdf')
+  }
+
+// JSPDF
 }
