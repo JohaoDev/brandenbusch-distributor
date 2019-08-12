@@ -23,7 +23,7 @@ export class ResumenFacturacionComponent implements OnInit {
     this.getDataMateriales()
     this.getDataSubtotal()
     this.getDataIva()
-    this.getDataTotal()
+    // this.getDataTotal()
     this.getPDF()
 
     this.table_header = [

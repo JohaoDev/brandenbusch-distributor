@@ -77,6 +77,26 @@
 </div>
 <!-- MODAL DETALLE_PEDIDOS -->
     
+<!-- SUBTOTAL - TOTAL - IVA -->
+<div class="second_table">
+    <table class="fl-table">
+        <thead>
+            <tr *ngFor="let item of respuestaSubtotal">
+                <th>Subtotal</th>
+                <td>{{ item.subtotal }}</td>
+            </tr>
+            <tr *ngFor="let item of respuestaIva">
+                <th>I.V.A. 12%</th>
+                <td>{{ item.iva }}</td>
+            </tr>
+            <tr *ngFor="let item of respuestaTotal">
+                <th>Total</th>
+                <td>{{ item.total }}</td>
+            </tr>
+        </thead>
+    </table>
+</div>
+<!-- SUBTOTAL - TOTAL - IVA -->
 
 <div class="levelDown">
     <a type="button" routerLink="/pedidos">

@@ -194,6 +194,26 @@ let getDatosPedidos_detalles = (req, res) => {
     })
 }
 
+let getPedidosSelect = (req, res) => {
+    let idpedido = req.query.idpedido
+    let consulta = req.query.consulta
+
+    db.raw(`select detalle_pedido.idpedido, ${consulta} from detalle_pedido join material on detalle_pedido.idmaterial = material.id where idpedido = ${idpedido} group by detalle_pedido.idpedido`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
 
 //SELECT DE DETALLES SISTEMA
 
@@ -229,5 +249,6 @@ module.exports = {
     getDatosFactura_detalles,
     getDatosAlbaran_detalles,
     getPDF_Facturas,
-    getFacturasSelect
+    getFacturasSelect,
+    getPedidosSelect
 }

@@ -22,7 +22,10 @@ export class ResumenPedidoComponent implements OnInit {
 
     this.getDataDetallePedido()
     this.getDataMateriales()
-    this.getPDF()
+    this.getDataSubtotal()
+    this.getDataIva()
+    // this.getDataTotal()
+    // this.getPDF()
 
     this.table_header = [
       {
@@ -57,6 +60,39 @@ export class ResumenPedidoComponent implements OnInit {
     this.http.get<any>(environment.API_URL + `PedidosAPI?idpedido=${this.getLocalStorage()}`)
     .subscribe(data => {
       this.respuestaDetallePedido = data.datos
+    })
+  }
+
+  respuestaSubtotal: any[]
+
+  getDataSubtotal = () => {
+    let subtotal = "sum(detalle_pedido.cantidad*material.precio) as subtotal"
+
+    this.http.get<any>(environment.API_URL + `PedidosSelect?idpedido=${this.getLocalStorage()}&consulta=${subtotal}`)
+    .subscribe(data => {
+      this.respuestaSubtotal = data.datos
+    })
+  }
+
+  respuestaIva: any[]
+
+  getDataIva = () => {
+    let iva = "round(sum(detalle_pedido.cantidad*material.precio)*0.12,2) as iva"
+
+    this.http.get<any>(environment.API_URL + `PedidosSelect?idpedido=${this.getLocalStorage()}&consulta=${iva}`)
+    .subscribe(data => {
+      this.respuestaIva = data.datos
+    })
+  }
+
+  respuestaTotal: any[]
+
+  getDataTotal = () => {
+    let total = "(sum(detalle_pedido.cantidad*material.precio) + round(sum(detalle_pedido.cantidad*material.precio)*0.12,2)) as total"
+
+    this.http.get<any>(environment.API_URL + `PedidosSelect?idpedido=${this.getLocalStorage()}&consulta=${total}`)
+    .subscribe(data => {
+      this.respuestaTotal = data.datos
     })
   }
 
