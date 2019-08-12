@@ -140,7 +140,7 @@ let getDatosReclamo_detalles = (req, res) => {
 
 let getDatosFactura_detalles = (req, res) => {
     let idfactura = req.query.idfactura
-    db.raw(`select * from detalle_factura where idfactura = ${idfactura}`)
+    db.raw(`select detalle_factura.id, detalle_factura.idfactura , material.nombre as idmaterial, detalle_factura.cantidad, material.precio as valor_unitario, (detalle_factura.cantidad*material.precio) as valor_total from detalle_factura join material on detalle_factura.idmaterial = material.id where idfactura =  ${idfactura}`)
     .then( resultado => {
         return res.status(200).json({
             ok: true,
@@ -174,12 +174,33 @@ let getDatosAlbaran_detalles = (req, res) => {
     })
 }
 
+let getFacturasSelect = (req, res) => {
+    let idfactura = req.query.idfactura
+    let select = req.query.select
+    db.raw(`select detalle_factura.idfactura, ${select} from detalle_factura join material on detalle_factura.idmaterial = material.id where idfactura = ${idfactura} group by detalle_factura.idfactura `)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
+
 //SELECT DE DETALLES SISTEMA
 
 //PDF
-let getPDFordenes = (req, res) => {
-    let tabla = req.query.tabla
-    db.raw(`select * from ${tabla}`)
+let getPDF_Facturas = (req, res) => {
+    let idfactura = req.query.idfactura
+
+    db.raw(`select material.nombre as idmaterial, detalle_factura.cantidad, material.precio as valor_unitario, (detalle_factura.cantidad*material.precio) as valor_total from detalle_factura join material on detalle_factura.idmaterial = material.id where idfactura =  ${idfactura}`)
     .then( resultado => {
         return res.status(200).json({
             ok: true,
@@ -206,5 +227,6 @@ module.exports = {
     getDatosReclamo_detalles,
     getDatosFactura_detalles,
     getDatosAlbaran_detalles,
-    getPDFordenes
+    getPDF_Facturas,
+    getFacturasSelect
 }
