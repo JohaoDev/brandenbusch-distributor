@@ -9,30 +9,20 @@
     </a>
 </div>
 
-<!-- TABLA CLIENTE -->
+<!-- TABLA UBICACIONES -->
 <div class="table-wrapper">
-    <h1>CLIENTES</h1>
+    <h1>Ubicaciones</h1>
     <table class="fl-table">
         <thead *ngFor="let item of table_header">
             <th>{{item.id}}</th>
-            <th>{{item.identificacion}}</th>
             <th>{{item.nombre}}</th>
-            <th>{{item.apellido}}</th>
-            <th>{{item.direccion}}</th>
-            <th>{{item.telefono}}</th>
-            <th>{{item.correo_electronico}}</th>
             <th></th>
         </thead>
 
         <tbody>
-            <tr *ngFor="let item of respuestaClientes">
+            <tr *ngFor="let item of respuestaUbicaciones">
                 <td>{{ item.id }}</td>
-                <td>{{ item.identificacion }}</td>
                 <td>{{ item.nombre }}</td>
-                <td>{{ item.apellido }}</td>
-                <td>{{ item.direccion }}</td>
-                <th>{{ item.telefono }}</th>
-                <th>{{ item.correo_electronico }}</th>
                 <td>
                     <a type="button" (click)="deleteDataTable(item.id)">
                         <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">
@@ -42,9 +32,9 @@
         </tbody>
     </table>
 </div>
-<!-- TABLA CLIENTE -->
+<!-- TABLA UBICACIONES -->
 
-<!-- MODAL CLIENTE -->
+<!-- MODAL UBICACIONES -->
 <div>
     <div id="id04" class="w3-modal">
         <div class="w3-modal-content">
@@ -56,33 +46,13 @@
             </header>
 
             <div>
-                <h1>Nuevo Cliente</h1>
-                <form [formGroup]="clienteForm" autocomplete="off">
-                    <strong>Identificación *</strong><br>
-                    <input formControlName="identificacion">
-                    <br>
-
+                <h1>Nueva Ubicación</h1>
+                <form [formGroup]="ubicacionForm" autocomplete="off">
                     <strong>Nombre *</strong><br>
                     <input formControlName="nombre">
                     <br>
 
-                    <strong>Apellido *</strong><br>
-                    <input formControlName="apellido">
-                    <br>
-
-                    <strong>Dirección *</strong><br>
-                    <input formControlName="direccion">
-                    <br>
-
-                    <strong>Teléfono *</strong><br>
-                    <input formControlName="telefono">
-                    <br>
-
-                    <strong>Correo Electrónico *</strong><br>
-                    <input formControlName="correo_electronico">
-                    <br>
-
-                    <a type="button" (click)="postDataCliente()"class="w3-display-bottomright">
+                    <a type="button" (click)="postDataUbicacion()" class="w3-display-bottomright">
                         <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
                     </a>
                 </form>
@@ -91,4 +61,4 @@
         </div>
     </div>
 </div>
-<!-- MODAL CLIENTE -->
+<!-- MODAL UBICACIONES -->

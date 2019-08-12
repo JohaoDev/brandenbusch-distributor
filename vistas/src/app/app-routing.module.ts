@@ -12,6 +12,8 @@ import { FacturacionComponent } from './facturacion/facturacion.component';
 import { AlbaranComponent } from './albaran/albaran.component';
 import { ResumenAlbaranComponent } from './albaran/resumen-albaran/resumen-albaran.component';
 import { ResumenFacturacionComponent } from './facturacion/resumen-facturacion/resumen-facturacion.component';
+import { SettingsComponent } from './home/settings/settings.component';
+import { UbicacionesComponent } from './ubicaciones/ubicaciones.component';
 
 
 const routes: Routes = [
@@ -28,6 +30,8 @@ const routes: Routes = [
   { path: 'materiales', component: MaterialesComponent},
   { path: 'albaran', component: AlbaranComponent},
   { path: 'resumen_albaran', component: ResumenAlbaranComponent},
+  { path: 'settings', component: SettingsComponent},
+  { path: 'ubicaciones', component: UbicacionesComponent}
 ];
   @NgModule({
   imports: [RouterModule.forRoot(routes)],

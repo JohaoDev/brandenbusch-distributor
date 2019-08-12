@@ -23,7 +23,9 @@ export class ProveedoresComponent implements OnInit {
       {
         id: 'N°',
         identificacion: 'Identificacíon',
-        nombre: 'Nombre',
+        nombre_empresa: 'Nombre de la Empresa',
+        representante: 'Representante',
+        correo_electronico: 'Correo Electrónico',
         direccion: 'Dirección',
         telefono: 'Teléfono'
       }
@@ -34,7 +36,9 @@ export class ProveedoresComponent implements OnInit {
     this.proveedorForm = this.formBuilder.group({
       id: [''],
       identificacion: ['',[Validators.required]],
-      nombre: ['',[Validators.required]],
+      nombre_empresa: ['',[Validators.required]],
+      representante: ['',[Validators.required]],
+      correo_electronico: ['',[Validators.required]],
       direccion: ['',[Validators.required]],
       telefono: ['',[Validators.required]]
     });
@@ -61,14 +65,22 @@ export class ProveedoresComponent implements OnInit {
 
     //MODAL NEW PROVEEDOR
     postDataProveedor = () => {
-      let id
       let identificacion = this.proveedorForm.get('identificacion').value
-      let nombre = this.proveedorForm.get('nombre').value
+      let nombre_empresa = this.proveedorForm.get('nombre_empresa').value
+      let representante = this.proveedorForm.get('representante').value
+      let correo_electronico = this.proveedorForm.get('correo_electronico').value
       let direccion = this.proveedorForm.get('direccion').value
       let telefono = this.proveedorForm.get('telefono').value
   
       let tabla = 'proveedor'
-      let register = {tabla: tabla, datos: [{identificacion: identificacion, nombre: nombre, direccion: direccion, telefono: telefono}]}
+      let register = {tabla: tabla, datos: [{
+                                              identificacion: identificacion, 
+                                              nombre_empresa: nombre_empresa,
+                                              representante: representante,
+                                              correo_electronico: correo_electronico,
+                                              direccion: direccion, 
+                                              telefono: telefono
+                                            }]}
       this.http.post(environment.API_URL, register)
       .subscribe( data => {
         // this.postData = data

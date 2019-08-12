@@ -6,16 +6,22 @@ exports.up = function(knex, Promise) {
     table.increments('id');
     table.string('nombre');
   })
+  .createTable( 'estado', function( table ) {
+    table.increments('id');
+    table.string('nombre');
+  })
   .createTable( 'proveedor', function( table ) {
     table.increments('id');
     table.string('identificacion').notNullable().unique();
-    table.string('nombre');
+    table.string('nombre_empresa');
+    table.string('representante');
+    table.string('correo_electronico');
     table.string('direccion');
     table.string('telefono');
   })
   .createTable( 'reclamo', function( table ) {
     table.increments('id');
-    table.timestamp('fecha');
+    table.timestamp('fecha').defaultTo(knex.fn.now());
     table.string('comentario');
   })
   .createTable( 'cliente', function( table ) {
@@ -24,54 +30,49 @@ exports.up = function(knex, Promise) {
     table.string('nombre');
     table.string('apellido');
     table.string('direccion');
+    table.string('telefono');
+    table.string('correo_electronico');
   })
 
   //TABLAS FUERTES
-  .createTable( 'nicho', function( table ) {
-    table.increments('id');
-    table.string('nombre');
-    table.integer('idubicacion').references('id').inTable('ubicacion');
-  })
   .createTable( 'material', function( table ) {
     table.increments('id');
     table.string('nombre');
     table.string('descripcion');
-    table.timestamp('fecha_registro');
-    table.timestamp('fecha_actualizacion');
+    table.timestamp('fecha_registro').defaultTo(knex.fn.now());
+    table.timestamp('fecha_actualizacion').defaultTo(knex.fn.now());
     table.decimal('precio');
-    table.integer('idnicho').references('id').inTable('nicho');
     table.integer('idproveedor').references('id').inTable('proveedor');
+    table.integer('idubicacion').references('id').inTable('ubicacion');
   })
   .createTable( 'pedido', function( table ) {
     table.increments('id');
-    table.timestamp('fecha');
-    table.decimal('total');
+    table.timestamp('fecha').defaultTo(knex.fn.now());
+    table.integer('idestado').references('id').inTable('estado');
     table.integer('idproveedor').references('id').inTable('proveedor');
   })
   .createTable( 'detalle_pedido', function( table ) {
     table.increments('id');
-    table.string('nombre');
     table.integer('cantidad');
-    table.decimal('precio');
     table.integer('idpedido').references('id').inTable('pedido');
     table.integer('idmaterial').references('id').inTable('material');
   })
   .createTable( 'albaran', function( table ) {
     table.increments('id');
     table.integer('idpedido').references('id').inTable('pedido');
-    table.timestamp('fecha_entrega');
-    table.decimal('total');
+    table.integer('idestado').references('id').inTable('estado');
+    table.timestamp('fecha_entrega').defaultTo(knex.fn.now());
   })
   .createTable( 'detalle_albaran', function( table ) {
     table.increments('id');
     table.integer('idalbaran').references('id').inTable('albaran');
     table.integer('idmaterial').references('id').inTable('material');
     table.integer('cantidad');
-    table.decimal('precio');
   })
   .createTable( 'detalle_reclamo', function( table ) {
     table.increments('id');
-    table.integer('cantidad');
+    table.integer('cantidad_pedido');
+    table.integer('cantidad_llegada');
     table.decimal('precio_pedido');
     table.decimal('precio_llegada');
     table.integer('idreclamo').references('id').inTable('reclamo');
@@ -80,15 +81,13 @@ exports.up = function(knex, Promise) {
   })
   .createTable( 'factura', function( table ) {
     table.increments('id');
-    table.timestamp('fecha');
-    table.decimal('total');
+    table.timestamp('fecha').defaultTo(knex.fn.now());
+    table.integer('idestado').references('id').inTable('estado');
     table.integer('idcliente').references('id').inTable('cliente');
   })
   .createTable( 'detalle_factura', function( table ) {
     table.increments('id');
     table.integer('cantidad');
-    table.decimal('precio');
-    table.decimal('descuento');
     table.integer('idmaterial').references('id').inTable('material');
     table.integer('idfactura').references('id').inTable('factura');
   })
@@ -97,10 +96,10 @@ exports.up = function(knex, Promise) {
 exports.down = function(knex, Promise) {
   return knex.schema
     .dropTableIfExists( 'ubicacion' )
+    .dropTableIfExists( 'estado' )
     .dropTableIfExists( 'proveedor' )
     .dropTableIfExists( 'reclamo' )
     .dropTableIfExists( 'cliente' )
-    .dropTableIfExists( 'nicho' )
     .dropTableIfExists( 'material' )
     .dropTableIfExists( 'pedido' )
     .dropTableIfExists( 'detalle_pedido' )
