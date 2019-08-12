@@ -68,9 +68,6 @@ export class MaterialesComponent implements OnInit {
   //Pagina Principal
 
   //MODAL NEW MATERIAL
-  nuevafecha = new Date()
-  fechaMaterial = this.nuevafecha.getDate() + "/" + (this.nuevafecha.getMonth() +1) + "/" + this.nuevafecha.getFullYear()
-
   postDataMateriales = () => {
     let nombre = this.materialesForm.get('nombre').value
     let descripcion = this.materialesForm.get('descripcion').value
@@ -104,7 +101,7 @@ export class MaterialesComponent implements OnInit {
   respuestaUbicaciones: any[]
 
   getDataUbicacion = () => {
-    let tabla = 'nicho'
+    let tabla = 'ubicacion'
     this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
     .subscribe(data => {
       this.respuestaUbicaciones = data.datos

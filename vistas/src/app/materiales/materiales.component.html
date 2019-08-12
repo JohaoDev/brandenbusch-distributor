@@ -15,24 +15,24 @@
     <table class="fl-table">
         <thead *ngFor="let item of table_header">
             <th>{{item.id}}</th>
+            <th>{{item.idproveedor}}</th>
             <th>{{item.nombre}}</th>
             <th>{{item.descripcion}}</th>
             <th>{{item.fecha_registro}}</th>
             <th>{{item.precio}}</th>
             <th>{{item.idubicacion}}</th>
-            <th>{{item.idproveedor}}</th>
             <th></th>
         </thead>
 
         <tbody>
             <tr *ngFor="let item of respuestaMateriales">
             <th>{{item.id}}</th>
+            <th>{{item.idproveedor}}</th>
             <th>{{item.nombre}}</th>
             <th>{{item.descripcion}}</th>
             <th>{{item.fecha_registro}}</th>
             <th>{{item.precio}}</th>
             <th>{{item.idubicacion}}</th>
-            <th>{{item.idproveedor}}</th>
                 <td>
                     <a type="button" (click)="deleteDataTable(item.id)">
                         <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">
@@ -60,12 +60,12 @@
                 <form [formGroup]="materialesForm" autocomplete="off">
                     <strong>Proveedor *</strong><br>
                     <select formControlName="idproveedor">
-                        <option *ngFor="let item of respuestaProveedor" value={{item.id}}>{{item.nombre}}</option>
+                        <option *ngFor="let item of respuestaProveedor" value={{item.id}}>{{item.nombre_empresa}} - {{item.representante}}</option>
                     </select>
                     <br>
 
                     <strong>Ubicación *</strong><br>
-                    <select formControlName="idnicho">
+                    <select formControlName="idubicacion">
                         <option *ngFor="let item of respuestaUbicaciones" value={{item.id}}>{{item.nombre}}</option>
                     </select>
                     <br>
