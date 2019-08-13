@@ -231,27 +231,26 @@
         cursor: pointer;
     }
 }
-@mixin colorBox{
-  select{
-  color:blue;
-  margin: 20px;
-  width: 250px;
-  border: 10x solid transparent;
-}
-}
-@mixin button {
-    :focus{outline: none;}
 
-/* necessary to give position: relative to parent. */
-input
-{
-    font: 15px/24px 'Muli', sans-serif; 
-    color: #333;
-    margin-left: 5%;
-    margin-right: 5%; 
-    width: 85%; 
-    box-sizing: border-box; 
-    letter-spacing: 1px;
-}
-:focus{padding: 5px 14px 7px; transition: 0.4s;border-color: rgb(42, 182, 0)}
+@mixin button {
+    input
+    {   
+        margin-left: 5%;
+        margin-right: 5%; 
+        width: 85%;
+    }
+
+    textarea
+    {
+        margin-left: 5%;
+        margin-right: 5%; 
+        width: 85%;
+    }
+
+    select
+    {
+        margin-left: 5%;
+        margin-right: 5%; 
+        width: 85%;
+    }
 }
