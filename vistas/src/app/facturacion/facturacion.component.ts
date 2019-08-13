@@ -23,9 +23,7 @@ export class FacturacionComponent implements OnInit {
 
     this.table_header = [
       {
-        id: 'N°',
         fecha: 'Fecha',
-        total:'Total',
         idcliente:'Cliente',
         idestado: 'Estado'
       }
@@ -45,8 +43,7 @@ export class FacturacionComponent implements OnInit {
 respuestaFacturas: any[]
 
 getDataFactura = () => {
-  let tabla = 'factura'
-  this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
+  this.http.get<any>(environment.API_URL + `Factura`)
   .subscribe(data => {
     this.respuestaFacturas = data.datos
   })
@@ -73,8 +70,8 @@ deleteDataTable = (value) => {
 
 //MODAL NEW FACTURA
 postDataFactura = () => {
-  let idestado = 2
   let idcliente = this.facturaForm.get('idcliente').value
+  let idestado = 2
 
   let tabla = 'factura'
   let register = {tabla: tabla, datos: [{

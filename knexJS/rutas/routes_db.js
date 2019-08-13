@@ -18,11 +18,14 @@ api.get('/routeAlbaranAPI', control.getDatosAlbaran_detalles)
 //FACTURAS
 api.get('/routeFacturasAPI', control.getDatosFactura_detalles)        //V.UNIT AND V.TOTAL RESUMEN FACTURACION
 api.get('/routeFacturasSelect', control.getFacturasSelect)            //SUBTOTAL, IVA, TOTAL RESUMEN FACTURACION
-api.get('/routePDF_Facturas', control.getPDF_Facturas)
+api.get('/routeFactura', control.getFacturaPP)
+api.get('/routePDF_Facturas', control.getPDF_Facturas)                //PDF
 
 //PEDIDOS
 api.get('/routePedidosAPI', control.getDatosPedidos_detalles)         //V.UNIT AND V.TOTAL RESUMEN PEDIDOS
 api.get('/routePedidosSelect', control.getPedidosSelect)            //SUBTOTAL, IVA, TOTAL RESUMEN PEDIDOS
+api.get('/routePedidos', control.getPedidosPP)
+
 
 //MATERIALES
 api.get('/routeMaterialesAPI', control.getMaterialesSelect)

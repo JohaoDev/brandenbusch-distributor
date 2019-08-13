@@ -47,8 +47,7 @@ export class PedidosComponent implements OnInit {
   respuestaPedidos: any[]
 
   getDataPedidos = () => {
-    let tabla = 'pedido'
-    this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
+    this.http.get<any>(environment.API_URL + `Pedidos`)
     .subscribe(data => {
         this.respuestaPedidos = data.datos
     })

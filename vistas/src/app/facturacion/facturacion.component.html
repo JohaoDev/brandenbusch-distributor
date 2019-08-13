@@ -14,7 +14,6 @@
     <h1>FACTURACIÓN</h1>
     <table class="fl-table">
         <thead *ngFor="let item of table_header">
-            <th>{{item.id}}</th>
             <th>{{item.idcliente}}</th>
             <th>{{item.fecha}}</th>
             <th>{{item.idestado}}</th>
@@ -25,7 +24,6 @@
 
         <tbody>
             <tr *ngFor="let item of respuestaFacturas">
-                <td>{{ item.id }}</td>
                 <td>{{ item.idcliente }}</td>
                 <td>{{ item.fecha }}</td>
                 <th>{{ item.idestado }}</th>
@@ -70,7 +68,7 @@
                     </select>
                     <br>
 
-                    <a type="button" (click)="postDataFactura()"class="w3-display-bottomright">
+                    <a type="button" (click)="postDataFactura()" class="w3-display-bottomright">
                         <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
                     </a>
                 </form>

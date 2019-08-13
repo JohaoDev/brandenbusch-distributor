@@ -232,6 +232,40 @@ let getMaterialesSelect = (req, res) => {
     })
 }
 
+let getFacturaPP = (req, res) => {
+    db.raw(`select factura.id, cliente.nombre || ' ' || cliente.apellido as idcliente, factura.fecha as fecha, estado.nombre as idestado from cliente join factura on factura.idcliente = cliente.id join estado on factura.idestado = estado.id`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
+let getPedidosPP = (req, res) => {
+    db.raw(`select pedido.id, proveedor.nombre_empresa as idproveedor, pedido.fecha as fecha, estado.nombre as idestado from pedido join proveedor on pedido.idproveedor = proveedor.id join estado on pedido.idestado = estado.id`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
 
 //SELECT DE DETALLES SISTEMA
 
@@ -269,5 +303,7 @@ module.exports = {
     getPDF_Facturas,
     getFacturasSelect,
     getPedidosSelect,
-    getMaterialesSelect
+    getMaterialesSelect,
+    getFacturaPP,
+    getPedidosPP
 }
