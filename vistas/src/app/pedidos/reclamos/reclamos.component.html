@@ -67,7 +67,7 @@
             <div>
                 <h1>Nuevo Reclamo</h1>
                 <form [formGroup]="reclamosForm" autocomplete="off">
-                    <strong>Comentario del Reclamo</strong><br>
+                    <strong>Comentario del Reclamo *</strong><br>
                     <textarea formControlName="comentario" placeholder="Reclamos y Sugerencias"></textarea>
                     <br>
 
@@ -75,6 +75,7 @@
                         <img src="../../../assets/save-img.png" alt="save-img" height="40" width="40">
                     </a>
                 </form>
+                <span class="w3-display-bottomleft">* Campos Obligatorios</span>
             </div>
         </div>
     </div>

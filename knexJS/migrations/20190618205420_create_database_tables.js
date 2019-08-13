@@ -68,6 +68,7 @@ exports.up = function(knex, Promise) {
     table.integer('idalbaran').references('id').inTable('albaran');
     table.integer('idmaterial').references('id').inTable('material');
     table.integer('cantidad');
+    table.decimal('precio_llegada');
   })
   .createTable( 'detalle_reclamo', function( table ) {
     table.increments('id');

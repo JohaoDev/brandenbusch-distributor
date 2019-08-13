@@ -61,31 +61,31 @@
             <div>
                 <h1>Detalle del Reclamo</h1>
                 <form [formGroup]="detallereclamosForm" autocomplete="off">
-                    <strong>Material</strong><br>
+                    <strong>Material *</strong><br>
                     <select formControlName="idmaterial">
                         <option *ngFor="let item of respuestaMateriales" value={{item.id}}>{{item.nombre}}</option>
                     </select>
                     <br>
 
-                    <strong>Pedido</strong><br>
+                    <strong>Pedido *</strong><br>
                     <select formControlName="idpedido">
                         <option *ngFor="let item of respuestaPedidos" value={{item.id}}>{{item.idproveedor}} - {{item.fecha}}</option>
                     </select>
                     <br>
 
-                    <strong>Cantidad pedido</strong><br>
+                    <strong>Cantidad pedido *</strong><br>
                     <input formControlName="cantidad_pedido">
                     <br>
 
-                    <strong>Cantidad llegada</strong><br>
+                    <strong>Cantidad llegada *</strong><br>
                     <input formControlName="cantidad_llegada">
                     <br>
 
-                    <strong>Precio pedido</strong><br>
+                    <strong>Precio pedido *</strong><br>
                     <input formControlName="precio_pedido">
                     <br>
 
-                    <strong>Precio llegada</strong><br>
+                    <strong>Precio llegada *</strong><br>
                     <input formControlName="precio_llegada">
                     <br>
 
@@ -93,6 +93,7 @@
                         <img src="../../../assets/save-img.png" alt="save-img" height="40" width="40">
                     </a>
                 </form>
+                <span class="w3-display-bottomleft">* Campos Obligatorios</span>
             </div>
         </div>
     </div>

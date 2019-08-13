@@ -140,7 +140,8 @@ let getDatosFactura_detalles = (req, res) => {
 
 let getDatosAlbaran_detalles = (req, res) => {
     let idalbaran = req.query.idalbaran
-    db.raw(`select * from detalle_albaran where idalbaran = ${idalbaran}`)
+
+    db.raw(`select detalle_albaran.idalbaran, material.nombre, detalle_albaran.precio_llegada, material.precio from detalle_albaran join material on detalle_albaran.idmaterial = material.id where detalle_albaran.idalbaran =  ${idalbaran}`)
     .then( resultado => {
         return res.status(200).json({
             ok: true,

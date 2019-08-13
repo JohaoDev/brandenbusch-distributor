@@ -1,20 +1,37 @@
+<div class="addData">
+    <a type="button" onclick="document.getElementById('id04').style.display='block'">
+        <img src="../../assets/new-img.png" alt="new-img" height="64" width="64">
+    </a>
+</div>
+<div class="levelDown">
+    <a type="button" routerLink="/albaran">
+        <img src="../../assets/back-img.png" alt="home-img" height="64" width="64">
+    </a>
+</div>
+
 <h1>Resumen</h1>
 <div class="table-wrapper">
     <table class="fl-table">
         <thead *ngFor="let item of table_header">
-            <th>{{item.idalbaran}}</th>
             <th>{{item.idmaterial}}</th>
             <th>{{item.cantidad}}</th>
-            <th>{{item.precio}}</th>
+            <th>{{item.precio_llegada}}</th>
+            <th>{{item.precio_material}}</th>
+            <th></th>            
             <th></th>
         </thead>
 
         <tbody>
             <tr *ngFor="let item of respuestaDetalleAlbaran">
-                <td>{{item.idalbaran}}</td>
                 <td>{{item.idmaterial}}</td>
                 <td>{{item.cantidad}}</td>
-                <td>{{item.precio}}</td>
+                <td>{{item.precio_llegada}}</td>
+                <td>{{item.precio_material}}</td>
+                <td>
+                    <a type="button" (click)="getDatabyID(item.id)">
+                        <img src="../../assets/edit-img.png" alt="edit-img" height="18" width="18">
+                    </a>
+                </td>
                 <td>
                     <a type="button" (click)="deleteDataTable(item.id)" routerLink="/albaran">
                         <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">
@@ -24,3 +41,44 @@
         </tbody>
     </table>
 </div>
+
+
+<!-- MODAL DETALLE_ALBARAN -->
+<div>
+    <div id="id04" class="w3-modal">
+        <div class="w3-modal-content">
+            <header>
+                <span onclick="document.getElementById('id04').style.display='none'" class="w3-display-topright">
+                    <img src="../../assets/close-img.png" alt="edit-img" height="18" width="18">
+                </span>
+                <!-- <h2>Registro Cliente</h2> -->
+            </header>
+
+            <div>
+                <h1>Detalle del Albarán</h1>
+                <form [formGroup]="detallealbaranForm" autocomplete="off">
+                    <strong>Material *</strong><br>
+                    <select formControlName="idmaterial">
+                        <option *ngFor="let item of respuestaMateriales" value={{item.id}}>{{item.nombre}}</option>
+                    </select>
+                    <br>
+
+                    <strong>Cantidad *</strong><br>
+                    <input formControlName="cantidad">
+                    <br>
+
+                    <strong>Precio llegada *</strong><br>
+                    <input formControlName="precio_llegada">
+                    <br>
+
+                    <a type="button" (click)="postDataDetalleAlbaran()"class="w3-display-bottomright">
+                        <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
+                    </a>
+                </form>
+                <span class="w3-display-bottomleft">* Campos Obligatorios</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL DETALLE_PEDIDOS -->
+    
