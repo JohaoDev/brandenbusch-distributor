@@ -24,5 +24,8 @@ api.get('/routePDF_Facturas', control.getPDF_Facturas)
 api.get('/routePedidosAPI', control.getDatosPedidos_detalles)         //V.UNIT AND V.TOTAL RESUMEN PEDIDOS
 api.get('/routePedidosSelect', control.getPedidosSelect)            //SUBTOTAL, IVA, TOTAL RESUMEN PEDIDOS
 
+//MATERIALES
+api.get('/routeMaterialesAPI', control.getMaterialesSelect)
+
 
 module.exports = api

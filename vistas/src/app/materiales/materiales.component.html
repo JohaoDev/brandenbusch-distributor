@@ -14,25 +14,25 @@
     <h1>MATERIALES</h1>
     <table class="fl-table">
         <thead *ngFor="let item of table_header">
-            <th>{{item.id}}</th>
-            <th>{{item.idproveedor}}</th>
-            <th>{{item.nombre}}</th>
+            <th>{{item.nombre_empresa}}</th>
+            <th>{{item.representante}}</th>
+            <th>{{item.nombre_material}}</th>
             <th>{{item.descripcion}}</th>
             <th>{{item.fecha_registro}}</th>
             <th>{{item.precio}}</th>
-            <th>{{item.idubicacion}}</th>
+            <th>{{item.ubicacion}}</th>
             <th></th>
         </thead>
 
         <tbody>
             <tr *ngFor="let item of respuestaMateriales">
-            <th>{{item.id}}</th>
-            <th>{{item.idproveedor}}</th>
-            <th>{{item.nombre}}</th>
+            <th>{{item.nombre_empresa}}</th>
+            <th>{{item.representante}}</th>
+            <th>{{item.nombre_material}}</th>
             <th>{{item.descripcion}}</th>
             <th>{{item.fecha_registro}}</th>
             <th>{{item.precio}}</th>
-            <th>{{item.idubicacion}}</th>
+            <th>{{item.ubicacion}}</th>
                 <td>
                     <a type="button" (click)="deleteDataTable(item.id)">
                         <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">

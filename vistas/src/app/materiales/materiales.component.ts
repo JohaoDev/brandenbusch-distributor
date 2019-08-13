@@ -24,13 +24,13 @@ export class MaterialesComponent implements OnInit {
 
     this.table_header = [
       {
-        id: 'N°',
-        nombre: 'Nombre',
+        nombre_empresa: 'Empresa',
+        representante: 'Representante Legal',
+        nombre_material: 'Material',
         descripcion: 'Descripcion',
         fecha_registro: 'Fecha de Ingreso',
-        precio: 'Costo',
-        idubicacion: 'Ubicación',
-        idproveedor: 'Proveedor'
+        precio: 'Precio $',
+        ubicacion: 'Ubicación',
       }
     ]
   }
@@ -52,10 +52,9 @@ export class MaterialesComponent implements OnInit {
   respuestaMateriales:any[]
 
   getDataMaterial = () => {
-    let tabla = 'material'
-    this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
+    this.http.get<any>(environment.API_URL + `MaterialesAPI`)
     .subscribe(data => {
-        this.respuestaMateriales = data.datos
+      this.respuestaMateriales = data.datos
     })
   }  
 

@@ -215,6 +215,23 @@ let getPedidosSelect = (req, res) => {
     })
 }
 
+let getMaterialesSelect = (req, res) => {
+    db.raw(`select proveedor.nombre_empresa, proveedor.representante, material.nombre as nombre_material, material.descripcion, material.fecha_registro, material.precio, ubicacion.nombre as ubicacion from proveedor join material on material.idproveedor = proveedor.id join ubicacion on ubicacion.id = material.idubicacion`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
 
 //SELECT DE DETALLES SISTEMA
 
@@ -251,5 +268,6 @@ module.exports = {
     getDatosAlbaran_detalles,
     getPDF_Facturas,
     getFacturasSelect,
-    getPedidosSelect
+    getPedidosSelect,
+    getMaterialesSelect
 }
