@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-albaran',
@@ -85,11 +86,19 @@ export class AlbaranComponent implements OnInit {
     let idpedido = this.albaranForm.get('idpedido').value
     let idestado = 2
 
-    let tabla = 'albaran'
-    let register = {tabla: tabla, datos: [{idpedido: idpedido, idestado: idestado}]}
-    this.http.post(environment.API_URL, register)
-    .subscribe( data => {  })
-    window.location.reload()
+    if(this.albaranForm.invalid){
+      Swal.fire({
+        type: 'error',
+        title: 'Ups!',
+        text: 'Datos inválidos'
+      })
+    }else{
+      let tabla = 'albaran'
+      let register = {tabla: tabla, datos: [{idpedido: idpedido, idestado: idestado}]}
+      this.http.post(environment.API_URL, register)
+      .subscribe( data => {  })
+      window.location.reload()
+    }
   }
   //MODAL NEW PEDIDO
 

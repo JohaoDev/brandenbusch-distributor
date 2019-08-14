@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-facturacion',
@@ -74,15 +75,23 @@ postDataFactura = () => {
   let idestado = 2
 
   let tabla = 'factura'
-  let register = {tabla: tabla, datos: [{
-                                          idcliente: idcliente,
-                                          idestado: idestado
-                                        }]}
-  this.http.post(environment.API_URL, register)
-  .subscribe( data => { })
-  window.location.reload()
-}
 
+  if(this.facturaForm.invalid){
+    Swal.fire({
+      type: 'error',
+      title: 'Ups!',
+      text: 'Datos inválidos'
+    })
+  }else{
+    let register = {tabla: tabla, datos: [{
+                                            idcliente: idcliente,
+                                            idestado: idestado
+                                          }]}
+    this.http.post(environment.API_URL, register)
+    .subscribe( data => { })
+    window.location.reload()
+  }
+}
 respuestaClientes: any[]
 
 getDataClientes = () => {

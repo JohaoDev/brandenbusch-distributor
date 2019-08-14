@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-proveedores',
@@ -73,19 +74,28 @@ export class ProveedoresComponent implements OnInit {
       let telefono = this.proveedorForm.get('telefono').value
   
       let tabla = 'proveedor'
-      let register = {tabla: tabla, datos: [{
-                                              identificacion: identificacion, 
-                                              nombre_empresa: nombre_empresa,
-                                              representante: representante,
-                                              correo_electronico: correo_electronico,
-                                              direccion: direccion, 
-                                              telefono: telefono
-                                            }]}
-      this.http.post(environment.API_URL, register)
-      .subscribe( data => {
-        // this.postData = data
-      })
-      window.location.reload()
+
+      if(this.proveedorForm.invalid){
+        Swal.fire({
+          type: 'error',
+          title: 'Ups!',
+          text: 'Datos inválidos'
+        })
+      }else{
+        let register = {tabla: tabla, datos: [{
+                                                identificacion: identificacion, 
+                                                nombre_empresa: nombre_empresa,
+                                                representante: representante,
+                                                correo_electronico: correo_electronico,
+                                                direccion: direccion, 
+                                                telefono: telefono
+                                              }]}
+        this.http.post(environment.API_URL, register)
+        .subscribe( data => {
+          // this.postData = data
+        })
+        window.location.reload()
+      }
     }
     //MODAL NEW PROVEEDOR
 
