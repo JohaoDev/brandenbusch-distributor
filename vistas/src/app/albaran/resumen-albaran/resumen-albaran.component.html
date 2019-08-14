@@ -75,7 +75,9 @@
                         <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
                     </a>
                 </form>
-                <span class="w3-display-bottomleft">* Campos Obligatorios</span>
+                <span class="w3-display-bottomleft" *ngIf="detallealbaranForm.controls['idmaterial'].errors?.required">* Campos Obligatorios</span>
+                <span class="w3-display-bottomleft" *ngIf="detallealbaranForm.controls['cantidad'].errors?.required">* Campos Obligatorios</span>
+                <span class="w3-display-bottomleft" *ngIf="detallealbaranForm.controls['precio_llegada'].errors?.required">* Campos Obligatorios</span>
             </div>
         </div>
     </div>

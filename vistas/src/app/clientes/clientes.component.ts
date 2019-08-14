@@ -35,8 +35,8 @@ export class ClientesComponent implements OnInit {
   formularioCliente(){
     this.clienteForm = this.formBuilder.group({
       id: [''],
-      identificacion: ['',[Validators.required]],
-      nombre: ['',[Validators.required]],
+      identificacion: ['',[Validators.required, Validators.pattern('[0-9]')]],
+      nombre: ['',[Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
       apellido: ['',[Validators.required]],
       direccion: ['',[Validators.required]],
       telefono: ['',[Validators.required]],

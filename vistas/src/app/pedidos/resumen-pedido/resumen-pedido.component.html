@@ -65,16 +65,17 @@
                         <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
                     </a>
                 </form>
-                <span class="w3-display-bottomleft">* Campos Obligatorios</span>
+                <span class="w3-display-bottomleft" *ngIf="detallepedidosForm.controls['idmaterial'].errors?.required">* Campos Obligatorios</span>                
+                <span class="w3-display-bottomleft" *ngIf="detallepedidosForm.controls['cantidad'].errors?.required">* Campos Obligatorios</span>                                
             </div>
         </div>
     </div>
 </div>
-<div class="pdfButton">
+<!-- <div class="pdfButton">
     <a type="button" class="pdf" (click)="pdf()">
         <img src="../../assets/png-img.png" alt="pdf-img" height="64" width="64">
     </a>
-</div>
+</div> -->
 <!-- MODAL DETALLE_PEDIDOS -->
     
 <!-- SUBTOTAL - TOTAL - IVA -->

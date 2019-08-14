@@ -72,7 +72,7 @@
                         <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
                     </a>
                 </form>
-                <span class="w3-display-bottomleft">* Campos Obligatorios</span>
+                <span class="w3-display-bottomleft" *ngIf="albaranForm.controls['idpedido'].errors?.required">* Campos Obligatorios</span>
             </div>
         </div>
     </div>

@@ -86,7 +86,12 @@
                         <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
                     </a>
                 </form>
-                <span class="w3-display-bottomleft">* Campos Obligatorios</span>
+                <span class="w3-display-bottomleft" *ngIf="proveedorForm.controls['identificacion'].errors?.required">* Campos Obligatorios</span>                                                
+                <span class="w3-display-bottomleft" *ngIf="proveedorForm.controls['nombre_empresa'].errors?.required">* Campos Obligatorios</span>                                                
+                <span class="w3-display-bottomleft" *ngIf="proveedorForm.controls['representante'].errors?.required">* Campos Obligatorios</span>                                                                
+                <span class="w3-display-bottomleft" *ngIf="proveedorForm.controls['correo_electronico'].errors?.required">* Campos Obligatorios</span>                                                
+                <span class="w3-display-bottomleft" *ngIf="proveedorForm.controls['direccion'].errors?.required">* Campos Obligatorios</span>                                                
+                <span class="w3-display-bottomleft" *ngIf="proveedorForm.controls['telefono'].errors?.required">* Campos Obligatorios</span>                                                
             </div>
         </div>
     </div>
