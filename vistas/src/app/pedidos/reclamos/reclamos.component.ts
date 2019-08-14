@@ -33,7 +33,7 @@ export class ReclamosComponent implements OnInit {
     this.reclamosForm = this.formBuilder.group({
       id: [''],
       fecha: [''],
-      comentario:['',[Validators.required]]
+      comentario:['',[Validators.required, Validators.pattern('[A-Za-zñÑ]{3,150}')]]
     });
   }
 

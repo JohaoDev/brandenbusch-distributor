@@ -38,10 +38,10 @@ export class ResumenReclamosComponent implements OnInit {
   formularioDetalleReclamos(){
     this.detallereclamosForm = this.formBuilder.group({
       id: [''],
-      cantidad_pedido: ['',[Validators.required]],
-      cantidad_llegada: ['',[Validators.required]],
-      precio_pedido: ['',[Validators.required]],
-      precio_llegada: ['',[Validators.required]],
+      cantidad_pedido: ['',[Validators.required, Validators.pattern('[0-9]+')]],
+      cantidad_llegada: ['',[Validators.required, Validators.pattern('[0-9]+')]],
+      precio_pedido: ['',[Validators.required, Validators.pattern('[0-9]+')]],
+      precio_llegada: ['',[Validators.required, Validators.pattern('[0-9]+')]],
       idreclamo: [''],
       idpedido: ['',[Validators.required]],
       idmaterial: ['',[Validators.required]]
@@ -61,7 +61,6 @@ export class ResumenReclamosComponent implements OnInit {
     .subscribe(data => {
       this.respuestaDetalleReclamo = data.datos
     })
-    console.log(this.respuestaDetalleReclamo)
   }
 
   deleteDataTable = (value) => {

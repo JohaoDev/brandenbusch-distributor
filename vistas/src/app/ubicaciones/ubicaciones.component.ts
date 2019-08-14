@@ -32,7 +32,7 @@ export class UbicacionesComponent implements OnInit {
   formularioUbicacion(){
     this.ubicacionForm = this.formBuilder.group({
       id: [''],
-      nombre: ['',[Validators.required]]
+      nombre: ['',[Validators.required, Validators.pattern('[A-Za-zñÑ]{3,30}')]]
     });
   }
 
