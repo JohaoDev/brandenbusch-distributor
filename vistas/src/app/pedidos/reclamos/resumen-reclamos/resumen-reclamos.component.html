@@ -3,28 +3,39 @@
         <img src="../../../../assets/back-img.png" alt="home-img" height="64" width="64">
     </a>
 </div>
+<div class="addData">
+    <a type="button" onclick="document.getElementById('id04').style.display='block'">
+        <img src="../../assets/new-img.png" alt="new-img" height="64" width="64">
+    </a>
+</div>
 
 <h1>Resumen</h1>
 <div class="table-wrapper">
     <table class="fl-table">
         <thead *ngFor="let item of table_header">
-            <th>{{item.cantidad}}</th>
-            <th>{{item.precio_llegada}}</th>
+            <th>{{item.idpedido}}</th>
+            <th>{{item.idmaterial}}</th>
+            <th>{{item.cantidad_pedido}}</th>
+            <th>{{item.cantidad_llegada}}</th>
             <th>{{item.precio_pedido}}</th>
-            <th>{{item.idReclamo}}</th>
-            <th>{{item.idPedido}}</th>
-            <th>{{item.idMaterial}}</th>
+            <th>{{item.precio_llegada}}</th>
+            <th></th>
             <th></th>
         </thead>
 
         <tbody>
             <tr *ngFor="let item of respuestaDetalleReclamo">
-                <td>{{item.cantidad}}</td>
-                <td>{{item.precio_llegada}}</td>
-                <td>{{item.precio_pedido}}</td>
-                <td>{{item.idreclamo}}</td>
                 <td>{{item.idpedido}}</td>
                 <td>{{item.idmaterial}}</td>
+                <td>{{item.cantidad_pedido}}</td>
+                <td>{{item.cantidad_llegada}}</td>
+                <td>{{item.precio_pedido}}</td>
+                <td>{{item.precio_llegada}}</td>
+                <td>
+                    <a type="button" (click)="getDatabyID(item.id)">
+                        <img src="../../../assets/edit-img.png" alt="edit-img" height="18" width="18">
+                    </a>
+                </td>
                 <td>
                     <a type="button" (click)="deleteDataTable(item.id)" routerLink="/reclamos">
                         <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">
@@ -34,3 +45,59 @@
         </tbody>
     </table>
 </div>
+
+
+<!-- MODAL DETALLE RECLAMO -->
+<div>
+    <div id="id04" class="w3-modal">
+        <div class="w3-modal-content">
+            <header>
+                <span onclick="document.getElementById('id04').style.display='none'" class="w3-display-topright">
+                    <img src="../../assets/close-img.png" alt="edit-img" height="18" width="18">
+                </span>
+                <!-- <h2>Registro Reclamo</h2> -->
+            </header>
+
+            <div>
+                <h1>Detalle del Reclamo</h1>
+                <form [formGroup]="detallereclamosForm" autocomplete="off">
+                    <strong>Material *</strong><br>
+                    <select formControlName="idmaterial">
+                        <option *ngFor="let item of respuestaMateriales" value={{item.id}}>{{item.nombre}}</option>
+                    </select>
+                    <br>
+
+                    <strong>Pedido *</strong><br>
+                    <select formControlName="idpedido">
+                        <option *ngFor="let item of respuestaPedidos" value={{item.id}}>{{item.idproveedor}} - {{item.fecha}}</option>
+                    </select>
+                    <br>
+
+                    <strong>Cantidad pedido *</strong><br>
+                    <input formControlName="cantidad_pedido">
+                    <br>
+
+                    <strong>Cantidad llegada *</strong><br>
+                    <input formControlName="cantidad_llegada">
+                    <br>
+
+                    <strong>Precio pedido *</strong><br>
+                    <input formControlName="precio_pedido">
+                    <br>
+
+                    <strong>Precio llegada *</strong><br>
+                    <input formControlName="precio_llegada">
+                    <br>
+
+                    <a type="button" (click)="postDataDetallePedidos()" class="w3-display-bottomright">
+                        <img src="../../../assets/save-img.png" alt="save-img" height="40" width="40">
+                    </a>
+                </form>
+                <span class="w3-display-bottomleft">* Campos Obligatorios</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DETALLE RECLAMO -->
+    

@@ -14,27 +14,25 @@
     <h1>MATERIALES</h1>
     <table class="fl-table">
         <thead *ngFor="let item of table_header">
-            <th>{{item.id}}</th>
-            <th>{{item.nombre}}</th>
+            <th>{{item.nombre_empresa}}</th>
+            <th>{{item.representante}}</th>
+            <th>{{item.nombre_material}}</th>
             <th>{{item.descripcion}}</th>
             <th>{{item.fecha_registro}}</th>
-            <th>{{item.fecha_actualizacion}}</th>
             <th>{{item.precio}}</th>
-            <th>{{item.idnicho}}</th>
-            <th>{{item.idproveedor}}</th>
+            <th>{{item.ubicacion}}</th>
             <th></th>
         </thead>
 
         <tbody>
             <tr *ngFor="let item of respuestaMateriales">
-            <th>{{item.id}}</th>
-            <th>{{item.nombre}}</th>
+            <th>{{item.nombre_empresa}}</th>
+            <th>{{item.representante}}</th>
+            <th>{{item.nombre_material}}</th>
             <th>{{item.descripcion}}</th>
             <th>{{item.fecha_registro}}</th>
-            <th>{{item.fecha_actualizacion}}</th>
             <th>{{item.precio}}</th>
-            <th>{{item.idnicho}}</th>
-            <th>{{item.idproveedor}}</th>
+            <th>{{item.ubicacion}}</th>
                 <td>
                     <a type="button" (click)="deleteDataTable(item.id)">
                         <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">
@@ -60,46 +58,35 @@
             <div>
                 <h1>Nuevo Material</h1>
                 <form [formGroup]="materialesForm" autocomplete="off">
-                    <strong>Nombre Del Material</strong><br>
-                    <input formControlName="nombre">
-                    <div>
-                        <span class="errors" *ngIf="materialesForm.controls['nombre'].errors?.required"> Obligatorio </span>
-                        <span class="errors" *ngIf="materialesForm.controls['nombre'].errors?.pattern"> Inválido </span>
-                    </div><br>
-
-                    <strong>Descripción</strong><br>
-                    <input formControlName="descripcion">
-                    <div>
-                        <span class="errors" *ngIf="materialesForm.controls['descripcion'].errors?.required"> Obligatorio </span>
-                        <span class="errors" *ngIf="materialesForm.controls['descripcion'].errors?.pattern"> Inválido </span>
-                    </div><br>
-
-                    <strong>Precio</strong><br>
-                    <input formControlName="precio">
-                    <div>
-                        <span class="errors" *ngIf="materialesForm.controls['precio'].errors?.required"> Obligatorio </span>
-                        <span class="errors" *ngIf="materialesForm.controls['precio'].errors?.pattern"> Inválido </span>
-                    </div><br>
-
-                    <strong>Ubicación</strong><br>
-                    <select formControlName="idnicho">
-                        <option *ngFor="let item of respuestaNicho" value={{item.id}}>{{item.nombre}}</option>
-                    </select>
-                    <div>
-                        <span class="errors" *ngIf="materialesForm.controls['idnicho'].errors?.required">Obligatorio</span>
-                    </div><br>
-
-                    <strong>Proveedor</strong><br>
+                    <strong>Proveedor *</strong><br>
                     <select formControlName="idproveedor">
-                        <option *ngFor="let item of respuestaProveedor" value={{item.id}}>{{item.nombre}}</option>
+                        <option *ngFor="let item of respuestaProveedor" value={{item.id}}>{{item.nombre_empresa}} - {{item.representante}}</option>
                     </select>
-                    <div>
-                        <span class="errors" *ngIf="materialesForm.controls['idproveedor'].errors?.required">Obligatorio</span>
-                    </div><br>
+                    <br>
+
+                    <strong>Ubicación *</strong><br>
+                    <select formControlName="idubicacion">
+                        <option *ngFor="let item of respuestaUbicaciones" value={{item.id}}>{{item.nombre}}</option>
+                    </select>
+                    <br>
+
+                    <strong>Nombre Del Material *</strong><br>
+                    <input formControlName="nombre">
+                    <br>
+
+                    <strong>Descripción *</strong><br>
+                    <input formControlName="descripcion">
+                    <br>
+
+                    <strong>Precio *</strong><br>
+                    <input formControlName="precio">
+                    <br>
+
                     <a type="button" (click)="postDataMateriales()" class="w3-display-bottomright">
                         <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
-                      </a>
+                    </a>
                 </form>
+                <span class="w3-display-bottomleft">* Campos Obligatorios</span>
             </div>
         </div>
     </div>

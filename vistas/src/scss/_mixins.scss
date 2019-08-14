@@ -5,6 +5,11 @@
         display: block;
         // background: red;
     }
+    strong
+    {
+        margin-left: 5%;
+        margin-right: 5%; 
+    }
     .w3-modal
     {
         z-index:3;
@@ -46,6 +51,13 @@
         bottom:5px;
         cursor: pointer;
     }
+    .w3-display-bottomleft
+    {
+        position: absolute;
+        left:5px;
+        bottom:5px;
+        color: red;
+    }
 }
 
 @mixin table_style {
@@ -53,6 +65,13 @@
         box-sizing: border-box;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
+    }
+
+    .second_table
+    {
+        position: absolute;
+        right: 5%;
+        bottom: 20%;
     }
 
     h1{
@@ -180,39 +199,58 @@
     .addData{
         position: fixed;
         right: 5%;
+        cursor: pointer;
     }
     .reclamosPage{
         position: fixed;
         left: 5%;
+        cursor: pointer;
     }
     .backHome{
         position: fixed;
         right: 5%;
         bottom: 5%;
+        cursor: pointer;
     }
     .pdfButton{
         position: fixed;
         left: 5%;
         bottom: 5%;
+        cursor: pointer;
     }
     .levelDown{
         position: fixed;
         right: 10%;
         bottom: 5%;
+        cursor: pointer;
+    }
+    .settings{
+        position: fixed;
+        right: 5%;
+        bottom: 5%;
+        cursor: pointer;
     }
 }
-@mixin colorBox{
-  select{
-  color:blue;
-  margin: 20px;
-  width: 250px;
-  border: 10x solid transparent;
-}
-}
-@mixin button {
-    :focus{outline: none;}
 
-/* necessary to give position: relative to parent. */
-input{font: 15px/24px 'Muli', sans-serif; color: #333;margin-left: 5%;margin-right: 8%; width: 85%; box-sizing: border-box; letter-spacing: 1px;}
-:focus{padding: 5px 14px 7px; transition: 0.4s;border-color: rgb(42, 182, 0)}
+@mixin button {
+    input
+    {   
+        margin-left: 5%;
+        margin-right: 5%; 
+        width: 85%;
+    }
+
+    textarea
+    {
+        margin-left: 5%;
+        margin-right: 5%; 
+        width: 85%;
+    }
+
+    select
+    {
+        margin-left: 5%;
+        margin-right: 5%; 
+        width: 85%;
+    }
 }

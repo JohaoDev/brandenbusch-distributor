@@ -18,20 +18,19 @@ export class MaterialesComponent implements OnInit {
   ngOnInit() {
     this.getDataMaterial()
     this.getDataProveedor()
-    this.getDataNicho()
+    this.getDataUbicacion()
 
     this.formularioMateriales()
 
     this.table_header = [
       {
-        id: 'N°',
-        nombre: 'Nombre',
+        nombre_empresa: 'Empresa',
+        representante: 'Representante Legal',
+        nombre_material: 'Material',
         descripcion: 'Descripcion',
         fecha_registro: 'Fecha de Ingreso',
-        fecha_actualizacion: 'Fecha de Actualizacion',
-        precio: 'Costo',
-        idNicho: 'Almacenamiento',
-        idProveedor: 'Proveedor'
+        precio: 'Precio $',
+        ubicacion: 'Ubicación',
       }
     ]
   }
@@ -44,7 +43,7 @@ export class MaterialesComponent implements OnInit {
       fecha_registro: ['',[Validators.required]],
       fecha_actualizacion: ['',[Validators.required]],
       precio: ['',[Validators.required]],
-      idnicho: ['',[Validators.required]],
+      idubicacion: ['',[Validators.required]],
       idproveedor: ['',[Validators.required]],
     });
   }
@@ -53,10 +52,9 @@ export class MaterialesComponent implements OnInit {
   respuestaMateriales:any[]
 
   getDataMaterial = () => {
-    let tabla = 'material'
-    this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
+    this.http.get<any>(environment.API_URL + `MaterialesAPI`)
     .subscribe(data => {
-        this.respuestaMateriales = data.datos
+      this.respuestaMateriales = data.datos
     })
   }  
 
@@ -69,24 +67,23 @@ export class MaterialesComponent implements OnInit {
   //Pagina Principal
 
   //MODAL NEW MATERIAL
-  nuevafecha = new Date()
-  fechaMaterial = this.nuevafecha.getDate() + "/" + (this.nuevafecha.getMonth() +1) + "/" + this.nuevafecha.getFullYear()
-
   postDataMateriales = () => {
     let nombre = this.materialesForm.get('nombre').value
     let descripcion = this.materialesForm.get('descripcion').value
-    let fecha_registro = this.materialesForm.get('fecha_registro').value
-    let fecha_actualizacion = this.materialesForm.get('fecha_actualizacion').value
     let precio = this.materialesForm.get('precio').value
-    let idnicho = this.materialesForm.get('idnicho').value
+    let idubicacion = this.materialesForm.get('idubicacion').value
     let idproveedor = this.materialesForm.get('idproveedor').value
-    let returning
+
     let tabla = 'material'
-    let register = {tabla: tabla, datos: [{nombre: nombre, descripcion: descripcion, fecha_registro: this.fechaMaterial, fecha_actualizacion: this.fechaMaterial, precio: precio, idnicho: idnicho, idproveedor: idproveedor}]}
+    let register = {tabla: tabla, datos: [{
+                                            nombre: nombre, 
+                                            descripcion: descripcion, 
+                                            precio: precio, 
+                                            idubicacion: idubicacion, 
+                                            idproveedor: idproveedor
+                                          }]}
     this.http.post(environment.API_URL, register)
-    .subscribe( data => { 
-      returning = data
-    })
+    .subscribe( data => { })
     window.location.reload()
   }
 
@@ -100,13 +97,13 @@ export class MaterialesComponent implements OnInit {
     })
   } 
 
-  respuestaNicho: any[]
+  respuestaUbicaciones: any[]
 
-  getDataNicho = () => {
-    let tabla = 'nicho'
+  getDataUbicacion = () => {
+    let tabla = 'ubicacion'
     this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
     .subscribe(data => {
-      this.respuestaNicho = data.datos
+      this.respuestaUbicaciones = data.datos
     })
   }  
   //MODAL NEW MATERIAL

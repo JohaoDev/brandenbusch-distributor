@@ -102,27 +102,12 @@ let getDatosbyID = (req, res) => {
 }
 
 //SELECT DE DETALLES SISTEMA
-let getDatosPedidos_detalles = (req, res) => {
-    let idpedido = req.query.idpedido
-    db.raw(`select * from detalle_pedido where idpedido = ${idpedido}`)
-    .then( resultado => {
-        return res.status(200).json({
-            ok: true,
-            datos: resultado.rows
-        }) 
-    })
-    .catch((error) => {
-        return res.status(500).json({
-            ok: false,
-            datos: null,
-            mensaje: `Error del servidor: ${error}` 
-        })
-    })
-}
-
 let getDatosReclamo_detalles = (req, res) => {
     let idreclamo = req.query.idreclamo
-    db.raw(`select * from detalle_reclamo where idreclamo = ${idreclamo}`)
+    db.raw(`select detalle_reclamo.id, detalle_reclamo.idreclamo, detalle_reclamo.cantidad_pedido, detalle_reclamo.cantidad_llegada, detalle_reclamo.precio_pedido,
+    detalle_reclamo.precio_llegada, proveedor.nombre_empresa as idpedido, material.nombre as idmaterial
+    from detalle_reclamo join pedido on detalle_reclamo.idpedido = pedido.id join material on material.id = detalle_reclamo.idmaterial
+    join proveedor on pedido.idproveedor = proveedor.id where detalle_reclamo.idreclamo = ${idreclamo}`)
     .then( resultado => {
         return res.status(200).json({
             ok: true,
@@ -140,7 +125,7 @@ let getDatosReclamo_detalles = (req, res) => {
 
 let getDatosFactura_detalles = (req, res) => {
     let idfactura = req.query.idfactura
-    db.raw(`select * from detalle_factura where idfactura = ${idfactura}`)
+    db.raw(`select detalle_factura.id, detalle_factura.idfactura , material.nombre as idmaterial, detalle_factura.cantidad, material.precio as valor_unitario, (detalle_factura.cantidad*material.precio) as valor_total from detalle_factura join material on detalle_factura.idmaterial = material.id where idfactura =  ${idfactura}`)
     .then( resultado => {
         return res.status(200).json({
             ok: true,
@@ -158,7 +143,8 @@ let getDatosFactura_detalles = (req, res) => {
 
 let getDatosAlbaran_detalles = (req, res) => {
     let idalbaran = req.query.idalbaran
-    db.raw(`select * from detalle_albaran where idalbaran = ${idalbaran}`)
+
+    db.raw(`select detalle_albaran.id, detalle_albaran.idalbaran, detalle_albaran.cantidad, material.nombre as idmaterial, detalle_albaran.precio_llegada, material.precio from detalle_albaran join material on detalle_albaran.idmaterial = material.id where detalle_albaran.idalbaran =  ${idalbaran}`)
     .then( resultado => {
         return res.status(200).json({
             ok: true,
@@ -174,12 +160,160 @@ let getDatosAlbaran_detalles = (req, res) => {
     })
 }
 
+let getFacturasSelect = (req, res) => {
+    let idfactura = req.query.idfactura
+    let select = req.query.select
+    db.raw(`select detalle_factura.idfactura, ${select} from detalle_factura join material on detalle_factura.idmaterial = material.id where idfactura = ${idfactura} group by detalle_factura.idfactura `)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
+let getDatosPedidos_detalles = (req, res) => {
+    let idpedido = req.query.idpedido
+
+    db.raw(`select detalle_pedido.idpedido, detalle_pedido.cantidad, material.nombre as idmaterial, material.precio as valor_unitario, (material.precio*detalle_pedido.cantidad) as valor_total from detalle_pedido join material on detalle_pedido.idmaterial = material.id where  detalle_pedido.idpedido = ${idpedido}`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
+let getPedidosSelect = (req, res) => {
+    let idpedido = req.query.idpedido
+    let consulta = req.query.consulta
+
+    db.raw(`select detalle_pedido.idpedido, ${consulta} from detalle_pedido join material on detalle_pedido.idmaterial = material.id where idpedido = ${idpedido} group by detalle_pedido.idpedido`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
+let getMaterialesSelect = (req, res) => {
+    db.raw(`select proveedor.nombre_empresa, proveedor.representante, material.nombre as nombre_material, material.descripcion, material.fecha_registro, material.precio, ubicacion.nombre as ubicacion from proveedor join material on material.idproveedor = proveedor.id join ubicacion on ubicacion.id = material.idubicacion`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
+let getFacturaPP = (req, res) => {
+    db.raw(`select factura.id, cliente.nombre || ' ' || cliente.apellido as idcliente, factura.fecha as fecha, estado.nombre as idestado from cliente join factura on factura.idcliente = cliente.id join estado on factura.idestado = estado.id`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
+let getPedidosPP = (req, res) => {
+    db.raw(`select pedido.id, proveedor.nombre_empresa as idproveedor, pedido.fecha as fecha, estado.nombre as idestado from pedido join proveedor on pedido.idproveedor = proveedor.id join estado on pedido.idestado = estado.id`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
+let getPedidosModalDetalle = (req, res) => {
+    db.raw(`select pedido.id, proveedor.nombre_empresa as idproveedor, pedido.fecha from pedido  join proveedor on pedido.idproveedor = proveedor.id`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
+let getAlbaranPP = (req, res) => {
+    db.raw(`select albaran.id, proveedor.nombre_empresa as idpedido, albaran.fecha_entrega, estado.nombre as idestado 
+    from albaran join estado on albaran.idestado = estado.id
+    join pedido on albaran.idpedido = pedido.id
+    join proveedor on pedido.idproveedor = proveedor.id`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
+
 //SELECT DE DETALLES SISTEMA
 
 //PDF
-let getPDFordenes = (req, res) => {
-    let tabla = req.query.tabla
-    db.raw(`select * from ${tabla}`)
+let getPDF_Facturas = (req, res) => {
+    let idfactura = req.query.idfactura
+
+    db.raw(`select material.nombre as idmaterial, detalle_factura.cantidad, material.precio as valor_unitario, (detalle_factura.cantidad*material.precio) as valor_total from detalle_factura join material on detalle_factura.idmaterial = material.id where idfactura =  ${idfactura}`)
     .then( resultado => {
         return res.status(200).json({
             ok: true,
@@ -206,5 +340,12 @@ module.exports = {
     getDatosReclamo_detalles,
     getDatosFactura_detalles,
     getDatosAlbaran_detalles,
-    getPDFordenes
+    getPDF_Facturas,
+    getFacturasSelect,
+    getPedidosSelect,
+    getMaterialesSelect,
+    getFacturaPP,
+    getPedidosPP,
+    getAlbaranPP,
+    getPedidosModalDetalle
 }

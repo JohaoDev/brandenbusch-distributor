@@ -22,10 +22,12 @@ export class ClientesComponent implements OnInit {
     this.table_header = [
       {
         id: 'N°',
-        identificacion: 'Identificacíon',
+        identificacion: 'Identificación',
         nombre: 'Nombre',
         apellido: 'Apellido',
-        direccion: 'Dirección'
+        direccion: 'Dirección',
+        telefono: 'Teléfono',
+        correo_electronico: 'Correo Electrónico'
       }
     ]
   }
@@ -36,7 +38,9 @@ export class ClientesComponent implements OnInit {
       identificacion: ['',[Validators.required]],
       nombre: ['',[Validators.required]],
       apellido: ['',[Validators.required]],
-      direccion: ['',[Validators.required]]
+      direccion: ['',[Validators.required]],
+      telefono: ['',[Validators.required]],
+      correo_electronico: ['',[Validators.required]]
     });
   }
 
@@ -61,20 +65,28 @@ export class ClientesComponent implements OnInit {
 
   //MODAL NEW CLIENTE
   postDataCliente = () => {
-    let id
     let identificacion = this.clienteForm.get('identificacion').value
     let nombre = this.clienteForm.get('nombre').value
     let apellido = this.clienteForm.get('apellido').value
     let direccion = this.clienteForm.get('direccion').value
+    let telefono = this.clienteForm.get('telefono').value
+    let correo_electronico = this.clienteForm.get('correo_electronico').value
 
     let tabla = 'cliente'
-    let register = {tabla: tabla, datos: [{identificacion: identificacion, nombre: nombre, direccion: direccion, apellido: apellido}]}
+    let register = {tabla: tabla, datos: [{
+                                            identificacion: identificacion, 
+                                            nombre: nombre, 
+                                            apellido: apellido,
+                                            direccion: direccion, 
+                                            telefono: telefono,
+                                            correo_electronico: correo_electronico
+                                          }]}
     this.http.post(environment.API_URL, register)
     .subscribe( data => {
       // this.postData = data
     })
     window.location.reload()
   }
-  //MODAL NEW PROVCLIENTEEEDOR
+  //MODAL NEW CLIENTE
 
 }

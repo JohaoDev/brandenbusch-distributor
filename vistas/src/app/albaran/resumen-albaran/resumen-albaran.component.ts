@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-resumen-albaran',
@@ -9,34 +10,50 @@ import { environment } from 'src/environments/environment';
 })
 export class ResumenAlbaranComponent implements OnInit {
 
-  respuestaDetalleAlbaran: any[]
+  detallealbaranForm: FormGroup
   table_header: any
 
-  constructor(private http: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
   ngOnInit() {
+    this.getDataMateriales()
     this.getDataDetalleAlbaran()
+
+    this.formularioDetalleAlbaran()
+
     this.table_header = [
       {
-        idalbaran: 'Código del albarán',
         idmaterial: 'Material',
         cantidad: 'cantidad',
-        precio: 'precio'
+        precio_llegada: 'Precio llegada',
+        precio: 'Precio material'
       }
     ]
   }
 
+  formularioDetalleAlbaran(){
+    this.detallealbaranForm = this.formBuilder.group({
+      id: [''],
+      idalbaran: ['',[Validators.required]],
+      cantidad: ['',[Validators.required]],
+      precio_llegada: ['',[Validators.required]],
+      idmaterial: ['',[Validators.required]],
+    });
+  }
+
+  //PAGINA PRINCIPAL
   getLocalStorage(){
     let id = localStorage.getItem("id")
     return id
   }
+
+  respuestaDetalleAlbaran: any[]
 
   getDataDetalleAlbaran = () => {
     this.http.get<any>(environment.API_URL + `AlbaranAPI?idalbaran=${this.getLocalStorage()}`)
     .subscribe(data => {
       this.respuestaDetalleAlbaran = data.datos
     })
-    console.log(this.respuestaDetalleAlbaran)
   }
 
   deleteDataTable = (value) => {
@@ -44,5 +61,35 @@ export class ResumenAlbaranComponent implements OnInit {
     this.http.delete(environment.API_URL + `?tabla=${tabla}&&id=${value}`)
     .subscribe( data => { })
   }
+  //PAGINA PRINCIPAL
+
+  //MODAL DETALLE PEDIDO 
+  respuestaMateriales
+
+  getDataMateriales = () => {
+    let tabla = 'material'
+    this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
+    .subscribe(data => {
+      this.respuestaMateriales = data.datos
+    })
+  }
+  
+  postDataDetalleAlbaran = () => {
+    let idmaterial = this.detallealbaranForm.get('idmaterial').value
+    let cantidad = this.detallealbaranForm.get('cantidad').value
+    let precio_llegada = this.detallealbaranForm.get('precio_llegada').value
+
+    let tabla = 'detalle_albaran'
+    let register = {tabla: tabla, datos: [{ 
+                                            idmaterial: idmaterial, 
+                                            cantidad: cantidad, 
+                                            idalbaran: this.getLocalStorage(),
+                                            precio_llegada: precio_llegada
+                                          }]}
+    this.http.post(environment.API_URL, register)
+    .subscribe( data => { })
+    window.location.reload()
+  }
+  //MODAL DETALLE PEDIDO 
 
 }

@@ -16,7 +16,9 @@
         <thead *ngFor="let item of table_header">
             <th>{{item.id}}</th>
             <th>{{item.identificacion}}</th>
-            <th>{{item.nombre}}</th>
+            <th>{{item.nombre_empresa}}</th>
+            <th>{{item.representante}}</th>
+            <th>{{item.correo_electronico}}</th>
             <th>{{item.direccion}}</th>
             <th>{{item.telefono}}</th>
             <th></th>
@@ -26,15 +28,13 @@
             <tr *ngFor="let item of respuestaProveedores">
                 <td>{{ item.id }}</td>
                 <td>{{ item.identificacion }}</td>
-                <td>{{ item.nombre }}</td>
+                <th>{{ item.nombre_empresa }}</th>
+                <th>{{ item.representante }}</th>
+                <th>{{ item.correo_electronico }}</th>
                 <td>{{ item.direccion }}</td>
                 <td>{{ item.telefono }}</td>
                 <td>
                     <a type="button" (click)="deleteDataTable(item.id)">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
                         <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">
                     </a>
                 </td>
@@ -58,38 +58,35 @@
             <div>
                 <h1>Nuevo Proveedor</h1>
                 <form [formGroup]="proveedorForm" autocomplete="off">
-                    <strong>Identificación</strong><br>
+                    <strong>Identificación *</strong><br>
                     <input formControlName="identificacion">
-                    <div>
-                        <span class="errors" *ngIf="proveedorForm.controls['identificacion'].errors?.required"> Obligatorio </span>
-                        <!-- <span class="errors" *ngIf="proveedorForm.controls['identificacion'].errors?.pattern"> Inválido </span> -->
-                    </div><br>
+                    <br>
 
-                    <strong>Nombre</strong><br>
-                    <input formControlName="nombre">
-                    <div>
-                        <span class="errors" *ngIf="proveedorForm.controls['nombre'].errors?.required"> Obligatorio </span>
-                        <!-- <span class="errors" *ngIf="proveedorForm.controls['identificacion'].errors?.pattern"> Inválido </span> -->
-                    </div><br>
+                    <strong>Nombre de la Empresa *</strong><br>
+                    <input formControlName="nombre_empresa">
+                    <br>
 
-                    <strong>Dirección</strong><br>
+                    <strong>Representante Legal *</strong><br>
+                    <input formControlName="representante">
+                    <br>
+
+                    <strong>Correo Electrónico *</strong><br>
+                    <input formControlName="correo_electronico">
+                    <br>
+
+                    <strong>Dirección *</strong><br>
                     <input formControlName="direccion">
-                    <div>
-                        <span class="errors" *ngIf="proveedorForm.controls['direccion'].errors?.required"> Obligatorio </span>
-                        <!-- <span class="errors" *ngIf="proveedorForm.controls['identificacion'].errors?.pattern"> Inválido </span> -->
-                    </div><br>
+                    <br>
 
-                    <strong>Teléfono</strong><br>
+                    <strong>Teléfono *</strong><br>
                     <input formControlName="telefono">
-                    <div>
-                        <span class="errors" *ngIf="proveedorForm.controls['telefono'].errors?.required"> Obligatorio </span>
-                        <!-- <span class="errors" *ngIf="proveedorForm.controls['identificacion'].errors?.pattern"> Inválido </span> -->
-                    </div><br>
+                    <br>
 
                     <a type="button" (click)="postDataProveedor()" class="w3-display-bottomright">
                         <img src="../../assets/save-img.png" alt="save-img" height="40" width="40">
-                      </a>
+                    </a>
                 </form>
+                <span class="w3-display-bottomleft">* Campos Obligatorios</span>
             </div>
         </div>
     </div>
