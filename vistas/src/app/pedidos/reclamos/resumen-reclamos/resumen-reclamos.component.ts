@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment';
 })
 export class ResumenReclamosComponent implements OnInit {
 
-  respuestaDetalleReclamo: any[]
   table_header: any
   detallereclamosForm: FormGroup
 
@@ -24,15 +23,15 @@ export class ResumenReclamosComponent implements OnInit {
         precio_pedido: 'Precio pedido',
         precio_llegada: 'Precio llegada',
         idreclamo: 'Reclamo',
-        idpedido: 'Pedido',
+        idpedido: 'Pedido realizado a',
         idmaterial: 'Material'
       }
     ]
 
-    this.getDataDetallePedido()
+    this.getDataDetalleReclamo()
     this.getDataMateriales()
     this.getDataPedidos()
-
+ 
     this.formularioDetalleReclamos()
   }
 
@@ -55,7 +54,9 @@ export class ResumenReclamosComponent implements OnInit {
     return id
   }
 
-  getDataDetallePedido = () => {
+  respuestaDetalleReclamo: any[]
+
+  getDataDetalleReclamo = () => {
     this.http.get<any>(environment.API_URL + `ReclamosAPI?idreclamo=${this.getLocalStorage()}`)
     .subscribe(data => {
       this.respuestaDetalleReclamo = data.datos
@@ -85,8 +86,7 @@ export class ResumenReclamosComponent implements OnInit {
   respuestaPedidos: any[]
 
   getDataPedidos = () => {
-    let tabla = 'pedido'
-    this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
+    this.http.get<any>(environment.API_URL + `PedidosModalDetalle`)
     .subscribe(data => {
       this.respuestaPedidos = data.datos
     })

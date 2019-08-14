@@ -104,7 +104,10 @@ let getDatosbyID = (req, res) => {
 //SELECT DE DETALLES SISTEMA
 let getDatosReclamo_detalles = (req, res) => {
     let idreclamo = req.query.idreclamo
-    db.raw(`select * from detalle_reclamo where idreclamo = ${idreclamo}`)
+    db.raw(`select detalle_reclamo.id, detalle_reclamo.idreclamo, detalle_reclamo.cantidad_pedido, detalle_reclamo.cantidad_llegada, detalle_reclamo.precio_pedido,
+    detalle_reclamo.precio_llegada, proveedor.nombre_empresa as idpedido, material.nombre as idmaterial
+    from detalle_reclamo join pedido on detalle_reclamo.idpedido = pedido.id join material on material.id = detalle_reclamo.idmaterial
+    join proveedor on pedido.idproveedor = proveedor.id where detalle_reclamo.idreclamo = ${idreclamo}`)
     .then( resultado => {
         return res.status(200).json({
             ok: true,
@@ -266,6 +269,23 @@ let getPedidosPP = (req, res) => {
     })
 }
 
+let getPedidosModalDetalle = (req, res) => {
+    db.raw(`select pedido.id, proveedor.nombre_empresa as idproveedor, pedido.fecha from pedido  join proveedor on pedido.idproveedor = proveedor.id`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
 
 //SELECT DE DETALLES SISTEMA
 
@@ -305,5 +325,6 @@ module.exports = {
     getPedidosSelect,
     getMaterialesSelect,
     getFacturaPP,
-    getPedidosPP
+    getPedidosPP,
+    getPedidosModalDetalle
 }
