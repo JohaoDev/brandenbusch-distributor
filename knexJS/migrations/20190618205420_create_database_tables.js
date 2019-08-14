@@ -21,7 +21,7 @@ exports.up = function(knex, Promise) {
   })
   .createTable( 'reclamo', function( table ) {
     table.increments('id');
-    table.timestamp('fecha').defaultTo(knex.fn.now());
+    table.date('fecha').defaultTo(knex.fn.now());
     table.string('comentario');
   })
   .createTable( 'cliente', function( table ) {
@@ -39,15 +39,15 @@ exports.up = function(knex, Promise) {
     table.increments('id');
     table.string('nombre');
     table.string('descripcion');
-    table.timestamp('fecha_registro').defaultTo(knex.fn.now());
-    table.timestamp('fecha_actualizacion').defaultTo(knex.fn.now());
+    table.date('fecha_registro').defaultTo(knex.fn.now());
+    table.date('fecha_actualizacion').defaultTo(knex.fn.now());
     table.decimal('precio');
     table.integer('idproveedor').references('id').inTable('proveedor');
     table.integer('idubicacion').references('id').inTable('ubicacion');
   })
   .createTable( 'pedido', function( table ) {
     table.increments('id');
-    table.timestamp('fecha').defaultTo(knex.fn.now());
+    table.date('fecha').defaultTo(knex.fn.now());
     table.integer('idestado').references('id').inTable('estado');
     table.integer('idproveedor').references('id').inTable('proveedor');
   })
@@ -61,7 +61,7 @@ exports.up = function(knex, Promise) {
     table.increments('id');
     table.integer('idpedido').references('id').inTable('pedido');
     table.integer('idestado').references('id').inTable('estado');
-    table.timestamp('fecha_entrega').defaultTo(knex.fn.now());
+    table.date('fecha_entrega').defaultTo(knex.fn.now());
   })
   .createTable( 'detalle_albaran', function( table ) {
     table.increments('id');
