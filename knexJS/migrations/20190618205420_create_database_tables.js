@@ -82,7 +82,7 @@ exports.up = function(knex, Promise) {
   })
   .createTable( 'factura', function( table ) {
     table.increments('id');
-    table.timestamp('fecha').defaultTo(knex.fn.now());
+    table.date('fecha').defaultTo(knex.fn.now());
     table.integer('idestado').references('id').inTable('estado');
     table.integer('idcliente').references('id').inTable('cliente');
   })
