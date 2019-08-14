@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ubicaciones',
@@ -32,7 +33,7 @@ export class UbicacionesComponent implements OnInit {
   formularioUbicacion(){
     this.ubicacionForm = this.formBuilder.group({
       id: [''],
-      nombre: ['',[Validators.required]]
+      nombre: ['',[Validators.required, Validators.pattern('[A-Za-zñÑ]{3,30}')]]
     });
   }
 
@@ -60,12 +61,21 @@ export class UbicacionesComponent implements OnInit {
     let nombre = this.ubicacionForm.get('nombre').value
 
     let tabla = 'ubicacion'
-    let register = {tabla: tabla, datos: [{nombre: nombre}]}
-    this.http.post(environment.API_URL, register)
-    .subscribe( data => {
-      // this.postData = data
-    })
-    window.location.reload()
+
+    if(this.ubicacionForm.invalid){
+      Swal.fire({
+        type: 'error',
+        title: 'Ups!',
+        text: 'Datos inválidos'
+      })
+    }else{
+      let register = {tabla: tabla, datos: [{nombre: nombre}]}
+      this.http.post(environment.API_URL, register)
+      .subscribe( data => {
+        // this.postData = data
+      })
+      window.location.reload()
+    }
   }
   //MODAL NEW UBICACION
 

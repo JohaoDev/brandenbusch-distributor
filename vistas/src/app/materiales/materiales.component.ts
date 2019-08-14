@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-materiales',
@@ -38,11 +39,11 @@ export class MaterialesComponent implements OnInit {
   formularioMateriales(){
     this.materialesForm = this.formBuilder.group({
       id: [''],
-      nombre: ['',[Validators.required]],
-      descripcion: ['',[Validators.required]],
+      nombre: ['',[Validators.required, Validators.pattern('[A-Za-zñÑ]{3,30}')]],
+      descripcion: ['',[Validators.required, Validators.pattern('[A-Za-zñÑ]{3,150}')]],
       fecha_registro: ['',[Validators.required]],
       fecha_actualizacion: ['',[Validators.required]],
-      precio: ['',[Validators.required]],
+      precio: ['',[Validators.required, Validators.pattern('[0-9]')]],
       idubicacion: ['',[Validators.required]],
       idproveedor: ['',[Validators.required]],
     });
@@ -75,16 +76,25 @@ export class MaterialesComponent implements OnInit {
     let idproveedor = this.materialesForm.get('idproveedor').value
 
     let tabla = 'material'
-    let register = {tabla: tabla, datos: [{
-                                            nombre: nombre, 
-                                            descripcion: descripcion, 
-                                            precio: precio, 
-                                            idubicacion: idubicacion, 
-                                            idproveedor: idproveedor
-                                          }]}
-    this.http.post(environment.API_URL, register)
-    .subscribe( data => { })
-    window.location.reload()
+
+    if(this.materialesForm.invalid){
+      Swal.fire({
+        type: 'error',
+        title: 'Ups!',
+        text: 'Datos inválidos'
+      })
+    }else{
+      let register = {tabla: tabla, datos: [{
+                                              nombre: nombre, 
+                                              descripcion: descripcion, 
+                                              precio: precio, 
+                                              idubicacion: idubicacion, 
+                                              idproveedor: idproveedor
+                                            }]}
+      this.http.post(environment.API_URL, register)
+      .subscribe( data => { })
+      window.location.reload()
+    }
   }
 
   respuestaProveedor: any[]

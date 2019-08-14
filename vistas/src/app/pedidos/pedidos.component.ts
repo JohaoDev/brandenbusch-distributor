@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 import * as jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
@@ -38,8 +39,7 @@ export class PedidosComponent implements OnInit {
     this.pedidosForm = this.formBuilder.group({
       id: [''],
       idproveedor: ['',[Validators.required]],
-      fecha: [''],
-      total: ['',[Validators.required]],
+      fecha: ['']
     });
   }
 
@@ -89,10 +89,19 @@ export class PedidosComponent implements OnInit {
     let idestado = 2
 
     let tabla = 'pedido'
-    let register = {tabla: tabla, datos: [{idproveedor: idproveedor, idestado: idestado}]}
-    this.http.post(environment.API_URL, register)
-    .subscribe( data => {  })
-    window.location.reload()
+
+    if(this.pedidosForm.invalid){
+      Swal.fire({
+        type: 'error',
+        title: 'Ups!',
+        text: 'Datos inválidos'
+      })
+    }else{
+      let register = {tabla: tabla, datos: [{idproveedor: idproveedor, idestado: idestado}]}
+      this.http.post(environment.API_URL, register)
+      .subscribe( data => {  })
+      window.location.reload()
+    }
   }
   //MODAL NEW PEDIDO
 

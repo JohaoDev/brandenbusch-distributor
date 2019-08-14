@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-resumen-albaran',
@@ -80,15 +81,24 @@ export class ResumenAlbaranComponent implements OnInit {
     let precio_llegada = this.detallealbaranForm.get('precio_llegada').value
 
     let tabla = 'detalle_albaran'
-    let register = {tabla: tabla, datos: [{ 
-                                            idmaterial: idmaterial, 
-                                            cantidad: cantidad, 
-                                            idalbaran: this.getLocalStorage(),
-                                            precio_llegada: precio_llegada
-                                          }]}
-    this.http.post(environment.API_URL, register)
-    .subscribe( data => { })
-    window.location.reload()
+
+    if(this.detallealbaranForm.invalid){
+      Swal.fire({
+        type: 'error',
+        title: 'Ups!',
+        text: 'Datos inválidos'
+      })
+    }else{
+      let register = {tabla: tabla, datos: [{ 
+                                              idmaterial: idmaterial, 
+                                              cantidad: cantidad, 
+                                              idalbaran: this.getLocalStorage(),
+                                              precio_llegada: precio_llegada
+                                            }]}
+      this.http.post(environment.API_URL, register)
+      .subscribe( data => { })
+      window.location.reload()
+    }
   }
   //MODAL DETALLE PEDIDO 
 

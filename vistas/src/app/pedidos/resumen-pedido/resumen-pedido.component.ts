@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 import * as jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
@@ -120,14 +121,23 @@ export class ResumenPedidoComponent implements OnInit {
     let idmaterial = this.detallepedidosForm.get('idmaterial').value
 
     let tabla = 'detalle_pedido'
-    let register = {tabla: tabla, datos: [{
-                                            cantidad: cantidad, 
-                                            idpedido: this.getLocalStorage(),
-                                            idmaterial: idmaterial
-                                          }]}
-    this.http.post(environment.API_URL, register)
-    .subscribe( data => { })
-    window.location.reload()
+
+    if(this.detallepedidosForm.invalid){
+      Swal.fire({
+        type: 'error',
+        title: 'Ups!',
+        text: 'Datos inválidos'
+      })
+    }else{
+      let register = {tabla: tabla, datos: [{
+                                              cantidad: cantidad, 
+                                              idpedido: this.getLocalStorage(),
+                                              idmaterial: idmaterial
+                                            }]}
+      this.http.post(environment.API_URL, register)
+      .subscribe( data => { })
+      window.location.reload()
+    }
   }
   //MODAL DETALLE PEDIDO
 
