@@ -15,6 +15,7 @@
         <thead *ngFor="let item of table_header">
             <th>{{item.idmaterial}}</th>
             <th>{{item.cantidad}}</th>
+            <th>{{item.precio}}</th>
             <th>{{item.precio_llegada}}</th>
             <th></th>            
             <th></th>
@@ -24,6 +25,7 @@
             <tr *ngFor="let item of respuestaDetalleAlbaran">
                 <td>{{item.idmaterial}}</td>
                 <td>{{item.cantidad}}</td>
+                <td>{{item.precio}}</td>
                 <td>{{item.precio_llegada}}</td>
                 <td>
                     <a type="button" (click)="getDatabyID(item.id)">
@@ -31,7 +33,7 @@
                     </a>
                 </td>
                 <td>
-                    <a type="button" (click)="deleteDataTable(item.id)" routerLink="/albaran">
+                    <a type="button" (click)="deleteDataTable(item.id)" href="/resumen_albaran">
                         <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">
                     </a>
                 </td>

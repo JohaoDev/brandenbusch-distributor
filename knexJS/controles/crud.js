@@ -144,7 +144,7 @@ let getDatosFactura_detalles = (req, res) => {
 let getDatosAlbaran_detalles = (req, res) => {
     let idalbaran = req.query.idalbaran
 
-    db.raw(`select detalle_albaran.idalbaran, material.nombre, detalle_albaran.precio_llegada, material.precio from detalle_albaran join material on detalle_albaran.idmaterial = material.id where detalle_albaran.idalbaran =  ${idalbaran}`)
+    db.raw(`select detalle_albaran.id, detalle_albaran.idalbaran, detalle_albaran.cantidad, material.nombre as idmaterial, detalle_albaran.precio_llegada, material.precio from detalle_albaran join material on detalle_albaran.idmaterial = material.id where detalle_albaran.idalbaran =  ${idalbaran}`)
     .then( resultado => {
         return res.status(200).json({
             ok: true,
@@ -286,6 +286,26 @@ let getPedidosModalDetalle = (req, res) => {
     })
 }
 
+let getAlbaranPP = (req, res) => {
+    db.raw(`select albaran.id, proveedor.nombre_empresa as idpedido, albaran.fecha_entrega, estado.nombre as idestado 
+    from albaran join estado on albaran.idestado = estado.id
+    join pedido on albaran.idpedido = pedido.id
+    join proveedor on pedido.idproveedor = proveedor.id`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
 
 //SELECT DE DETALLES SISTEMA
 
@@ -326,5 +346,6 @@ module.exports = {
     getMaterialesSelect,
     getFacturaPP,
     getPedidosPP,
+    getAlbaranPP,
     getPedidosModalDetalle
 }

@@ -14,6 +14,7 @@ api.get('/routeReclamosAPI', control.getDatosReclamo_detalles)
 
 //ALBARAN
 api.get('/routeAlbaranAPI', control.getDatosAlbaran_detalles)
+api.get('/routeAlbaran', control.getAlbaranPP)
 
 //FACTURAS
 api.get('/routeFacturasAPI', control.getDatosFactura_detalles)        //V.UNIT AND V.TOTAL RESUMEN FACTURACION

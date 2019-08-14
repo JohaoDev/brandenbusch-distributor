@@ -26,7 +26,7 @@ export class ResumenAlbaranComponent implements OnInit {
         idmaterial: 'Material',
         cantidad: 'cantidad',
         precio_llegada: 'Precio llegada',
-        precio_material: 'Precio material'
+        precio: 'Precio material'
       }
     ]
   }
@@ -83,8 +83,8 @@ export class ResumenAlbaranComponent implements OnInit {
     let register = {tabla: tabla, datos: [{ 
                                             idmaterial: idmaterial, 
                                             cantidad: cantidad, 
-                                            idalbaran: this.getLocalStorage()
-                                            // precio_llegada: precio_llegada
+                                            idalbaran: this.getLocalStorage(),
+                                            precio_llegada: precio_llegada
                                           }]}
     this.http.post(environment.API_URL, register)
     .subscribe( data => { })

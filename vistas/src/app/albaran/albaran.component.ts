@@ -45,8 +45,7 @@ export class AlbaranComponent implements OnInit {
   respuestaAlbaran: any[]
 
   getDataAlbaran = () => {
-    let tabla = 'albaran'
-    this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
+    this.http.get<any>(environment.API_URL + `Albaran`)
     .subscribe(data => {
       this.respuestaAlbaran = data.datos
     })
@@ -76,8 +75,7 @@ export class AlbaranComponent implements OnInit {
   respuestaPedidos: any[]
 
   getDataPedidos = () => {
-    let tabla = 'pedido'
-    this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
+    this.http.get<any>(environment.API_URL + `PedidosModalDetalle`)
     .subscribe(data => {
       this.respuestaPedidos = data.datos
     })
