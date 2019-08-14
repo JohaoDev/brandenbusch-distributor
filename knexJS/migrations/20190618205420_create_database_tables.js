@@ -80,7 +80,7 @@ exports.up = function(knex, Promise) {
   })
   .createTable( 'factura', function( table ) {
     table.increments('id');
-    table.timestamp('fecha');
+    table.date('fecha');
     table.decimal('total');
     table.integer('idcliente').references('id').inTable('cliente');
   })
