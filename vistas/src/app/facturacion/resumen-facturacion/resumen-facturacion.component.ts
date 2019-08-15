@@ -85,8 +85,7 @@ export class ResumenFacturacionComponent implements OnInit {
 
   getDataTotal = () => {
     let total = "sum((detalle_factura.cantidad*material.precio)+(detalle_factura.cantidad*material.precio)*0.12) as total"
-
-    this.http.get<any>(environment.API_URL + `FacturasSelect?idfactura=${this.getLocalStorage()}&select=${total}`)
+      this.http.get<any>(environment.API_URL + `FacturasSelect?idfactura=${this.getLocalStorage()}&select=${total}`)
     .subscribe(data => {
       this.respuestaTotal = data.datos
     })
@@ -98,7 +97,7 @@ export class ResumenFacturacionComponent implements OnInit {
     .subscribe( data => { })
   }
 //PAGINA PRINCIPAL
-  
+
 //MODAL DETALLE_FACTURA
 respuestaMateriales: any[]
 
@@ -124,8 +123,8 @@ postDataDetalleFacturas = () => {
     })
   }else{
     let register = {tabla: tabla, datos: [{
-                                            cantidad: cantidad, 
-                                            idfactura: this.getLocalStorage(), 
+                                            cantidad: cantidad,
+                                            idfactura: this.getLocalStorage(),
                                             idmaterial: idmaterial
                                           }]}
     this.http.post(environment.API_URL, register)
@@ -156,7 +155,7 @@ postDataDetalleFacturas = () => {
      doc.setTextColor(222, 238, 230  );
      doc.text(x ,doc.internal.pageSize.height - 120, 'Distribuidora Franzis',45);
    }
- 
+
    return doc;
  }
 
@@ -165,6 +164,7 @@ postDataDetalleFacturas = () => {
      let y=25;
     let  size=14;
     let logo = new Image();
+    var  hora = Date();
     logo.src = "../../../assets/logo-distribuidora.png"
     let doc = new jsPDF({
       orientation: 'P',
@@ -172,7 +172,7 @@ postDataDetalleFacturas = () => {
       format: 'A4',
       compress: true,
     })
-    var headers = 
+    var headers =
     {
       cantidad: "Cantidad",
       idmaterial: "Descripción - Material",
@@ -188,16 +188,16 @@ postDataDetalleFacturas = () => {
     doc.setFontStyle('italic');
     doc.text('@Franzix.com.ec',x,y+250,{maxWidth:100});
     doc.text('Direccion: Av Diego De Vaca ',x+40,y+250,{maxWidth:100});
-    doc.text('Cliente: __________',x,y+243,{maxWidth:100});
+    doc.text(`Cliente: __________`,x,y+243,{maxWidth:100});
     doc.text('Vendedor: ___________',x+56,y+243,{maxWidth:100});
     doc.setFontSize(size-2);
     doc.setFontStyle('italic');
     doc.setTextColor(0, 0, 0);
-    doc.text('Fecha:_____________',x,y+13);
-    doc.text('Nombre del Cliente:__________________',x+45,y+13);
-    doc.text('Cédula/Ruc:_____________',x,y+20);
-    doc.text('Direccion Domicilio:__________________________________________',x,y+27);
-    doc.text('Telefono/Celular:_______________________________________',x,y+34);
+    doc.text(`Fecha ${hora}`,x,y+13);
+    doc.text('Nombre del Cliente:__________________',x,y+20);
+    doc.text('Cédula/Ruc:_____________',x,y+27);
+    doc.text('Direccion Domicilio:__________________________________________',x,y+34);
+    doc.text('Telefono/Celular:_______________________________________',x,y+44);
 
     doc.autoTable({head: [headers],body: this.pdfData,
       startY: 65,
@@ -206,6 +206,7 @@ postDataDetalleFacturas = () => {
       styles: {
         overflow: 'linebreak'
       },})
+      // doc=this.getDataTotal()
       doc=this.marcaDeAgua(doc)
     doc.save('Facturas.pdf')
   }
