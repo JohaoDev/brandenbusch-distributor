@@ -26,6 +26,7 @@ export class ResumenFacturacionComponent implements OnInit {
     this.getDataIva()
     this.getDataTotal()
     this.getPDF()
+    this.getDatabyID()
     this.table_header = [
       {
         idmaterial: 'Descripción - Material',
@@ -49,6 +50,11 @@ export class ResumenFacturacionComponent implements OnInit {
     return id
   }
 
+  getLocalStorageCliente(){
+    let id = localStorage.getItem("idcliente")
+    return id
+  }
+
   respuestaDetalleFactura: any[]
 
   getDataDetalleFacturas = () => {
@@ -57,7 +63,18 @@ export class ResumenFacturacionComponent implements OnInit {
       this.respuestaDetalleFactura = data.datos
     })
   }
-  respuestaClientes: any[]
+
+  respuestaClientes: number
+
+  getDatabyID = () => {
+    let tabla = 'cliente'
+    this.http.get<any>(environment.API_URL + `byid?tabla=${tabla}&&id=${this.getLocalStorageCliente()}`)
+    .subscribe( data => {
+      this.respuestaClientes = data.datos
+    })
+  }
+
+  // respuestaClientes: any[]
 
 
 

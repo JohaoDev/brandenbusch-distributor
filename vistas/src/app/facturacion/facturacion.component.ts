@@ -58,16 +58,16 @@ getDatabyID = (value) => {
   })
 }
 
-// idClienteVariable: number
+idClienteVariable: number
 
-// getDataClientebyID = (value) => {
-//   let tabla = 'cliente'
-//   this.http.get<any>(environment.API_URL + `byid?tabla=${tabla}&id=${value}`)
-//   .subscribe( data => {
-//     this.idFacturaVariable = data.datos[0].id
-//     localStorage.setItem("idcliente", this.idFacturaVariable.toString() )
-//   })
-// }
+getDataClientebyID = (value) => {
+  let tabla = 'factura'
+  this.http.get<any>(environment.API_URL + `byid?tabla=${tabla}&&id=${value}`)
+  .subscribe( data => {
+    this.idClienteVariable = data.datos[0].idcliente
+    localStorage.setItem("idcliente", this.idClienteVariable.toString() )
+  })
+}
 
 deleteDataTable = (value) => {
   let tabla = 'factura'

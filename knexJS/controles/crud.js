@@ -254,7 +254,7 @@ let getMaterialesSelect = (req, res) => {
 }
 
 let getFacturaPP = (req, res) => {
-    db.raw(`select factura.id, cliente.nombre || ' ' || cliente.apellido as idcliente, factura.fecha as fecha, estado.nombre as idestado from cliente join factura on factura.idcliente = cliente.id join estado on factura.idestado = estado.id`)
+    db.raw(`select factura.id, cliente.id as idcliente, cliente.nombre || ' ' || cliente.apellido as idcliente, factura.fecha as fecha, estado.nombre as idestado from cliente join factura on factura.idcliente = cliente.id join estado on factura.idestado = estado.id`)
     .then( resultado => {
         return res.status(200).json({
             ok: true,
