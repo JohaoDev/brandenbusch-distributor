@@ -164,7 +164,7 @@ postDataDetalleFacturas = () => {
      let y=25;
     let  size=14;
     let logo = new Image();
-    var  hora = Date();
+    var hora = Date();
     logo.src = "../../../assets/logo-distribuidora.png"
     let doc = new jsPDF({
       orientation: 'P',
