@@ -38,8 +38,8 @@ export class MaterialesComponent implements OnInit {
 
   formularioMateriales(){
     this.materialesForm = this.formBuilder.group({
-      nombre: ['',[Validators.required, Validators.pattern('[A-Za-z0-9]*')]],
-      descripcion: ['',[Validators.required, Validators.pattern('[A-Za-z0-9]*')]],
+      nombre: ['',[Validators.required]],
+      descripcion: ['',[Validators.required]],
       precio: ['',[Validators.required, Validators.pattern('[0-9]{1,5}[.][0-9]{1,2}')]],
       idubicacion: ['',[Validators.required]],
       idproveedor: ['',[Validators.required]]
