@@ -40,11 +40,7 @@ export class ResumenPedidoComponent implements OnInit {
 
   formularioDetallePedidos(){
     this.detallepedidosForm = this.formBuilder.group({
-      id: [''],
-      nombre: ['',[Validators.required]],
       cantidad: ['',[Validators.required]],
-      precio: ['',[Validators.required]],
-      idpedido: ['',[Validators.required]],
       idmaterial: ['',[Validators.required]],
     });
   }

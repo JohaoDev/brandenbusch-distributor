@@ -37,9 +37,7 @@ export class PedidosComponent implements OnInit {
 
   formularioPedidos(){
     this.pedidosForm = this.formBuilder.group({
-      id: [''],
-      idproveedor: ['',[Validators.required]],
-      fecha: ['']
+      idproveedor: ['',[Validators.required]]
     });
   }
 

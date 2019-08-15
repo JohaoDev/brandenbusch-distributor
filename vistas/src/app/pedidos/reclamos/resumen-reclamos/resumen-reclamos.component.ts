@@ -38,12 +38,10 @@ export class ResumenReclamosComponent implements OnInit {
 
   formularioDetalleReclamos(){
     this.detallereclamosForm = this.formBuilder.group({
-      id: [''],
       cantidad_pedido: ['',[Validators.required, Validators.pattern('[0-9]+')]],
       cantidad_llegada: ['',[Validators.required, Validators.pattern('[0-9]+')]],
-      precio_pedido: ['',[Validators.required, Validators.pattern('[0-9]+')]],
-      precio_llegada: ['',[Validators.required, Validators.pattern('[0-9]+')]],
-      idreclamo: [''],
+      precio_pedido: ['',[Validators.required, Validators.pattern('[0-9]{1,5}[.][0-9]{1,2}')]],
+      precio_llegada: ['',[Validators.required, Validators.pattern('[0-9]{1,5}[.][0-9]{1,2}')]],
       idpedido: ['',[Validators.required]],
       idmaterial: ['',[Validators.required]]
     });

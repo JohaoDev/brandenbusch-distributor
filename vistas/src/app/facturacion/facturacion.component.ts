@@ -33,9 +33,6 @@ export class FacturacionComponent implements OnInit {
 
   formularioFactura(){
     this.facturaForm = this.formBuilder.group({
-      id:[''],
-      fecha:[''],
-      idestado:['',[Validators.required]],
       idcliente:['',[Validators.required]]
     })
   }

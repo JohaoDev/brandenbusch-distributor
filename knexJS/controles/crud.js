@@ -219,7 +219,7 @@ let getPedidosSelect = (req, res) => {
 }
 
 let getMaterialesSelect = (req, res) => {
-    db.raw(`select proveedor.nombre_empresa, proveedor.representante, material.nombre as nombre_material, material.descripcion, material.fecha_registro, material.precio, ubicacion.nombre as ubicacion from proveedor join material on material.idproveedor = proveedor.id join ubicacion on ubicacion.id = material.idubicacion`)
+    db.raw(`select material.id, proveedor.nombre_empresa, proveedor.representante, material.nombre as nombre_material, material.descripcion, material.fecha_registro, material.precio, ubicacion.nombre as ubicacion from proveedor join material on material.idproveedor = proveedor.id join ubicacion on ubicacion.id = material.idubicacion`)
     .then( resultado => {
         return res.status(200).json({
             ok: true,

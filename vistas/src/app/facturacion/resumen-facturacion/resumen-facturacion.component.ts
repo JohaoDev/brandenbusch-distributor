@@ -39,12 +39,8 @@ export class ResumenFacturacionComponent implements OnInit {
 
   formularioDetalleFactura(){
     this.detallefacturaForm = this.formBuilder.group({
-      id:[''],
       cantidad:['',[Validators.required]],
-      precio:['',[Validators.required]],
-      descuento:['',[Validators.required]],
-      idmaterial:['',[Validators.required]],
-      idfactura:['',[Validators.required]]
+      idmaterial:['',[Validators.required]]
     })
   }
 
