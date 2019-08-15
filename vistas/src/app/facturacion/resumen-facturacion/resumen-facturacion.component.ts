@@ -180,6 +180,8 @@ postDataDetalleFacturas = () => {
       valor_total: "Valor Total"
     };
     doc.addImage(logo,15,10,40,20)
+    doc.setFontSize(size-2);
+    doc.text('Ruc:1723603997001',x+30,y-5);
     doc.setFontSize(size);
     doc.setFontSize(size-2);
     doc.setTextColor(0, 0, 0);
@@ -188,8 +190,17 @@ postDataDetalleFacturas = () => {
     doc.text('Direccion: Av Diego De Vaca ',x+40,y+250,{maxWidth:100});
     doc.text('Cliente: __________',x,y+243,{maxWidth:100});
     doc.text('Vendedor: ___________',x+56,y+243,{maxWidth:100});
+    doc.setFontSize(size-2);
+    doc.setFontStyle('italic');
+    doc.setTextColor(0, 0, 0);
+    doc.text('Fecha:_____________',x,y+13);
+    doc.text('Nombre del Cliente:__________________',x+45,y+13);
+    doc.text('Cédula/Ruc:_____________',x,y+20);
+    doc.text('Direccion Domicilio:__________________________________________',x,y+27);
+    doc.text('Telefono/Celular:_______________________________________',x,y+34);
+
     doc.autoTable({head: [headers],body: this.pdfData,
-      startY: 85,
+      startY: 65,
       tableWidth: 'auto',
       columnWidth: 'auto',
       styles: {
