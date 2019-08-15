@@ -22,7 +22,7 @@
             <th>{{item.id}}</th>
             <th>{{item.fecha}}</th>
             <th>{{item.comentario}}</th>
-            <th></th>
+            <!-- <th></th> -->
             <th></th>
             <th></th>
         </thead>
@@ -32,11 +32,11 @@
                 <td>{{ item.id }}</td>
                 <td>{{ item.fecha }}</td>
                 <td>{{ item.comentario }}</td>
-                <td>
+                <!-- <td>
                     <a type="button" (click)="getDatabyID(item.id)">
                         <img src="../../../assets/edit-img.png" alt="edit-img" height="18" width="18">
                     </a>
-                </td>
+                </td> -->
                 <td>
                     <a type="button" href="/resumen_reclamos" (click)="getDatabyID(item.id)">
                         <img src="../../../assets/details.ico" alt="details-img" height="18" width="18">

@@ -12,7 +12,7 @@
             <th>{{ item.idmaterial }}</th>
             <th>{{ item.valor_unitario }}</th>
             <th>{{ item.valor_total }}</th>
-            <th></th>
+            <!-- <th></th> -->
             <th></th>
 
         </thead>
@@ -23,11 +23,11 @@
                 <td>{{item.idmaterial}}</td>
                 <td>{{item.valor_unitario}}</td>
                 <td>{{item.valor_total}}</td>
-                <td>
+                <!-- <td>
                     <a type="button">
                         <img src="../../assets/edit-img.png" alt="edit-img" height="18" width="18">
                     </a>
-                </td>
+                </td> -->
                 <td>
                     <a type="button" (click)="deleteDataTable(item.id)" href="/resumen_facturacion">
                         <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">

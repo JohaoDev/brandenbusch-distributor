@@ -17,7 +17,7 @@
             <th>{{item.idpedido}}</th>
             <th>{{item.fecha_entrega}}</th>
             <th>{{item.idestado}}</th>
-            <th></th>
+            <!-- <th></th> -->
             <th></th>
             <th></th>
         </thead>
@@ -27,11 +27,11 @@
                 <td>{{ item.idpedido }}</td>
                 <td>{{ item.fecha_entrega }}</td>
                 <td>{{ item.idestado }}</td>
-                <td>
+                <!-- <td>
                     <a type="button" (click)="getDatabyID(item.id)">
                         <img src="../../assets/edit-img.png" alt="edit-img" height="18" width="18">
                     </a>
-                </td>
+                </td> -->
                 <td>
                     <a type="button" href="/resumen_albaran" (click)="getDatabyID(item.id)">
                         <img src="../../assets/details.ico" alt="details-img" height="18" width="18">
