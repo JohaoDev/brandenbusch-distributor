@@ -69,7 +69,6 @@ export class ResumenFacturacionComponent implements OnInit {
     this.http.get<any>(environment.API_URL + `FacturasSelect?idfactura=${this.getLocalStorage()}&select=${subtotal}`)
     .subscribe(data => {
       this.respuestaSubtotal = data.datos
-      console.log(this.respuestaTotal)
     })
   }
 
@@ -89,7 +88,7 @@ export class ResumenFacturacionComponent implements OnInit {
   getDataTotal = () => {
     this.http.get<any>(environment.API_URL + `FacturasTotal?idfactura=${this.getLocalStorage()}`)
     .subscribe(data => {
-      this.respuestaTotal=data.data
+      this.respuestaTotal=data.datos
     })
   }
 
@@ -147,17 +146,6 @@ postDataDetalleFacturas = () => {
       this.pdfData = data.datos
     })
   }
-
-  // idFacturaVariable: number
-
-  // getDatabyID = () => {
-  //   let tabla = 'cliente'
-  //   this.http.get<any>(environment.API_URL + `byid?tabla=${tabla}&id=${}`)
-  //   .subscribe( data => {
-  //     this.idFacturaVariable = data.datos[0].id
-  //     localStorage.setItem("id", this.idFacturaVariable.toString() )
-  //   })
-  // }
 
   marcaDeAgua=(doc)=> {
     let i:number;
