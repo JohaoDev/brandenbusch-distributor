@@ -147,6 +147,18 @@ postDataDetalleFacturas = () => {
       this.pdfData = data.datos
     })
   }
+
+  // idFacturaVariable: number
+
+  // getDatabyID = () => {
+  //   let tabla = 'cliente'
+  //   this.http.get<any>(environment.API_URL + `byid?tabla=${tabla}&id=${}`)
+  //   .subscribe( data => {
+  //     this.idFacturaVariable = data.datos[0].id
+  //     localStorage.setItem("id", this.idFacturaVariable.toString() )
+  //   })
+  // }
+
   marcaDeAgua=(doc)=> {
     let i:number;
    var totalPages = doc.internal.getNumberOfPages();
