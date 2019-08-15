@@ -35,12 +35,11 @@ export class ProveedoresComponent implements OnInit {
 
   formularioProveedor(){
     this.proveedorForm = this.formBuilder.group({
-      id: [''],
       identificacion: ['',[Validators.required, Validators.pattern('([0|1|2]{1})([0-9]{9})')]],
       nombre_empresa: ['',[Validators.required, Validators.pattern('[A-Za-zñÑ]{3,30}')]],
-      representante: ['',[Validators.required, Validators.pattern('[A-Za-zñÑ]{3,30}')]],
+      representante: ['',[Validators.required]],
       correo_electronico: ['',[Validators.required, Validators.pattern('^[a-z]+[a-z0-9.-_ñÑ]*@[a-z]+[a-z0-9]*.[a-z]{2,3}[.]?[a-z]*$')]],
-      direccion: ['',[Validators.required, Validators.pattern('[A-Z]+[a-z]*')]],
+      direccion: ['',[Validators.required]],
       telefono: ['',[Validators.required, Validators.pattern('([09|08|06]{2})([0-9]{8})')]]
     });
   }
