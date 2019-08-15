@@ -173,10 +173,13 @@ postDataDetalleFacturas = () => {
       valor_unitario: "Valor Unitario",
       valor_total: "Valor Total"
     };
-    doc.autoTable({
-      head: [headers],
-      body: this.pdfData, colSpan: 2, rowSpan: 2, styles: {halign: 'center'},
-    })
+    doc.autoTable({head: [headers],body: this.pdfData,
+      startY: 85,
+      tableWidth: 'auto',
+      columnWidth: 'auto',
+      styles: {
+        overflow: 'linebreak'
+      },})
     doc.save('Facturas.pdf')
   }
 
