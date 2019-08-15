@@ -146,20 +146,26 @@ postDataDetalleFacturas = () => {
       this.pdfData = data.datos
     })
   }
+  marcaDeAgua=(doc)=> {
+    let i:number;
+   var totalPages = doc.internal.getNumberOfPages();
+   let  x=25;
+   for (i = 1; i <= totalPages; i++) {
+     doc.setPage(i);
+     doc.setFontSize(40);
+     doc.setTextColor(222, 238, 230  );
+     doc.text(x ,doc.internal.pageSize.height - 120, 'Distribuidora Franzis',45);
+   }
+ 
+   return doc;
+ }
 
   pdf() {
-    let textSize=10;
-    let anchoTotal=210
-    let altoTotal=290
-    let margenSup=25
-    let margeninf=25
-    let margeniz=25
-    let margende= 25
-    let anchouso= anchoTotal-margeniz-margende
-    let altouso=altoTotal-margenSup-margeninf
-    let x=25;
-    let y=25;
-
+    let  x=25;
+     let y=25;
+    let  size=14;
+    let logo = new Image();
+    logo.src = "../../../assets/logo-distribuidora.png"
     let doc = new jsPDF({
       orientation: 'P',
       unit: 'mm',
@@ -173,6 +179,15 @@ postDataDetalleFacturas = () => {
       valor_unitario: "Valor Unitario",
       valor_total: "Valor Total"
     };
+    doc.addImage(logo,15,10,40,20)
+    doc.setFontSize(size);
+    doc.setFontSize(size-2);
+    doc.setTextColor(0, 0, 0);
+    doc.setFontStyle('italic');
+    doc.text('@Franzix.com.ec',x,y+250,{maxWidth:100});
+    doc.text('Direccion: Av Diego De Vaca ',x+40,y+250,{maxWidth:100});
+    doc.text('Cliente: __________',x,y+243,{maxWidth:100});
+    doc.text('Vendedor: ___________',x+56,y+243,{maxWidth:100});
     doc.autoTable({head: [headers],body: this.pdfData,
       startY: 85,
       tableWidth: 'auto',
@@ -180,6 +195,7 @@ postDataDetalleFacturas = () => {
       styles: {
         overflow: 'linebreak'
       },})
+      doc=this.marcaDeAgua(doc)
     doc.save('Facturas.pdf')
   }
 
