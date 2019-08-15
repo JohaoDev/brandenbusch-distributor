@@ -199,9 +199,10 @@ postDataDetalleFacturas = () => {
     doc.setFontSize(size);
     doc.setFontSize(size-2);
     doc.setTextColor(0, 0, 0);
+
     doc.setFontStyle('italic');
     doc.text('@Brandenbusch.com.ec',x,y+250,{maxWidth:100});
-    doc.text('Direccion: Av Diego De Vaca ',x+40,y+250,{maxWidth:100});
+    doc.text('Direccion: Av Diego De Vaca ',x+60,y+250,{maxWidth:100});
     doc.text(`Cliente: __________`,x,y+243,{maxWidth:100});
     doc.text('Vendedor: ___________',x+56,y+243,{maxWidth:100});
     doc.setFontSize(size-2);
@@ -212,7 +213,9 @@ postDataDetalleFacturas = () => {
     doc.text('Cédula/Ruc:_____________',x,y+27);
     doc.text('Direccion Domicilio:__________________________________________',x,y+34);
     doc.text('Telefono/Celular:_______________________________________',x,y+44);
-
+    doc.text(`Subtotal:_____________`,x+100,y+200)
+    doc.text(`IVA:_________________`,x+100,y+210)
+    doc.text(`Total:_______________`,x+100,y+220)
     doc.autoTable({head: [headers],body: this.pdfData,
       startY: 65,
       tableWidth: 'auto',
