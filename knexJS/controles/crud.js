@@ -179,6 +179,24 @@ let getFacturasSelect = (req, res) => {
     })
 }
 
+let getFacturasTotal = (req, res) => {
+    let idfactura = req.query.idfactura
+    db.raw(`select total_factura(${idfactura}) as total`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
 let getDatosPedidos_detalles = (req, res) => {
     let idpedido = req.query.idpedido
 
@@ -347,5 +365,6 @@ module.exports = {
     getFacturaPP,
     getPedidosPP,
     getAlbaranPP,
-    getPedidosModalDetalle
+    getPedidosModalDetalle,
+    getFacturasTotal
 }

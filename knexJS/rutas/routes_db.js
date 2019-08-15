@@ -21,6 +21,7 @@ api.get('/routeFacturasAPI', control.getDatosFactura_detalles)        //V.UNIT A
 api.get('/routeFacturasSelect', control.getFacturasSelect)            //SUBTOTAL, IVA, TOTAL RESUMEN FACTURACION
 api.get('/routeFactura', control.getFacturaPP)
 api.get('/routePDF_Facturas', control.getPDF_Facturas)                //PDF
+api.get('/routeFacturasTotal', control.getFacturasTotal)
 
 //PEDIDOS
 api.get('/routePedidosAPI', control.getDatosPedidos_detalles)         //V.UNIT AND V.TOTAL RESUMEN PEDIDOS
