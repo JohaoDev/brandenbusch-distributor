@@ -214,13 +214,13 @@ postDataDetalleFacturas = () => {
     doc.setFontStyle('italic');
     doc.setTextColor(0, 0, 0);
     doc.text(`Fecha ${hora}`,x,y+13);
-    doc.text('Nombre del Cliente:__________________',x,y+20);
-    doc.text('Cédula/Ruc:_____________',x,y+27);
-    doc.text('Direccion Domicilio:__________________________________________',x,y+34);
-    doc.text('Telefono/Celular:_______________________________________',x,y+44);
-    doc.text(`Subtotal:${JSON.stringify(this.respuestaSubtotal[0].subtotal)}`,x+100,y+200)
-    doc.text(`IVA:${JSON.stringify(this.respuestaIva[0].iva)}`,x+100,y+210)
-    doc.text(`Total:${JSON.stringify(this.respuestaTotal[0].total)}`,x+100,y+220)
+    doc.text(`Nombre del Cliente: ${this.respuestaClientes[0].nombre} ${this.respuestaClientes[0].apellido}`,x,y+20);
+    doc.text(`Cédula/Ruc: ${this.respuestaClientes[0].identificacion}`,x,y+27);
+    doc.text(`Direccion Domicilio: ${this.respuestaClientes[0].direccion}`,x,y+34);
+    doc.text(`Telefono/Celular: ${this.respuestaClientes[0].telefono}`,x,y+44);
+    doc.text(`Subtotal:${this.respuestaSubtotal[0].subtotal}`,x+125,y+200)
+    doc.text(`IVA:${this.respuestaIva[0].iva}`,x+125,y+210)
+    doc.text(`Total:${this.respuestaTotal[0].total}`,x+125,y+220)
     doc.autoTable({head: [headers],body: this.pdfData,
       startY: 65,
       tableWidth: 'auto',
