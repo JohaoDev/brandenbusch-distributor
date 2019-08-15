@@ -40,7 +40,7 @@ export class ResumenPedidoComponent implements OnInit {
 
   formularioDetallePedidos(){
     this.detallepedidosForm = this.formBuilder.group({
-      cantidad: ['',[Validators.required]],
+      cantidad: ['',[Validators.required, Validators.pattern('[0-9]')]],
       idmaterial: ['',[Validators.required]],
     });
   }
