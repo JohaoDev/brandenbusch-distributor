@@ -24,6 +24,7 @@ export class ResumenFacturacionComponent implements OnInit {
     this.getDataMateriales()
     this.getDataSubtotal()
     this.getDataIva()
+    this.getDataTotal()
     this.getPDF()
     this.table_header = [
       {
@@ -86,8 +87,7 @@ export class ResumenFacturacionComponent implements OnInit {
   respuestaTotal: any[]
 
   getDataTotal = () => {
-    let total = "sum((detalle_factura.cantidad*material.precio)+(detalle_factura.cantidad*material.precio)*0.12) as total"
-      this.http.get<any>(environment.API_URL + `FacturasSelect?idfactura=${this.getLocalStorage()}&select=${total}`)
+    this.http.get<any>(environment.API_URL + `FacturasTotal?idfactura=${this.getLocalStorage()}`)
     .subscribe(data => {
       this.respuestaTotal.push(data.data)
       console.log(this.respuestaTotal)
