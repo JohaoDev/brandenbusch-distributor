@@ -24,9 +24,7 @@ export class ResumenFacturacionComponent implements OnInit {
     this.getDataMateriales()
     this.getDataSubtotal()
     this.getDataIva()
-    // this.getDataTotal()
     this.getPDF()
-
     this.table_header = [
       {
         idmaterial: 'Descripción - Material',
@@ -58,6 +56,9 @@ export class ResumenFacturacionComponent implements OnInit {
       this.respuestaDetalleFactura = data.datos
     })
   }
+  respuestaClientes: any[]
+
+
 
   respuestaSubtotal: any[]
 
@@ -67,6 +68,7 @@ export class ResumenFacturacionComponent implements OnInit {
     this.http.get<any>(environment.API_URL + `FacturasSelect?idfactura=${this.getLocalStorage()}&select=${subtotal}`)
     .subscribe(data => {
       this.respuestaSubtotal = data.datos
+      console.log(this.respuestaTotal)
     })
   }
 
@@ -87,7 +89,8 @@ export class ResumenFacturacionComponent implements OnInit {
     let total = "sum((detalle_factura.cantidad*material.precio)+(detalle_factura.cantidad*material.precio)*0.12) as total"
       this.http.get<any>(environment.API_URL + `FacturasSelect?idfactura=${this.getLocalStorage()}&select=${total}`)
     .subscribe(data => {
-      this.respuestaTotal = data.datos
+      this.respuestaTotal.push(data.data)
+      console.log(this.respuestaTotal)
     })
   }
 
@@ -153,7 +156,7 @@ postDataDetalleFacturas = () => {
      doc.setPage(i);
      doc.setFontSize(40);
      doc.setTextColor(222, 238, 230  );
-     doc.text(x ,doc.internal.pageSize.height - 120, 'Distribuidora Franzis',45);
+     doc.text(x ,doc.internal.pageSize.height - 120, 'Distribuidora Brandenbusch',45);
    }
 
    return doc;
@@ -186,7 +189,7 @@ postDataDetalleFacturas = () => {
     doc.setFontSize(size-2);
     doc.setTextColor(0, 0, 0);
     doc.setFontStyle('italic');
-    doc.text('@Franzix.com.ec',x,y+250,{maxWidth:100});
+    doc.text('@Brandenbusch.com.ec',x,y+250,{maxWidth:100});
     doc.text('Direccion: Av Diego De Vaca ',x+40,y+250,{maxWidth:100});
     doc.text(`Cliente: __________`,x,y+243,{maxWidth:100});
     doc.text('Vendedor: ___________',x+56,y+243,{maxWidth:100});
@@ -206,7 +209,6 @@ postDataDetalleFacturas = () => {
       styles: {
         overflow: 'linebreak'
       },})
-      // doc=this.getDataTotal()
       doc=this.marcaDeAgua(doc)
     doc.save('Facturas.pdf')
   }
