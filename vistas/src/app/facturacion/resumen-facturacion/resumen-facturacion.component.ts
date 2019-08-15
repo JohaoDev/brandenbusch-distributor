@@ -89,8 +89,7 @@ export class ResumenFacturacionComponent implements OnInit {
   getDataTotal = () => {
     this.http.get<any>(environment.API_URL + `FacturasTotal?idfactura=${this.getLocalStorage()}`)
     .subscribe(data => {
-      this.respuestaTotal.push(data.data)
-      console.log(this.respuestaTotal)
+      this.respuestaTotal=data.data
     })
   }
 
@@ -157,7 +156,7 @@ postDataDetalleFacturas = () => {
      doc.setPage(i);
      doc.setFontSize(40);
      doc.setTextColor(222, 238, 230  );
-     doc.text(x ,doc.internal.pageSize.height - 120, 'Distribuidora Brandenbusch',45);
+     doc.text(x ,doc.internal.pageSize.height - 60, 'Brandenbusch',45);
    }
 
    return doc;
