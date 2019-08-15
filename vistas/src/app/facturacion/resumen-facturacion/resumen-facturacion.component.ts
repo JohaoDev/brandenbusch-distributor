@@ -155,7 +155,7 @@ postDataDetalleFacturas = () => {
      doc.setPage(i);
      doc.setFontSize(40);
      doc.setTextColor(222, 238, 230  );
-     doc.text(x ,doc.internal.pageSize.height - 60, 'Brandenbusch',45);
+     doc.text(x ,doc.internal.pageSize.height - 60, 'Distribuidora Brandenbusch',45);
    }
 
    return doc;
@@ -201,9 +201,9 @@ postDataDetalleFacturas = () => {
     doc.text('Cédula/Ruc:_____________',x,y+27);
     doc.text('Direccion Domicilio:__________________________________________',x,y+34);
     doc.text('Telefono/Celular:_______________________________________',x,y+44);
-    doc.text(`Subtotal:_____________`,x+100,y+200)
-    doc.text(`IVA:_________________`,x+100,y+210)
-    doc.text(`Total:_______________`,x+100,y+220)
+    doc.text(`Subtotal:${JSON.stringify(this.respuestaSubtotal[0].subtotal)}`,x+100,y+200)
+    doc.text(`IVA:${JSON.stringify(this.respuestaIva[0].iva)}`,x+100,y+210)
+    doc.text(`Total:${JSON.stringify(this.respuestaTotal[0].total)}`,x+100,y+220)
     doc.autoTable({head: [headers],body: this.pdfData,
       startY: 65,
       tableWidth: 'auto',
