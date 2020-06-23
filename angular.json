@@ -122,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "vistas"
+    }
+  },
+  "defaultProject": "vistas",
+  "cli": {
+    "analytics": "fad2716c-9b32-431a-a241-783dca900ec4"
+  }
 }
